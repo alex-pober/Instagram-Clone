@@ -1,15 +1,17 @@
 from .db import db
 
+import datetime
 class Like(db.Model):
     __tablename__ = "likes"
     id = db.Column(db.Integer, primary_key=True),
     post_id = db.Column(db.Integer, nullable=False),
-    user_id = db.Column(db.Integer, nullable=False, db.ForeignKey("users.id"))
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False),
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow),
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     users = db.relationship("User", back_populates="likes")
     posts = db.relationship("Post", back_populates="likes")
+
 
     def to_dict(self):
         return {
