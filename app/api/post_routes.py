@@ -13,15 +13,15 @@ def get_post(id):
     return post.to_dict()
 
 # POST /api/posts
-@post_routes.route('/', method=["POST"])
+@post_routes.route('/', methods=["POST"])
 @login_required
 # NEED TO GET USER ID FROM FRONT END
 def new_post(id):
     form = NewPostForm()
     if form.validate_on_submit():
         post = Post(
-            user_id=id
-            imgURL=form.data['imgURL']
+            user_id=id,
+            imgURL=form.data['imgURL'],
             caption=form.data['caption']
         )
         db.session.add(post)
@@ -32,7 +32,7 @@ def new_post(id):
 
 
 # PUT /api/posts/:id
-@post_routes.route('/', method=["PUT"])
+@post_routes.route('/', methods=["PUT"])
 @login_required
 def update_post(id):
     form = NewPostForm()
@@ -46,7 +46,7 @@ def update_post(id):
 
 
 # DELETE /api/posts/:id
-@post_routes.route('/', method=["DELETE"])
+@post_routes.route('/', methods=["DELETE"])
 @login_required
 def delete_post(id):
     post = Post.query.get(id)

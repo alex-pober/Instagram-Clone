@@ -1,8 +1,8 @@
 from .db import db
-
-import datetime
+from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .follow import follows
 
 
 class User(db.Model, UserMixin):
@@ -11,22 +11,22 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     username = db.Column(db.String(50), nullable=False, unique=True)
-    profilURL = db.Column(db.String(2000), nullable=False)
+    profileURL = db.Column(db.String(2000), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False, unique=True)
     bio = db.Column(db.String(400), nullable=False)
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
+    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now(), onupdate=datetime.now())
 
     posts = db.relationship('Post', back_populates='users')
     comments = db.relationship('Comment', back_populates='users')
     likes = db.relationship('Like', back_populates='users')
-    
+
     followers = db.relationship(
         "User", 
-        secondary=db.follows,
-        secondaryjoin=(db.follows.c.user_id == id),
-        primaryjoin=(db.follows.c.follower_id == id),
+        secondary=follows,
+        primaryjoin=(follows.c.follower_id == id),
+        secondaryjoin=(follows.c.followed_id == id),
         backref=db.backref("following", lazy="dynamic"),
         lazy="dynamic"
     )
@@ -47,6 +47,8 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'name': self.name,
             'username': self.username,
-            'profilURL': self.profilURL,
-            'email': self.email
+            'profileURL': self.profilURL,
+            'email': self.email,
+            'followers': [user.id for user in self.followers],
+            'following': [user.id for user in self.following]
         }

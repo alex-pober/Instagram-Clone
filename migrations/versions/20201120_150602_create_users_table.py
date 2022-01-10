@@ -1,3 +1,4 @@
+
 """create_users_table
 
 Revision ID: ffdc0a98111c
@@ -22,7 +23,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=100), nullable=False),
     sa.Column('username', sa.String(length=50), nullable=False, unique=True),
-    sa.Column('profilURL', sa.String(length=2000)),
+    sa.Column('profileURL', sa.String(length=2000)),
     sa.Column('email', sa.String(length=255), nullable=False, unique=True),
     sa.Column('hashed_password', sa.String(length=255), nullable=False, unique=True),
     sa.Column('bio', sa.String(length=400)),
@@ -45,14 +46,13 @@ def upgrade():
     )
 
     op.create_table('follows',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('followed_id', sa.Integer(), nullable=False),
     sa.Column('follower_id', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),
 
-    sa.PrimaryKeyConstraint('id'),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('followed_id'),
+    sa.ForeignKeyConstraint(['followed_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['follower_id'], ['users.id'], )
     )
 
