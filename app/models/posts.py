@@ -2,7 +2,7 @@ from .db import db
 import datetime
 
 class Post(db.Model):
-    __tablename__ = 'post'
+    __tablename__ = 'posts'
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, nullable=False, db.ForeignKey("users.id"))
@@ -11,7 +11,7 @@ class Post(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
 
-    users = db.relationship("User", back_populates="post")
+    users = db.relationship("User", back_populates="posts")
 
     def to_dict(self):
         return {
