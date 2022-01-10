@@ -1,7 +1,7 @@
 """create_users_table
 
 Revision ID: ffdc0a98111c
-Revises: 
+Revises:
 Create Date: 2020-11-20 15:06:02.230689
 
 """
@@ -26,19 +26,19 @@ def upgrade():
     sa.Column('email', sa.String(length=255), nullable=False, unique=True),
     sa.Column('hashed_password', sa.String(length=255), nullable=False, unique=True),
     sa.Column('bio', sa.String(length=400)),
-    sa.Column('created_at', sa.DateTime(), nullable=True),
-    sa.Column('updated_at', sa.DateTime(), nullable=True),
+    sa.Column('created_at', sa.DateTime(), nullable=False),
+    sa.Column('updated_at', sa.DateTime(), nullable=False),
 
     sa.PrimaryKeyConstraint('id'),
     )
 
     op.create_table('posts',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.Column('imgURL', sa.String(length=2000), nullable=True),
+    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('imgURL', sa.String(length=2000), nullable=False),
     sa.Column('caption', sa.String(length=2000), nullable=True),
-    sa.Column('created_at', sa.DateTime(), nullable=True),
-    sa.Column('updated_at', sa.DateTime(), nullable=True),
+    sa.Column('created_at', sa.DateTime(), nullable=False),
+    sa.Column('updated_at', sa.DateTime(), nullable=False),
 
     sa.PrimaryKeyConstraint('id'),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], )
@@ -48,9 +48,9 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('follower_id', sa.Integer(), nullable=False),
-    sa.Column('created_at', sa.DateTime(), nullable=True),
-    sa.Column('updated_at', sa.DateTime(), nullable=True),
-    
+    sa.Column('created_at', sa.DateTime(), nullable=False),
+    sa.Column('updated_at', sa.DateTime(), nullable=False),
+
     sa.PrimaryKeyConstraint('id'),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['follower_id'], ['users.id'], )
@@ -58,10 +58,10 @@ def upgrade():
 
     op.create_table('likes',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('post_id', sa.Integer(), nullable=True),
-    sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.Column('created_at', sa.DateTime(), nullable=True),
-    sa.Column('updated_at', sa.DateTime(), nullable=True),
+    sa.Column('post_id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('created_at', sa.DateTime(), nullable=False),
+    sa.Column('updated_at', sa.DateTime(), nullable=False),
 
     sa.PrimaryKeyConstraint('id'),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
@@ -70,17 +70,17 @@ def upgrade():
 
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.Column('post_id', sa.Integer(), nullable=True),
+    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('post_id', sa.Integer(), nullable=False),
     sa.Column('comment_text', sa.String(length=2000), nullable=False),
-    sa.Column('created_at', sa.DateTime(), nullable=True),
-    sa.Column('updated_at', sa.DateTime(), nullable=True),
+    sa.Column('created_at', sa.DateTime(), nullable=False),
+    sa.Column('updated_at', sa.DateTime(), nullable=False),
 
     sa.PrimaryKeyConstraint('id'),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['post_id'], ['posts.id'], )
     )
-    
+
 
 
 def downgrade():
@@ -90,4 +90,3 @@ def downgrade():
     op.drop_table('follows')
     op.drop_table('likes')
     op.drop_table('comments')
-
