@@ -1,5 +1,5 @@
 from .db import db
-import datetime
+from datetime import datetime
 
 
 class Post(db.Model):
@@ -9,8 +9,8 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     imgURL = db.Column(db.String(2000), nullable=False)
     caption = db.Column(db.String(2000))
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
-    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now, onupdate=datetime.now)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
+    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now(), onupdate=datetime.now())
 
     users = db.relationship("User", back_populates="posts", cascade="all,delete")
     comments = db.relationship("Comment", back_populates="posts", cascade="all,delete")
