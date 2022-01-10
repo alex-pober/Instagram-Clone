@@ -2,6 +2,7 @@ from .db import db
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .follow import follows
 
 
 class User(db.Model, UserMixin):
@@ -21,14 +22,14 @@ class User(db.Model, UserMixin):
     comments = db.relationship('Comment', back_populates='users')
     likes = db.relationship('Like', back_populates='users')
 
-    # followers = db.relationship(
-    #     "User",
-    #     secondary=db.follows,
-    #     secondaryjoin=(db.follows.c.user_id == id),
-    #     primaryjoin=(db.follows.c.follower_id == id),
-    #     backref=db.backref("following", lazy="dynamic"),
-    #     lazy="dynamic"
-    # )
+    followers = db.relationship(
+        "User", 
+        secondary=follows,
+        primaryjoin=(follows.c.follower_id == id),
+        secondaryjoin=(follows.c.followed_id == id),
+        backref=db.backref("following", lazy="dynamic"),
+        lazy="dynamic"
+    )
 
     @property
     def password(self):
@@ -47,5 +48,7 @@ class User(db.Model, UserMixin):
             'name': self.name,
             'username': self.username,
             'profilURL': self.profilURL,
-            'email': self.email
+            'email': self.email,
+            "followers": [user.id for user in self.followers],
+            "following": [user.id for user in self.following]
         }
