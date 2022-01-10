@@ -12,6 +12,13 @@ def get_post(id):
     post = Post.query.get(id)
     return post.to_dict()
 
+
+# GET /api/posts
+@post_routes.route('/')
+def get_feed():
+    posts = Post.query.all()
+    return [post.to_dict() for post in posts]
+
 # POST /api/posts
 @post_routes.route('/', methods=["POST"])
 @login_required
@@ -32,7 +39,7 @@ def new_post(id):
 
 
 # PUT /api/posts/:id
-@post_routes.route('/', methods=["PUT"])
+@post_routes.route('/:id', methods=["PUT"])
 @login_required
 def update_post(id):
     form = NewPostForm()
@@ -46,7 +53,7 @@ def update_post(id):
 
 
 # DELETE /api/posts/:id
-@post_routes.route('/', methods=["DELETE"])
+@post_routes.route('/:id', methods=["DELETE"])
 @login_required
 def delete_post(id):
     post = Post.query.get(id)
