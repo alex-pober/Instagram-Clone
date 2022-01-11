@@ -45,22 +45,24 @@ def new_post():
 @login_required
 def update_post(id):
     form = NewPostForm()
+    print('*******************************', form.data['caption'])
+    form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
         post = Post.query.get(id)
-        post['caption'] = form.data['caption']
+        post.caption = form.data['caption']
         db.session.commit()
-        return post.to_dict()
-    print(form.errors)
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+        return {'post': post.to_dict()}
+    return "Post updated"
 
 
 # DELETE /api/posts/:id
 @post_routes.route('/<id>', methods=["DELETE"])
 @login_required
 def delete_post(id):
-    print('AHHHAHAHHAHAHAHAHAHAHAHA' ,id)
     post = Post.query.get(id)
     db.session.delete(post)
     db.session.commit()
+    return "Post deleted"
 
 # GET /api/posts/:username (FOR FEED)

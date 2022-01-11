@@ -52,6 +52,7 @@ export const addOnePost = post => async dispatch => {
 }
 
 export const updateOnePost = post => async dispatch => {
+    console.log('IN REACT ROUTE', post)
     const response = await fetch(`/api/posts/${post.id}`, {
         method: 'PUT',
         headers: {

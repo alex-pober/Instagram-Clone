@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import NewPostForm from './components/posts/NewPostForm';
 import UserFeed from './components/posts/UserFeed'
 import SinglePost from './components/posts/SinglePost';
+import EditPostForm from './components/posts/EditPostForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -45,6 +46,9 @@ function App() {
         </Route>
         <Route path='/posts/:id' exact={true}>
           <SinglePost />
+        </Route>
+        <Route path='/posts/:id/edit'>
+          <EditPostForm />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>

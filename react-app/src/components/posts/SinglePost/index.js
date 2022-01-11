@@ -15,16 +15,16 @@ const SinglePost = () => {
             return state.session.user.id
         }})
 
-    console.log(userId)
     useEffect (() => {
         dispatch(getAllPosts())
     }, [dispatch])
 
     const handleDelete = (id) => {
-        console.log(id)
         dispatch(deleteOnePost(id))
         history.push(`/feed`)
     }
+
+
     return (
         <div>
                 <div>
@@ -36,7 +36,10 @@ const SinglePost = () => {
                         <button onClick={() => handleDelete(id)}>Delete</button>
                         )}
                     {post[id]?.user_id == userId && (
-                        <button>Edit</button>
+                        <NavLink to={`/posts/${3}/edit`}>
+                            <button>Edit</button>
+                        </NavLink>
+
                         )}
                 </div>
         </div>
