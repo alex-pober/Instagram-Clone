@@ -11,10 +11,10 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     username = db.Column(db.String(50), nullable=False, unique=True)
-    profileURL = db.Column(db.String(2000), nullable=False)
+    profileURL = db.Column(db.String(2000))
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False, unique=True)
-    bio = db.Column(db.String(400), nullable=False)
+    bio = db.Column(db.String(400))
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now(), onupdate=datetime.now())
 
@@ -47,7 +47,7 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'name': self.name,
             'username': self.username,
-            'profileURL': self.profilURL,
+            'profileURL': self.profileURL,
             'email': self.email,
             'followers': [user.id for user in self.followers],
             'following': [user.id for user in self.following]
