@@ -1,4 +1,5 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
+from app.models import db
 from flask_login import login_required
 from app.models import Post
 from app.forms import NewPostForm
@@ -23,19 +24,22 @@ def get_feed():
 @post_routes.route('/', methods=["POST"])
 @login_required
 # NEED TO GET USER ID FROM FRONT END
-def new_post(id):
+def new_post():
+    data = request.json
+    print('aaaa', data)
     form = NewPostForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         post = Post(
-            user_id=id,
+            user_id=data['user_id'],
             imgURL=form.data['imgURL'],
             caption=form.data['caption']
         )
         db.session.add(post)
         db.session.commit()
         return post.to_dict()
-    print(form.errors)
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    # print(form.errors)
+    return (form.errors)
 
 
 # PUT /api/posts/:id

@@ -1,6 +1,5 @@
 from .db import db
 from datetime import datetime
-from sqlalchemy import DateTime
 
 
 class Comment(db.Model):
@@ -15,7 +14,7 @@ class Comment(db.Model):
 
 
     users = db.relationship('User', back_populates='comments')
-    posts = db.relationship("Post", back_populates="comments")
+    posts = db.relationship('Post', back_populates='comments')
 
 
     def to_dict(self):
