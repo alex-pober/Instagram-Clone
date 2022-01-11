@@ -4,7 +4,7 @@ const PostContainer = ({ posts }) => {
     return (
         <div>
                 <div>
-                    <img src={posts.imgURL}></img>
+                    <img src={posts.imgURL} width="250px"></img>
                     <p>{posts.caption}</p>
                 </div>
         </div>
