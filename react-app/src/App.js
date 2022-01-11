@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import NewPostForm from './components/posts/NewPostForm';
+import UserFeed from './components/posts/UserFeed'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -35,8 +36,8 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <Route path='/new-post' exact={true}>
-          <NewPostForm />
+        <Route path='/feed' exact={true}>
+          <UserFeed />
         </Route>
         <Route path='/new-post' exact={true}>
           <NewPostForm />

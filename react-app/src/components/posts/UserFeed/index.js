@@ -1,14 +1,26 @@
-import React from "react";
-import { useSelector } from 'react-redux';
-import PostContainer from './PostContainer';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllPosts } from "../../../store/posts";
+import PostContainer from '../PostContainer';
 
 const UserFeed = () => {
     const posts = useSelector(state => state.posts);
-    return (
+    const dispatch = useDispatch()
+
+    useEffect (() => {
+        dispatch(getAllPosts())
+    }, [dispatch])
+
+    const feed = Object.assign([], posts)
+    console.log(posts)
+    console.log(feed)
+    return(
         <div>
-            {posts.map(post => (
-                <PostContainer post={post} />
+            {feed.map(posts => (
+                <PostContainer posts={posts} />
             ))}
         </div>
-    )
+        )
 }
+
+export default UserFeed

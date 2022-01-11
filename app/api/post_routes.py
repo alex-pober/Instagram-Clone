@@ -18,7 +18,7 @@ def get_post(id):
 @post_routes.route('/')
 def get_feed():
     posts = Post.query.all()
-    return [post.to_dict() for post in posts]
+    return {'posts': [post.to_dict() for post in posts]}
 
 # POST /api/posts
 @post_routes.route('/', methods=["POST"])
@@ -37,6 +37,7 @@ def new_post():
         )
         db.session.add(post)
         db.session.commit()
+        print(post)
         return post.to_dict()
     # print(form.errors)
     return (form.errors)
