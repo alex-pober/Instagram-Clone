@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from app.models import db
 from flask_login import login_required
-from app.models import Post
+from app.models import Post, Like, db
 from app.forms import NewPostForm
 
 post_routes = Blueprint('posts', __name__)
@@ -66,3 +66,25 @@ def delete_post(id):
     return "Post deleted"
 
 # GET /api/posts/:username (FOR FEED)
+
+
+
+######################################################
+# POST /api/posts/<int:id>/likes
+@post_routes.route('/<int:id>/likes', methods=["POST"])
+@login_required
+def post_like(id):
+    user_id = request.json['userId']
+    existing_like = Like.query.filter(Like.user_id == user_id, Like.post_id == id).all()
+    if existing_like:
+      db.session.delete(existing_like[0])
+      db.session.commit()
+      return "****Like deleted"
+    else:
+      new_like = Like(
+        user_id=user_id, 
+        post_id=id
+      )
+      db.session.add(new_like)
+      db.session.commit()
+      return "****Like added"

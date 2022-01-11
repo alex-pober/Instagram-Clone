@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { getOnePost } from "../../../store/posts";
-import { getAllPosts } from "../../../store/posts";
-import { deleteOnePost } from "../../../store/posts";
+import { getOnePost, getAllPosts, deleteOnePost} from "../../../store/posts";
+import { likePost } from "../../../store/likes";
 
 const SinglePost = () => {
     const id = useParams().id
@@ -14,7 +13,6 @@ const SinglePost = () => {
         if (state.session.user) {
             return state.session.user.id
         }})
-
     useEffect (() => {
         dispatch(getAllPosts())
     }, [dispatch])
@@ -23,6 +21,12 @@ const SinglePost = () => {
         dispatch(deleteOnePost(id))
         history.push(`/feed`)
     }
+
+    const handleLike = () => {
+        let postId = id
+        dispatch(likePost(userId, postId))
+    }
+
 
 
     return (
@@ -36,10 +40,13 @@ const SinglePost = () => {
                         <button onClick={() => handleDelete(id)}>Delete</button>
                         )}
                     {post[id]?.user_id == userId && (
-                        <NavLink to={`/posts/${3}/edit`}>
+                        <NavLink to={`/posts/${id}/edit`}>
                             <button>Edit</button>
                         </NavLink>
 
+                        )}
+                    {post[id]?.user_id == userId && (
+                        <button onClick={() => handleLike(id)}>Like</button>
                         )}
                 </div>
         </div>
