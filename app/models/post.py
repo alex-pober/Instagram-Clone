@@ -12,7 +12,7 @@ class Post(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now(), onupdate=datetime.now())
 
-    users = db.relationship("User", back_populates="posts", cascade="all,delete")
+    users = db.relationship("User", back_populates="posts")
     comments = db.relationship("Comment", back_populates="posts", cascade="all,delete")
     likes = db.relationship("Like", back_populates="posts", cascade="all,delete")
 

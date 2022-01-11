@@ -10,6 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import NewPostForm from './components/posts/NewPostForm';
 import UserFeed from './components/posts/UserFeed'
+import SinglePost from './components/posts/SinglePost';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -41,6 +42,9 @@ function App() {
         </Route>
         <Route path='/new-post' exact={true}>
           <NewPostForm />
+        </Route>
+        <Route path='/posts/:id' exact={true}>
+          <SinglePost />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>

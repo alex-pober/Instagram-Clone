@@ -25,7 +25,6 @@ const deletePost = post => ({
 
 export const getAllPosts = () => async dispatch => {
     const response = await fetch('/api/posts/')
-    console.log(response)
     if (response.ok) {
         const data = await response.json();
         if (data.errors) {
@@ -67,11 +66,13 @@ export const updateOnePost = post => async dispatch => {
     }
 }
 
-export const deleteOnePost = post => async dispatch => {
-    const response = await fetch(`/api/posts/${post.id}`, {
+export const deleteOnePost = id => async dispatch => {
+    console.log("HELLLLLLLLO")
+    const response = await fetch(`/api/posts/${id}`, {
         method: 'DELETE',
     })
-    dispatch(deletePost(post))
+    console.log(id)
+    dispatch(deletePost(id))
     return 'Successfully deleted.'
 }
 
@@ -80,24 +81,11 @@ const initialState = {};
 export default function reducer(state = initialState, action) {
     let newState;
     switch (action.type) {
+
         case GET_POSTS:
             newState = {...state}
-            console.log("STATE HERE")
             action.payload.posts.map((post) => { newState[post.id] = post })
             return newState
-            // return { posts: action.payload }
-
-            // case LOAD_ALL_SPOTS:
-            //     newState = {};
-            //     action.payload.map((spot) => {
-            //         const spotId = spot.id;
-            //         return newState[spotId] = action.payload.find(spot => spot.id === spotId)
-            //     })
-
-            //     case LOAD_IMAGES:
-            //         newState = { ...state }
-            //         action.images.forEach(image => { newState[image.id] = image })
-            //         return newState
 
         case ADD_POST:
             newState = {
@@ -105,14 +93,17 @@ export default function reducer(state = initialState, action) {
                 [action.payload.id]: action.payload
             }
             return newState
+
         case UPDATE_POST:
             state[action.payload.id] = action.payload;
             newState = { ...state };
             return newState
+
         case DELETE_POST:
             newState = { ...state }
             delete newState[action.payload]
             return newState
+
         default:
             return state;
     }

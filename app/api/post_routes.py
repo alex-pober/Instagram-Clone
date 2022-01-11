@@ -23,10 +23,8 @@ def get_feed():
 # POST /api/posts
 @post_routes.route('/', methods=["POST"])
 @login_required
-# NEED TO GET USER ID FROM FRONT END
 def new_post():
     data = request.json
-    print('aaaa', data)
     form = NewPostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -36,15 +34,14 @@ def new_post():
             caption=form.data['caption']
         )
         db.session.add(post)
+        print("PRINT ID HERE >>>>>", post)
         db.session.commit()
-        print(post)
         return post.to_dict()
-    # print(form.errors)
     return (form.errors)
 
 
 # PUT /api/posts/:id
-@post_routes.route('/:id', methods=["PUT"])
+@post_routes.route('/<id>', methods=["PUT"])
 @login_required
 def update_post(id):
     form = NewPostForm()
@@ -58,9 +55,10 @@ def update_post(id):
 
 
 # DELETE /api/posts/:id
-@post_routes.route('/:id', methods=["DELETE"])
+@post_routes.route('/<id>', methods=["DELETE"])
 @login_required
 def delete_post(id):
+    print('AHHHAHAHHAHAHAHAHAHAHAHA' ,id)
     post = Post.query.get(id)
     db.session.delete(post)
     db.session.commit()
