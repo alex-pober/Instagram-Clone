@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getOnePost } from "../../../store/posts";
 import { getAllPosts } from "../../../store/posts";
 import { deleteOnePost } from "../../../store/posts";
+import CommentFeed from "../../comments/CommentFeed";
 
 const SinglePost = () => {
     const id = useParams().id
@@ -36,11 +37,16 @@ const SinglePost = () => {
                         <button onClick={() => handleDelete(id)}>Delete</button>
                         )}
                     {post[id]?.user_id == userId && (
-                        <NavLink to={`/posts/${3}/edit`}>
+                        <NavLink to={`/posts/${post[id]}/edit`}>
                             <button>Edit</button>
                         </NavLink>
-
                         )}
+                </div>
+                <div>
+                    <CommentFeed />
+                    <NavLink to={`/posts/${id}/new-comment`}>
+                        <button>Add Comment</button>
+                    </NavLink>
                 </div>
         </div>
     )
