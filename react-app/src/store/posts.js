@@ -24,11 +24,8 @@ const deletePost = post => ({
 })
 
 export const getAllPosts = () => async dispatch => {
-    const response = await fetch('/api/posts/', {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
+    const response = await fetch('/api/posts/')
+    console.log(response)
     if (response.ok) {
         const data = await response.json();
         if (data.errors) {
@@ -78,13 +75,30 @@ export const deleteOnePost = post => async dispatch => {
     return 'Successfully deleted.'
 }
 
-const initialState = { posts: null };
+const initialState = {};
 
 export default function reducer(state = initialState, action) {
     let newState;
     switch (action.type) {
         case GET_POSTS:
-            return { posts: action.payload }
+            newState = {...state}
+            console.log("STATE HERE")
+            action.payload.posts.map((post) => { newState[post.id] = post })
+            return newState
+            // return { posts: action.payload }
+
+            // case LOAD_ALL_SPOTS:
+            //     newState = {};
+            //     action.payload.map((spot) => {
+            //         const spotId = spot.id;
+            //         return newState[spotId] = action.payload.find(spot => spot.id === spotId)
+            //     })
+
+            //     case LOAD_IMAGES:
+            //         newState = { ...state }
+            //         action.images.forEach(image => { newState[image.id] = image })
+            //         return newState
+
         case ADD_POST:
             newState = {
                 ...state,

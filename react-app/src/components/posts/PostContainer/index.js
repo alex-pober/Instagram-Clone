@@ -1,14 +1,14 @@
 import React from "react";
 
-const PostContainer = ({ post }) => {
+const PostContainer = ({ posts }) => {
     return (
         <div>
-            {posts.map(post => (
                 <div>
-                    <img src={post.imgURL}></img>
-                    <p>{post.caption}</p>
+                    <img src={posts.imgURL}></img>
+                    <p>{posts.caption}</p>
                 </div>
-            ))}
         </div>
     )
 }
+
+export default PostContainer
