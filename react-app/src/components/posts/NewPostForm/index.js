@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
+import { addOnePost } from "../../../store/posts";
 
 const NewPostForm = () => {
+    const history = useHistory();
     const [errors, setErrors] = useState([]);
     const [imgURL, setImgURL] = useState('');
     const [caption, setCaption] = useState('');
@@ -11,6 +14,15 @@ const NewPostForm = () => {
     const submit = async (e) => {
         e.preventDefault();
 
+        const newPost = {
+            user_id: user.id,
+            imgURL,
+            caption,
+        }
+        let submited = dispatch(addOnePost(newPost))
+        if (submited) {
+            history.push('/feed')
+        }
     }
 
     const updateImgURL = e => {
@@ -49,7 +61,7 @@ const NewPostForm = () => {
                         onChange={updateCaption}
                     />
                 </div>
-                <button type='submit'>Login</button>
+                <button type='submit'>Post</button>
             </div>
         </form>
     )

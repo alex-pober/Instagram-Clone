@@ -38,6 +38,9 @@ function App() {
         <Route path='/new-post' exact={true}>
           <NewPostForm />
         </Route>
+        <Route path='/new-post' exact={true}>
+          <NewPostForm />
+        </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
