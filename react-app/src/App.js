@@ -12,6 +12,7 @@ import NewPostForm from './components/posts/NewPostForm';
 import UserFeed from './components/posts/UserFeed'
 import SinglePost from './components/posts/SinglePost';
 import EditPostForm from './components/posts/EditPostForm';
+import NewCommentForm from './components/comments/NewComment';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -43,6 +44,9 @@ function App() {
         </Route>
         <Route path='/new-post' exact={true}>
           <NewPostForm />
+        </Route>
+        <Route path='/posts/:id/new-comment' exact={true}>
+          <NewCommentForm />
         </Route>
         <Route path='/posts/:id' exact={true}>
           <SinglePost />

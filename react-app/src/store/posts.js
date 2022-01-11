@@ -52,7 +52,6 @@ export const addOnePost = post => async dispatch => {
 }
 
 export const updateOnePost = post => async dispatch => {
-    console.log('IN REACT ROUTE', post)
     const response = await fetch(`/api/posts/${post.id}`, {
         method: 'PUT',
         headers: {
@@ -68,11 +67,9 @@ export const updateOnePost = post => async dispatch => {
 }
 
 export const deleteOnePost = id => async dispatch => {
-    console.log("HELLLLLLLLO")
     const response = await fetch(`/api/posts/${id}`, {
         method: 'DELETE',
     })
-    console.log(id)
     dispatch(deletePost(id))
     return 'Successfully deleted.'
 }
