@@ -76,12 +76,12 @@ export const deleteOnePost = id => async dispatch => {
 
 const initialState = {};
 
-export default function reducer(state = initialState, action) {
+export default function (state = initialState, action) {
     let newState;
     switch (action.type) {
 
         case GET_POSTS:
-            newState = {...state}
+            newState = {...state }
             action.payload.posts.map((post) => { newState[post.id] = post })
             return newState
 
@@ -99,7 +99,7 @@ export default function reducer(state = initialState, action) {
 
         case DELETE_POST:
             newState = { ...state }
-            delete newState[action.payload]
+            delete newState[action.payload.id]
             return newState
 
         default:
