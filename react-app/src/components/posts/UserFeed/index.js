@@ -12,8 +12,7 @@ const UserFeed = () => {
     }, [dispatch])
 
     const feed = Object.assign([], posts)
-    console.log(posts)
-    console.log(feed)
+
     return(
         <div>
             {feed.map(posts => (

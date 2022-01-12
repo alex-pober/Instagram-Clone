@@ -3,6 +3,7 @@ import { NavLink, useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { getOnePost, getAllPosts, deleteOnePost } from "../../../store/posts";
 import { getAllLikes, likePost, unlikePost } from "../../../store/likes";
+import CommentFeed from "../../comments/CommentFeed";
 
 const SinglePost = () => {
     const id = useParams().id
@@ -63,7 +64,13 @@ const SinglePost = () => {
                 {post[id]?.user_id == userId && (
                     <button onClick={() => handleLike(id)}>{buttonLikeUnlike()}</button>
                 )}
-            </div>
+             </div>
+             <div>
+                 <CommentFeed />
+                 <NavLink to={`/posts/${id}/new-comment`}>
+                     <button>Add Comment</button>
+                 </NavLink>
+             </div>
         </div>
     )
 }
