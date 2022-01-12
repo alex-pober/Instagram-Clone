@@ -3,7 +3,7 @@ from app.models import db, User
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    demo = User (
+    demo = User(
         name='Demo', username='demo', profileURL='https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png', email='demo@aa.io', hashed_password='password', bio='This is a test Bio')
     steve = User(
         name='steve', username='stevo', profileURL='https://4.bp.blogspot.com/-txKoWDBmvzY/XHAcBmIiZxI/AAAAAAAAC5o/wOkD9xoHn28Dl0EEslKhuI-OzP8_xvTUwCLcBGAs/s320/2.jpg', email='stevo@gmail.com', hashed_password='barsa1', bio='Be all in or get out. There is no in-between.')
