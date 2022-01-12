@@ -29,17 +29,17 @@ const CommentContainer = ({ comment }) => {
         <div>
             <div>
                 <p>{comment.comment_text}</p>
-                {post[postId]?.user_id == userId && (
+                {comment?.user_id == userId && (
                         <button onClick={() => handleDelete(comment.id)}>Delete</button>
                         )}
-                    {post[postId]?.user_id == userId && (
-                        <>
+                {comment?.user_id == userId && (
+                    <>
                         <button onClick={openPopUp}>Edit Comment</button>
                         {editPopUp && (
                             <EditCommentForm comment={comment}/>
                         )}
-                        </>
-                        )}
+                    </>
+                    )}
             </div>
         </div>
     )
