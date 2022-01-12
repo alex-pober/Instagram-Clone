@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { getOnePost, getAllPosts, deleteOnePost } from "../../../store/posts";
-import { getAllLikes, likePost } from "../../../store/likes";
+import { getAllLikes, likePost, unlikePost } from "../../../store/likes";
 
 const SinglePost = () => {
     const id = useParams().id
@@ -18,19 +18,18 @@ const SinglePost = () => {
     const allLikeToThisPost = useSelector(state => {
         if (state.likes) {
             return Object.values(state.likes)
-            .filter(like => like.post_id === +id)
+            .filter(like => like?.post_id === +id)
         }
     })
 
-    const userLike = allLikeToThisPost.filter(like => like.user_id === userId).length > 0? true: false
+    const isLiked = allLikeToThisPost.filter(like => like.user_id === userId).length > 0? true: false
 
     //REMOVE WHEN WE CHANGE FOR A HEART
-    let buttonLikeUnlike = () => userLike? "Like" : "Unlike"
+    let buttonLikeUnlike = () => isLiked? "Unlike" : "Like"
 
     useEffect(() => {
         dispatch(getAllPosts())
         dispatch(getAllLikes())
-        dispatch(likePost())
     }, [dispatch])
 
     const handleDelete = (id) => {
@@ -40,7 +39,7 @@ const SinglePost = () => {
 
     const handleLike = () => {
         let postId = id
-        dispatch(likePost(userId, postId))
+        isLiked ? dispatch(unlikePost(userId, postId)):dispatch(likePost(userId, postId))
     }
 
 

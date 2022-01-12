@@ -102,7 +102,7 @@ export default function (state = initialState, action) {
 
         case DELETE_POST:
             newState = { ...state }
-            delete newState[action.payload]
+            delete newState[action.payload.id]
             return newState
 
         default:

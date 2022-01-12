@@ -75,16 +75,17 @@ def delete_post(id):
 @login_required
 def post_like(id):
     user_id = request.json['userId']
+    post_id = request.json['postId']
     existing_like = Like.query.filter(Like.user_id == user_id, Like.post_id == id).all()
     if existing_like:
       db.session.delete(existing_like[0])
       db.session.commit()
-      return "****Like deleted"
+      return jsonify(existing_like[0].to_dict())
     else:
       new_like = Like(
         user_id=user_id, 
-        post_id=id
+        post_id=post_id
       )
       db.session.add(new_like)
       db.session.commit()
-      return "****Like added"
+      return jsonify(new_like.to_dict())
