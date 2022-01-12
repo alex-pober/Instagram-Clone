@@ -6,6 +6,12 @@
   color: rgb(46, 46, 46);
 }
 
+#comment {
+  color: rgb(46, 46, 46);
+  transform: scaleX(-1);
+}
+
 .hearts {
   font-size: 25px;
+  cursor: pointer;
 }
