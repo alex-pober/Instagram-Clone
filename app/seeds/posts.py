@@ -3,7 +3,7 @@ from app.models import db, Post
 
 
 
- # Andres's Posts
+
 def seed_posts():
 
     stevePost1 = Post(
