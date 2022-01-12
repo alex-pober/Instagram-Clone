@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from app.models import db
 from flask_login import login_required
 from app.models import Comment
+from app.forms.comment_form import NewCommentForm
 
 comment_routes = Blueprint('comments', __name__)
 
@@ -12,7 +13,7 @@ def get_single_comment(id):
     return comment.to_dict()
 
 # DELETE /api/comments/:commentId
-@comment_routes.route('/<int:id>', methods=["DELETE"])
+@comment_routes.route('/<id>', methods=["DELETE"])
 @login_required
 def delete_comment(id):
     comment = Comment.query.get(id)

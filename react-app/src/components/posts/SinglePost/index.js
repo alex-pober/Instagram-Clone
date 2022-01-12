@@ -37,7 +37,7 @@ const SinglePost = () => {
                         <button onClick={() => handleDelete(id)}>Delete</button>
                         )}
                     {post[id]?.user_id == userId && (
-                        <NavLink to={`/posts/${post[id]}/edit`}>
+                        <NavLink to={`/posts/${id}/edit`}>
                             <button>Edit</button>
                         </NavLink>
                         )}
