@@ -17,7 +17,7 @@ const CommentContainer = ({ comment }) => {
 
         const handleDelete = (id) => {
             dispatch(deleteOneComment(id))
-            history.push(`/posts/${id}`)
+            history.push(`/posts/${postId}`)
         }
 
         const openPopUp = () => {
@@ -29,7 +29,6 @@ const CommentContainer = ({ comment }) => {
         <div>
             <div>
                 <p>{comment.comment_text}</p>
-                <button>Like</button>
                 {post[postId]?.user_id == userId && (
                         <button onClick={() => handleDelete(comment.id)}>Delete</button>
                         )}
