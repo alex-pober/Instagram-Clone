@@ -81,7 +81,7 @@ export default function reducer(state = initialState, action) {
     let newState;
     switch (action.type) {
         case GET_COMMENTS:
-            newState = {...state}
+            newState = {}
             action.payload.comments.map((comment) => { newState[comment.id] = comment })
             return newState
         case ADD_COMMENT:
