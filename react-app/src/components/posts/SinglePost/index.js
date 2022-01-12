@@ -5,6 +5,7 @@ import { getAllPosts, deleteOnePost } from "../../../store/posts";
 import { getAllLikes, likePost, unlikePost } from "../../../store/likes";
 import CommentFeed from "../../comments/CommentFeed";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
+import { FaRegComment } from "react-icons/fa";
 import './style.css';
 
 const SinglePost = () => {
@@ -21,14 +22,11 @@ const SinglePost = () => {
     const allLikeToThisPost = useSelector(state => {
         if (state.likes) {
             return Object.values(state.likes)
-            .filter(like => like?.post_id === +id)
+                .filter(like => like?.post_id === +id)
         }
     })
 
-    const isLiked = allLikeToThisPost.filter(like => like.user_id === userId).length > 0? true: false
-
-    //REMOVE WHEN WE CHANGE FOR A HEART
-    let buttonLikeUnlike = () => isLiked? "Unlike" : "Like"
+    const isLiked = allLikeToThisPost.filter(like => like.user_id === userId).length > 0 ? true : false
 
     useEffect(() => {
         dispatch(getAllPosts())
@@ -42,7 +40,7 @@ const SinglePost = () => {
 
     const handleLike = () => {
         let postId = id
-        isLiked ? dispatch(unlikePost(userId, postId)):dispatch(likePost(userId, postId))
+        isLiked ? dispatch(unlikePost(userId, postId)) : dispatch(likePost(userId, postId))
     }
 
 
@@ -63,19 +61,25 @@ const SinglePost = () => {
                     </NavLink>
 
                 )}
-                {userId &&  isLiked && (
-                    <BsHeartFill className="hearts" id="like" onClick={() => handleLike(id)}/>
+                <div>
+                    {userId && isLiked && (
+                        <BsHeartFill className="hearts" id="like" onClick={() => handleLike(id)} />
                     )}
-                {userId &&  !isLiked && (
-                    <BsHeart className="hearts" id="unlike" onClick={() => handleLike(id)}/>
+                    {userId && !isLiked && (
+                        <BsHeart className="hearts" id="unlike" onClick={() => handleLike(id)} />
                     )}
-             </div>
-             <div>
-                 <CommentFeed />
-                 <NavLink to={`/posts/${id}/new-comment`}>
-                     <button>Add Comment</button>
-                 </NavLink>
-             </div>
+                </div>
+                <div>
+                    {userId && (
+                    <NavLink to={`/posts/${id}/new-comment`}>
+                        <FaRegComment className="hearts" id='comment' />
+                    </NavLink>
+                    )}
+                </div>
+            </div>
+            <div>
+                <CommentFeed />
+            </div>
         </div>
     )
 }
