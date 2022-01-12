@@ -1,11 +1,14 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
-const PostContainer = ({ posts }) => {
+const PostContainer = ({ posts }) => {  
     return (
         <div>
-                <div>
-                    <img src={posts.imgURL} width="250px"></img>
-                    <p>{posts.caption}</p>
+                <div> 
+                    <NavLink to={`/posts/${posts.id}`}>
+                        <img src={posts.imgURL} width="250px"></img>
+                        <p>{posts.caption}</p>
+                    </NavLink>
                 </div>
         </div>
     )

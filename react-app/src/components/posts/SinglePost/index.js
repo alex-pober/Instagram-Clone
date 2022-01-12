@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { getOnePost, getAllPosts, deleteOnePost } from "../../../store/posts";
+import { getAllPosts, deleteOnePost } from "../../../store/posts";
 import { getAllLikes, likePost, unlikePost } from "../../../store/likes";
 import CommentFeed from "../../comments/CommentFeed";
+import { BsHeartFill, BsHeart } from "react-icons/bs";
+import './style.css';
 
 const SinglePost = () => {
     const id = useParams().id
@@ -61,9 +63,12 @@ const SinglePost = () => {
                     </NavLink>
 
                 )}
-                {post[id]?.user_id == userId && (
-                    <button onClick={() => handleLike(id)}>{buttonLikeUnlike()}</button>
-                )}
+                {userId &&  isLiked && (
+                    <BsHeartFill className="hearts" id="like" onClick={() => handleLike(id)}/>
+                    )}
+                {userId &&  !isLiked && (
+                    <BsHeart className="hearts" id="unlike" onClick={() => handleLike(id)}/>
+                    )}
              </div>
              <div>
                  <CommentFeed />
