@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { getOnePost, getAllPosts, deleteOnePost} from "../../../store/posts";
-import { likePost } from "../../../store/likes";
+import { getOnePost, getAllPosts, deleteOnePost } from "../../../store/posts";
+import { getAllLikes, likePost } from "../../../store/likes";
 
 const SinglePost = () => {
     const id = useParams().id
@@ -12,9 +12,25 @@ const SinglePost = () => {
     const userId = useSelector(state => {
         if (state.session.user) {
             return state.session.user.id
-        }})
-    useEffect (() => {
+        }
+    })
+
+    const allLikeToThisPost = useSelector(state => {
+        if (state.likes) {
+            return Object.values(state.likes)
+            .filter(like => like.post_id === +id)
+        }
+    })
+
+    const userLike = allLikeToThisPost.filter(like => like.user_id === userId).length > 0? true: false
+
+    //REMOVE WHEN WE CHANGE FOR A HEART
+    let buttonLikeUnlike = () => userLike? "Like" : "Unlike"
+
+    useEffect(() => {
         dispatch(getAllPosts())
+        dispatch(getAllLikes())
+        dispatch(likePost())
     }, [dispatch])
 
     const handleDelete = (id) => {
@@ -31,24 +47,24 @@ const SinglePost = () => {
 
     return (
         <div>
-                <div>
-                    <img src={post[id]?.imgURL} width="250px"></img>
-                    <p>{post[id]?.caption}</p>
-                </div>
-                <div>
-                    {post[id]?.user_id == userId && (
-                        <button onClick={() => handleDelete(id)}>Delete</button>
-                        )}
-                    {post[id]?.user_id == userId && (
-                        <NavLink to={`/posts/${id}/edit`}>
-                            <button>Edit</button>
-                        </NavLink>
+            <div>
+                <img src={post[id]?.imgURL} width="250px"></img>
+                <p>{post[id]?.caption}</p>
+            </div>
+            <div>
+                {post[id]?.user_id == userId && (
+                    <button onClick={() => handleDelete(id)}>Delete</button>
+                )}
+                {post[id]?.user_id == userId && (
+                    <NavLink to={`/posts/${id}/edit`}>
+                        <button>Edit</button>
+                    </NavLink>
 
-                        )}
-                    {post[id]?.user_id == userId && (
-                        <button onClick={() => handleLike(id)}>Like</button>
-                        )}
-                </div>
+                )}
+                {post[id]?.user_id == userId && (
+                    <button onClick={() => handleLike(id)}>{buttonLikeUnlike()}</button>
+                )}
+            </div>
         </div>
     )
 }

@@ -4,15 +4,27 @@ const GET_LIKES = 'likes/GET_LIKES'
 // ACTIONS
 const getLikes = likes => ({
   type: GET_LIKES,
-  payload: likes,
+  payload: likes
 });
 
 const addRemoveLike = like => ({
   type: ADD_REMOVE_LIKE,
-  payload: like,
+  payload: like
 });
 
 // SELECTORS
+export const getAllLikes = () => async dispatch => {
+  const response = await fetch('/api/likes/')
+  if (response.ok) {
+      const data = await response.json();
+      if (data.errors) {
+          return;
+      }
+      dispatch(getLikes(data));
+      return data
+  }
+}
+
 export const likePost = (userId, postId) => async (dispatch) => {
   const res = await fetch(`/api/posts/${postId}/likes`, {
     method: "POST",
@@ -29,23 +41,20 @@ export const likePost = (userId, postId) => async (dispatch) => {
 
 const initialState = {};
 
-const likesReducer = (state = initialState, action) => {
+export default function reducer(state = initialState, action) {
   let newState;
   switch (action.type) {
-
-    case ADD_REMOVE_LIKE:
-      newState = { ...state, [action.like.id]: action.like };
-      return newState;
 
     case GET_LIKES:
       newState = {...state}
       action.payload.likes.map((like) => { newState[like.id] = like })
       return newState
+    
+    case ADD_REMOVE_LIKE:
+      newState = { ...state, [action.like.id]: action.like };
+      return newState;
 
     default:
       return state;
   }
 }
-
-
-export default likesReducer;
