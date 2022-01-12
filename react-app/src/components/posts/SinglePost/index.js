@@ -61,7 +61,7 @@ const SinglePost = () => {
                     </NavLink>
 
                 )}
-                {post[id]?.user_id == userId && (
+                {userId && (
                     <button onClick={() => handleLike(id)}>{buttonLikeUnlike()}</button>
                 )}
              </div>
