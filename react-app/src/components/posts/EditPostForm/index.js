@@ -9,7 +9,6 @@ const EditPostForm = () => {
     const [errors, setErrors] = useState([]);
     const [caption, setCaption] = useState('');
     const oldCaption = useSelector(state => state?.posts[postId].caption)
-    const user = useSelector(state => state?.session.user);
     const userId = useSelector(state => {
         if (state.session.user) {
             return state.session.user.id
@@ -52,7 +51,7 @@ const EditPostForm = () => {
                     ))}
                 </div>
                 <div>
-                    <img src={image}></img>
+                    <img alt={postId} src={image} width="250px"></img>
                 </div>
                 <div>
                     <label htmlFor='caption'>Caption</label>

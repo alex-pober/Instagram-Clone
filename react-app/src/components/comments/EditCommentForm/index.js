@@ -11,7 +11,6 @@ const EditCommentForm = ({comment}) => {
     const [errors, setErrors] = useState([]);
     const [comment_text, setComment] = useState('');
     const oldComment = useSelector(state => state?.comments[comment.id].comment_text)
-    const user = useSelector(state => state?.session.user);
     const userId = useSelector(state => {
         if (state.session.user) {
             return state.session.user.id

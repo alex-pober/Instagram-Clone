@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllPosts, deleteOnePost } from "../../../store/posts";
@@ -9,7 +9,8 @@ import { FaRegComment } from "react-icons/fa";
 import './style.css';
 
 const SinglePost = () => {
-    const id = useParams().id
+    const [postUser, setpostUsers] = useState([]);
+    const id = +useParams().id
     const post = useSelector(state => state.posts)
     const dispatch = useDispatch()
     const history = useHistory()
@@ -18,6 +19,20 @@ const SinglePost = () => {
             return state.session.user.id
         }
     })
+
+    ////////////////////////
+    const userIdOfThisPost = +post[id]?.user_id
+
+    useEffect(() => {
+        async function fetchData() {
+          const response = await fetch('/api/users/');
+          const responseData = await response.json();
+          setpostUsers(responseData.users);
+        }
+        fetchData();
+      }, []);
+      const userInfo = postUser.find(owner => owner.id === userIdOfThisPost)
+    ///////////////////////
 
     const allLikeToThisPost = useSelector(state => {
         if (state.likes) {
@@ -44,18 +59,20 @@ const SinglePost = () => {
     }
 
 
-
     return (
         <div>
             <div>
-                <img src={post[id]?.imgURL} width="250px"></img>
+                <i>{userInfo?.username}</i>
+            </div>
+            <div>
+                <img alt={post[id]?.caption} src={post[id]?.imgURL} width="250px"></img>
                 <p>{post[id]?.caption}</p>
             </div>
             <div>
-                {post[id]?.user_id == userId && (
+                {post[id]?.user_id === +userId && (
                     <button onClick={() => handleDelete(id)}>Delete</button>
                 )}
-                {post[id]?.user_id == userId && (
+                {post[id]?.user_id === +userId && (
                     <NavLink to={`/posts/${id}/edit`}>
                         <button>Edit</button>
                     </NavLink>

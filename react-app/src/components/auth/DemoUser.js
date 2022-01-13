@@ -1,20 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 
 const DemoButton = () => {
-  const [errors, setErrors] = useState([]);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch()
   const handleDemo = async (e) => {
     e.preventDefault();
     const email = 'demo@aa.io'
     const password = 'password'
-    const data = await dispatch(login(email, password));
-    if (data) {
-      setErrors(data);
-    }
+    await dispatch(login(email, password));
+
   };
 
   if (user) {
