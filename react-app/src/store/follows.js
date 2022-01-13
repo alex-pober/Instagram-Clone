@@ -20,6 +20,7 @@ const removeFollow = follow => ({
 
 //SELECTORS
 export const getAllFollows = (id) => async dispatch => {
+    console.log(id, typeof id)
     const res = await fetch(`/api/follows/${id}`)
     if (res.ok) {
       const data = await res.json();
@@ -34,29 +35,28 @@ export const getAllFollows = (id) => async dispatch => {
 
 
   export const followUser = (followerId, followedId) => async (dispatch) => {
-    const res = await fetch(`/api/follows/${followedId}/`, {
+    const res = await fetch(`/api/follows/${followedId}/new-follow`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ followerId, followedId }),
     });
-
     if (res.ok) {
       const data = await res.json();
+      dispatch(addFollow(data));
       if (data.errors) {
         return;
       }
-      dispatch(addFollow(data));
       return data
     }
   };
-
+  
   export const unfollowUser = (followerId, followedId) => async (dispatch) => {
-    const res = await fetch(`/api/follows/${followedId}/`, {
+    const res = await fetch(`/api/follows/${followedId}/new-follow`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ followerId, followedId }),
     });
-
+    
     if (res.ok) {
       const data = await res.json();
       if (data.errors) {
@@ -76,18 +76,18 @@ export default function (state = initialState, action) {
 
       case GET_FOLLOWS:
         newState = { ...state }
-        action.payload.follows.map((follow) => { newState[follow.followed] = follow })
+        action.payload.follows.map((follow) => { newState[follow.id] = follow })
         return newState
 
 
       case ADD_FOLLOW:
-        newState = { ...state, [action.payload.followed]: action.payload };
+        newState = { ...state, [action.payload.id]: action.payload };
         return newState;
 
 
       case REMOVE_FOLLOW:
         newState = { ...state };
-        delete newState[action.payload.follwed];
+        delete newState[action.payload.id];
         return newState;
 
       default:
