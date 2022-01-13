@@ -4,13 +4,12 @@ import { useParams } from "react-router-dom";
 import { getAllComments } from "../../../store/comments";
 import CommentContainer from "../CommentContainer";
 
-const CommentFeed = () => {
-    const postId = useParams().id
+const CommentFeed = ({post}) => {
     const comments = useSelector(state => state.comments);
     const dispatch = useDispatch()
 
     useEffect (() => {
-        dispatch(getAllComments(postId))
+        dispatch(getAllComments(post.id))
     }, [dispatch])
 
     const feed = Object.assign([], comments)

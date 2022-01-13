@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { Modal } from "../../../context/Modal";
+import SinglePost from "../SinglePost";
 
 const PostContainer = ({ posts }) => {
     const [postUser, setpostUsers] = useState([]);
-
+    const [showModal, setShowModal] = useState(false);
     //////////////////////// Evalute the posibility to change into a reducer/store
     const userIdOfThisPost = +posts?.user_id
 
@@ -15,7 +17,7 @@ const PostContainer = ({ posts }) => {
         }
         fetchData();
     }, []);
-    const userInfo = postUser.find(owner => owner.id === userIdOfThisPost)
+    const userInfo = postUser?.find(owner => owner.id === userIdOfThisPost)
     ///////////////////////
 
     return (
@@ -24,10 +26,16 @@ const PostContainer = ({ posts }) => {
                 <NavLink to={`/users/${userInfo?.id}`}>
                     <p>{userInfo?.username}</p>
                 </NavLink>
-                <NavLink to={`/posts/${posts.id}`}>
-                    <img key={posts.id} alt={posts.caption} src={posts.imgURL} width="250px"></img>
+                <div>
+                    {/* <button onClick={() => setShowModal(true)}>Show Post</button> */}
+                    <img key={posts.id} alt={posts.caption} src={posts.imgURL} onClick={() => setShowModal(true)} width="250px"></img>
                     <p>{posts.caption}</p>
-                </NavLink>
+                </div>
+                {showModal && (
+                    <Modal onClose={() => setShowModal(false)}>
+                        <SinglePost post={posts} />
+                    </Modal>
+                )}
             </div>
         </div>
     )

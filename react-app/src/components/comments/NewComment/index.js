@@ -3,8 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { addOneComment } from "../../../store/comments";
 
-const NewCommentForm = () => {
-    const postId = useParams().id
+const NewCommentForm = ({post}) => {
     const history = useHistory()
     const [errors, setErrors] = useState([]);
     const [comment_text, setCommentText] = useState('');
@@ -20,13 +19,14 @@ const NewCommentForm = () => {
 
         const newComment = {
             user_id: user.id,
-            post_id: postId,
+            post_id: post.id,
             comment_text
         }
 
         let submitted = dispatch(addOneComment(newComment))
+
         if (submitted) {
-            history.push(`/posts/${postId}`)
+            setCommentText('')
         }
     }
 
