@@ -14,6 +14,7 @@ import SinglePost from './components/posts/SinglePost';
 import EditPostForm from './components/posts/EditPostForm';
 import NewCommentForm from './components/comments/NewComment';
 import EditCommentForm from './components/comments/EditCommentForm'
+import ExploreFeed from './components/posts/ExploreFeed';
 // import ProfilePage from './components/profile/ProfilePage';
 
 function App() {
@@ -43,6 +44,9 @@ function App() {
         </Route>
         <Route path='/feed' exact={true}>
           <UserFeed />
+        </Route>
+        <Route path='/explore' exact={true}>
+          <ExploreFeed />
         </Route>
         <Route path='/new-post' exact={true}>
           <NewPostForm />
