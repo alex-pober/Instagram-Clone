@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router"
 import { useHistory } from "react-router-dom";
 import { getAllPosts } from "../../../store/posts";
+import { followUser, unfollowUser } from "../../store/follows"
 
 function ProfilePage() {
   const history = useHistory()
@@ -21,13 +22,13 @@ function ProfilePage() {
     }
   })
 
-  const isFollowed = allLikeToThisPost.filter(like => like.user_id === userId).length > 0 ? true : false
+  const isFollowed = useSelector(state => state.follows[userId])
 
   // Like post function
   const handleFollow = async () => {
     let followed = userId
     //create unfolllow and follow
-    isFollowed ? dispatch(unfollowUser(followed, follower)) : dispatch(followUser(followed, follower))
+    isFollowed ? dispatch(unfollowUser(follower, followed)) : dispatch(followUser(follower, followed))
   };
 
   useEffect(() => {
@@ -42,7 +43,12 @@ function ProfilePage() {
         <img src={user.profileURL} alt=''/>
         <div>{user.username}</div>
         <div>{user.bio}</div>
-
+        {userId && isFollowed &&(
+          <button onClick={() => handleFollow(userId)}>UNFOLLOW</button>
+        )}
+        {userId && !isFollowed &&(
+          <button onClick={() => handleFollow(userId)}>FOLLOW</button>
+        )}
       </div>
     </div>
   );
