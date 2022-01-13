@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -27,6 +27,10 @@ function App() {
     })();
   }, [dispatch]);
 
+  useEffect(() => {
+
+  })
+
   if (!loaded) {
     return null;
   }
@@ -35,14 +39,14 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route exact path='/'>
+          <UserFeed />
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
-        </Route>
-        <Route path='/feed' exact={true}>
-          <UserFeed />
         </Route>
         <Route path='/new-post' exact={true}>
           <NewPostForm />
@@ -65,9 +69,9 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
+        <Route>
+          <Redirect to='/' />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

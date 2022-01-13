@@ -15,7 +15,7 @@ const PostContainer = ({ posts }) => {
         }
         fetchData();
     }, []);
-    const userInfo = postUser.find(owner => owner.id === userIdOfThisPost)
+    const userInfo = postUser?.find(owner => owner.id === userIdOfThisPost)
     ///////////////////////
 
     return (

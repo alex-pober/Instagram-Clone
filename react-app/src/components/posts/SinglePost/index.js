@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useHistory, useParams } from "react-router-dom";
+import { NavLink, useHistory, useParams, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllPosts, deleteOnePost } from "../../../store/posts";
 import { getAllLikes, likePost, unlikePost } from "../../../store/likes";
@@ -58,6 +58,12 @@ const SinglePost = () => {
         isLiked ? dispatch(unlikePost(userId, postId)) : dispatch(likePost(userId, postId))
     }
 
+
+    if (!post[id]) {
+        return (
+            <Redirect to='/' />
+        )
+    }
 
     return (
         <div>
