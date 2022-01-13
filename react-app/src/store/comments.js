@@ -93,7 +93,7 @@ export default function reducer(state = initialState, action) {
             }
             return newState
         case UPDATE_COMMENT:
-            state[action.payload.id] = action.payload;
+            state[action.payload.comment.id] = action.payload.comment;
             newState = { ...state };
             return newState
         case DELETE_COMMENT:

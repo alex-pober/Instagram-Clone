@@ -3,12 +3,13 @@ import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { updateOneComment } from "../../../store/comments";
 
-const EditCommentForm = ({comment}) => {
+const EditCommentForm = ({comment, editState}) => {
     const history = useHistory();
     const postId = useParams().id
     const dispatch = useDispatch();
     console.log(comment)
     const [errors, setErrors] = useState([]);
+    const [editPopUp, setEditPopUp] = useState(editState)
     const [comment_text, setComment] = useState('');
     const oldComment = useSelector(state => state?.comments[comment.id].comment_text)
     const userId = useSelector(state => {
@@ -32,32 +33,38 @@ const EditCommentForm = ({comment}) => {
             post_id: postId,
             comment_text
         }
+
         let submitted = await dispatch(updateOneComment(editComment))
+
         if (submitted) {
-            history.go(`/posts/${postId}`)
+            setEditPopUp(false)
         }
     }
 
     return (
-        <form onSubmit={onEdit}>
-            <div>
+        <>
+        {editPopUp && (
+            <form onSubmit={onEdit}>
                 <div>
-                    {errors.map((error, ind) => (
-                        <div key={ind}>{error}</div>
-                    ))}
+                    <div>
+                        {errors.map((error, ind) => (
+                            <div key={ind}>{error}</div>
+                        ))}
+                    </div>
+                    <div>
+                        <input
+                            name='comment'
+                            type='text'
+                            placeholder="comment..."
+                            value={comment_text}
+                            onChange={updateComment}
+                        />
+                    </div>
+                    <button type='submit'>Post</button>
                 </div>
-                <div>
-                    <input
-                        name='comment'
-                        type='text'
-                        placeholder="comment..."
-                        value={comment_text}
-                        onChange={updateComment}
-                    />
-                </div>
-                <button type='submit'>Post</button>
-            </div>
-        </form>
+            </form>
+        )}
+        </>
     )
 }
 

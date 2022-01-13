@@ -7,11 +7,12 @@ import CommentFeed from "../../comments/CommentFeed";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
 import { FaRegComment } from "react-icons/fa";
 import './style.css';
+import EditCommentForm from "../../comments/EditCommentForm";
+import NewCommentForm from "../../comments/NewComment";
 
 const SinglePost = ({ post }) => {
     const [postUser, setpostUsers] = useState([]);
-    const id = +useParams().id
-    const posts = useSelector(state => state.posts)
+    const [editCommentOpen, setEditCommentOpen] = useState(false)
     const dispatch = useDispatch()
     const history = useHistory()
     const userId = useSelector(state => {
@@ -86,14 +87,17 @@ const SinglePost = ({ post }) => {
                 </div>
                 <div>
                     {userId && (
-                    <NavLink to={`/posts/${post.id}/new-comment`}>
-                        <FaRegComment className="hearts" id='comment' />
-                    </NavLink>
+                        <>
+                        <FaRegComment className="hearts" id='comment' onClick={() => setEditCommentOpen(true)}/>
+                        {editCommentOpen && (
+                            <NewCommentForm post={post} />
+                        )}
+                        </>
                     )}
                 </div>
             </div>
             <div>
-                <CommentFeed />
+                <CommentFeed post={post}/>
             </div>
         </div>
     )
