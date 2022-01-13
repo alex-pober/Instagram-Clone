@@ -15,7 +15,7 @@ function User() {
       return state.session.user.id
     }
   })
-  const isFollowed = useSelector(state => state.followers[follower])
+  const isFollowed = useSelector(state => state.follows[follower])
 
   const myPosts = Object.values(post).filter(posts => posts.user_id === +userId)
   const QOfM = myPosts.length
@@ -41,7 +41,7 @@ function User() {
 
 
   // Like post function
-  const handleFollow = async () => {
+  const handleFollow = () => {
     let followed = +userId
     //create unfolllow and follow
     isFollowed ? dispatch(unfollowUser(follower, followed)) : dispatch(followUser(follower, followed))

@@ -37,8 +37,8 @@ def post_follow(id):
     if newFollower in user.followers:
         user.followers.remove(newFollower)
         db.session.commit()
-        return "UNFOLLOWED"
+        return newFollower.to_dict()
     else:
         user.followers.append(newFollower)
         db.session.commit()
-        return "FOLLOWED"
+        return newFollower.to_dict()

@@ -42,21 +42,21 @@ export const getAllFollows = (id) => async dispatch => {
     });
     if (res.ok) {
       const data = await res.json();
+      dispatch(addFollow(data));
       if (data.errors) {
         return;
       }
-      dispatch(addFollow(data));
       return data
     }
   };
-
+  
   export const unfollowUser = (followerId, followedId) => async (dispatch) => {
     const res = await fetch(`/api/follows/${followedId}/new-follow`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ followerId, followedId }),
     });
-
+    
     if (res.ok) {
       const data = await res.json();
       if (data.errors) {
@@ -87,7 +87,7 @@ export default function (state = initialState, action) {
 
       case REMOVE_FOLLOW:
         newState = { ...state };
-        delete newState[action.payload.followed];
+        delete newState[action.payload.id];
         return newState;
 
       default:
