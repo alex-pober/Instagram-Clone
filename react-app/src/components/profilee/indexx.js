@@ -23,7 +23,7 @@ function ProfilePage() {
   })
 
   const isFollowed = useSelector(state => state.follows[userId])
-
+  
   // Like post function
   const handleFollow = async () => {
     let followed = userId

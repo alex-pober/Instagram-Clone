@@ -8,7 +8,6 @@ const NewCommentForm = () => {
     const history = useHistory()
     const [errors, setErrors] = useState([]);
     const [comment_text, setCommentText] = useState('');
-    const posts = useSelector(state => state.posts)
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
 

@@ -4,7 +4,7 @@ from app.models import db, User
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        name='Demo', username='demo', profileURL='https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png', email='demo@aa.io', hashed_password='password', bio='This is a test Bio')
+        name='Demo', username='demo', profileURL='https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png', email='demo@aa.io', hashed_password='pbkdf2:sha256:260000$zNq4os2B7Tn5JUUj$bf1cf29de9847813eeee16369984dfc5ea110c0986f436078fce9a3894f36203', bio='This is a test Bio')
     steve = User(
         name='steve', username='stevo', profileURL='https://4.bp.blogspot.com/-txKoWDBmvzY/XHAcBmIiZxI/AAAAAAAAC5o/wOkD9xoHn28Dl0EEslKhuI-OzP8_xvTUwCLcBGAs/s320/2.jpg', email='stevo@gmail.com', hashed_password='barsa1', bio='Be all in or get out. There is no in-between.')
     raul = User(

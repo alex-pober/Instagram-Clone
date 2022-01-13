@@ -53,6 +53,7 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'profileURL': self.profileURL,
             'email': self.email,
+            'bio': self.bio,
             'followers': [user.id for user in self.followers],
             'following': [user.id for user in self.following]
         }

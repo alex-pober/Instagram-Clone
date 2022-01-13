@@ -16,7 +16,7 @@ const UserFeed = () => {
     return(
         <div>
             {feed.map(posts => (
-                <PostContainer posts={posts} />
+                <PostContainer key={posts.id} posts={posts} />
             ))}
         </div>
         )
