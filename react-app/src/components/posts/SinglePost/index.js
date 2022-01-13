@@ -8,10 +8,10 @@ import { BsHeartFill, BsHeart } from "react-icons/bs";
 import { FaRegComment } from "react-icons/fa";
 import './style.css';
 
-const SinglePost = () => {
+const SinglePost = ({ post }) => {
     const [postUser, setpostUsers] = useState([]);
     const id = +useParams().id
-    const post = useSelector(state => state.posts)
+    const posts = useSelector(state => state.posts)
     const dispatch = useDispatch()
     const history = useHistory()
     const userId = useSelector(state => {
@@ -21,7 +21,7 @@ const SinglePost = () => {
     })
 
     ////////////////////////
-    const userIdOfThisPost = +post[id]?.user_id
+    const userIdOfThisPost = +post.user_id
 
     useEffect(() => {
         async function fetchData() {
@@ -37,7 +37,7 @@ const SinglePost = () => {
     const allLikeToThisPost = useSelector(state => {
         if (state.likes) {
             return Object.values(state.likes)
-                .filter(like => like?.post_id === +id)
+                .filter(like => like?.post_id === +post.id)
         }
     })
 
@@ -54,15 +54,7 @@ const SinglePost = () => {
     }
 
     const handleLike = () => {
-        let postId = id
-        isLiked ? dispatch(unlikePost(userId, postId)) : dispatch(likePost(userId, postId))
-    }
-
-
-    if (!post[id]) {
-        return (
-            <Redirect to='/' />
-        )
+        isLiked ? dispatch(unlikePost(userId, post.id)) : dispatch(likePost(userId, post.id))
     }
 
     return (
@@ -71,30 +63,30 @@ const SinglePost = () => {
                 <i>{userInfo?.username}</i>
             </div>
             <div>
-                <img alt={post[id]?.caption} src={post[id]?.imgURL} width="250px"></img>
-                <p>{post[id]?.caption}</p>
+                <img alt={post?.caption} src={post?.imgURL} width="250px"></img>
+                <p>{post?.caption}</p>
             </div>
             <div>
-                {post[id]?.user_id === +userId && (
-                    <button onClick={() => handleDelete(id)}>Delete</button>
+                {post?.user_id === +userId && (
+                    <button onClick={() => handleDelete(post.id)}>Delete</button>
                 )}
-                {post[id]?.user_id === +userId && (
-                    <NavLink to={`/posts/${id}/edit`}>
+                {post?.user_id === +userId && (
+                    <NavLink to={`/posts/${post.id}/edit`}>
                         <button>Edit</button>
                     </NavLink>
 
                 )}
                 <div>
                     {userId && isLiked && (
-                        <BsHeartFill className="hearts" id="like" onClick={() => handleLike(id)} />
+                        <BsHeartFill className="hearts" id="like" onClick={() => handleLike(post.id)} />
                     )}
                     {userId && !isLiked && (
-                        <BsHeart className="hearts" id="unlike" onClick={() => handleLike(id)} />
+                        <BsHeart className="hearts" id="unlike" onClick={() => handleLike(post.id)} />
                     )}
                 </div>
                 <div>
                     {userId && (
-                    <NavLink to={`/posts/${id}/new-comment`}>
+                    <NavLink to={`/posts/${post.id}/new-comment`}>
                         <FaRegComment className="hearts" id='comment' />
                     </NavLink>
                     )}
