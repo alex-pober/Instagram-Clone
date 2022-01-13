@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import NewPostForm from './components/posts/NewPostForm';
 import UserFeed from './components/posts/UserFeed'
 import SinglePost from './components/posts/SinglePost';
+import SinglePostModal from './components/posts/SinglePostModal'
 import EditPostForm from './components/posts/EditPostForm';
 import NewCommentForm from './components/comments/NewComment';
 import EditCommentForm from './components/comments/EditCommentForm'
@@ -58,7 +59,10 @@ function App() {
           <EditCommentForm />
         </Route>
         <Route path='/posts/:id' exact={true}>
+          <>
+          <SinglePostModal />
           <SinglePost />
+          </>
         </Route>
         <Route path='/posts/:id/edit'>
           <EditPostForm />
