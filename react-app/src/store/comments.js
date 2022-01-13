@@ -68,11 +68,13 @@ export const updateOneComment = comment => async dispatch => {
 }
 
 export const deleteOneComment = id => async dispatch => {
-    const response = await fetch(`/api/comments/${id}`, {
+    const res = await fetch(`/api/comments/${id}`, {
         method: 'DELETE',
     })
-    dispatch(deleteComment(id))
-    return 'Successfully deleted.'
+    if (res.ok) {
+        dispatch(deleteComment(id))
+        return 'Successfully deleted.'
+    }
 }
 
 const initialState = {};

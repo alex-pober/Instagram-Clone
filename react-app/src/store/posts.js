@@ -70,8 +70,10 @@ export const deleteOnePost = id => async dispatch => {
     const response = await fetch(`/api/posts/${id}`, {
         method: 'DELETE',
     })
-    dispatch(deletePost(id))
-    return 'Successfully deleted.'
+    if (response.ok) {
+        dispatch(deletePost(id))
+        return 'Successfully deleted.'
+    }
 }
 
 const initialState = {};
@@ -81,7 +83,7 @@ export default function (state = initialState, action) {
     switch (action.type) {
 
         case GET_POSTS:
-            newState = {...state }
+            newState = { ...state }
             action.payload.posts.map((post) => { newState[post.id] = post })
             return newState
 

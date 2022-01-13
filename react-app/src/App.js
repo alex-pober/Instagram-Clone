@@ -14,6 +14,7 @@ import SinglePost from './components/posts/SinglePost';
 import EditPostForm from './components/posts/EditPostForm';
 import NewCommentForm from './components/comments/NewComment';
 import EditCommentForm from './components/comments/EditCommentForm'
+// import ProfilePage from './components/profile/ProfilePage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);

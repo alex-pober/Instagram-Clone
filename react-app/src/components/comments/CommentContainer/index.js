@@ -1,13 +1,12 @@
 import React, {useState} from "react";
-import { NavLink, useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteOneComment, getAllComments } from "../../../store/comments";
+import { deleteOneComment } from "../../../store/comments";
 import EditCommentForm from "../EditCommentForm";
 
 const CommentContainer = ({ comment }) => {
     const postId = useParams().id
     const dispatch = useDispatch()
-    const post = useSelector(state => state.posts)
     const [editPopUp, setEditPopUp] = useState(false)
     const history = useHistory()
     const userId = useSelector(state => {
@@ -29,10 +28,10 @@ const CommentContainer = ({ comment }) => {
         <div>
             <div>
                 <p>{comment.comment_text}</p>
-                {comment?.user_id == userId && (
+                {comment?.user_id === +userId && (
                         <button onClick={() => handleDelete(comment.id)}>Delete</button>
                         )}
-                {comment?.user_id == userId && (
+                {comment?.user_id === +userId && (
                     <>
                         <button onClick={openPopUp}>Edit Comment</button>
                         {editPopUp && (
