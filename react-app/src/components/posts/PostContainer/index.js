@@ -28,7 +28,6 @@ const PostContainer = ({ posts }) => {
                     <p>{userInfo?.username}</p>
                 </NavLink>
                 <div>
-                    {/* <button onClick={() => setShowModal(true)}>Show Post</button> */}
                     <img key={posts.id} alt={posts.caption} src={posts.imgURL} onClick={() => setShowModal(true)} width="250px"></img>
                     <p>{posts.caption}</p>
                 </div>
