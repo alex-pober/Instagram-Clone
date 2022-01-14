@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "../store/posts";
 import { followUser, unfollowUser, getAllFollows } from "../store/follows"
 import { getAllFollowers } from "../store/followers"
+import { refreshUserState } from '../store/session';
 
 function User() {
   const dispatch = useDispatch()
@@ -41,10 +42,12 @@ function User() {
 
 
   // Like post function
-  const handleFollow = () => {
+  const handleFollow = async () => {
     let followed = +userId
     //create unfolllow and follow
-    isFollowed ? dispatch(unfollowUser(follower, followed)) : dispatch(followUser(follower, followed))
+
+
+     isFollowed ? dispatch(unfollowUser(follower, followed)) : dispatch(followUser(follower, followed))
   };
 
 
