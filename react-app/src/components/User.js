@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "../store/posts";
 import { followUser, unfollowUser, getAllFollows } from "../store/follows"
 import { getAllFollowers } from "../store/followers"
-import { refreshUserState } from '../store/session';
 import { BsGearWide } from "react-icons/bs";
+import { Modal } from '../context/Modal'
+import ProfilePostContainer from './posts/ProfilePostContainer'
 import './userstyle.css'
 
 function User() {
@@ -14,6 +15,7 @@ function User() {
   const { userId } = useParams();
   const post = useSelector(state => state.posts)
   const [users, setUsers] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const follower = useSelector(state => {
     if (state.session.user) {
       return state.session.user.id
@@ -97,8 +99,8 @@ function User() {
       </div>
       <div>
         {myPosts.map(post => (
-          <div key={post.id}>
-            <img key={post.id} src={post.imgURL} alt={post.caption} width="250px" max-height='250px'></img>
+          <div>
+            <ProfilePostContainer posts={post} />
           </div>
         ))}
       </div>

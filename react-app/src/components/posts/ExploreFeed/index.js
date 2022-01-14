@@ -27,16 +27,14 @@ const ExploreFeed = () => {
         return sourceArray;
     }
 
-    shuffle(feed)
+    // shuffle(feed)
 
     return (
         <div className="imageContainer" title='view'>
             {feed.map(post =>
-                <>
                 <div>
                     <ExplorePostContainer posts={post[1]} />
                 </div>
-                </>
             )})
         </div>
     )
