@@ -7,7 +7,6 @@ import CommentFeed from "../../comments/CommentFeed";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
 import { FaRegComment } from "react-icons/fa";
 import './style.css';
-import EditCommentForm from "../../comments/EditCommentForm";
 import NewCommentForm from "../../comments/NewComment";
 
 const SinglePost = ({ post }) => {
@@ -37,7 +36,7 @@ const SinglePost = ({ post }) => {
 
     const handleDelete = (id) => {
         dispatch(deleteOnePost(id))
-        history.push(`/feed`)
+        history.push(`/`)
     }
 
     const handleLike = () => {
