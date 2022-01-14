@@ -9,7 +9,7 @@ const CommentFeed = ({post}) => {
     const dispatch = useDispatch()
 
     useEffect (() => {
-        dispatch(getAllComments(post.id))
+        dispatch(getAllComments(post?.id))
     }, [dispatch])
 
     const feed = Object.assign([], comments)

@@ -20,23 +20,9 @@ const SinglePost = ({ post }) => {
         }
     })
 
-    ////////////////////////
-    const userIdOfThisPost = +post?.user_id
-
-    useEffect(() => {
-        async function fetchData() {
-          const response = await fetch('/api/users/');
-          const responseData = await response.json();
-          setpostUsers(responseData.users);
-        }
-        fetchData();
-      }, []);
-      const userInfo = postUser.find(owner => owner.id === userIdOfThisPost)
-    ///////////////////////
-
     const allLikeToThisPost = useSelector(state => {
         if (state.likes) {
-            return Object.values(state.likes)
+            return Object.values(state?.likes)
                 .filter(like => like?.post_id === +post.id)
         }
     })
@@ -60,7 +46,7 @@ const SinglePost = ({ post }) => {
     return (
         <div>
             <div>
-                <i>{userInfo?.username}</i>
+                <i>{post?.username}</i>
             </div>
             <div>
                 <img alt={post?.caption} src={post?.imgURL} width="250px"></img>
@@ -87,16 +73,16 @@ const SinglePost = ({ post }) => {
                 <div>
                     {userId && (
                         <>
-                        <FaRegComment className="hearts" id='comment' onClick={() => setEditCommentOpen(true)}/>
-                        {editCommentOpen && (
-                            <NewCommentForm post={post} />
-                        )}
+                            <FaRegComment className="hearts" id='comment' onClick={() => setEditCommentOpen(true)} />
+                            {editCommentOpen && (
+                                <NewCommentForm post={post} />
+                            )}
                         </>
                     )}
                 </div>
             </div>
             <div>
-                <CommentFeed post={post}/>
+                <CommentFeed post={post} />
             </div>
         </div>
     )

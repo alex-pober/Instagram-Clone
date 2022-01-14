@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllPosts } from "../../../store/posts";
 import ExplorePostContainer from "../ExplorePostContainer";
+import PostContainer from '../PostContainer';
+import { BsHeartFill } from "react-icons/bs";
+import './ExploreFeed.css'
 
 const ExploreFeed = () => {
     const posts = useSelector(state => state.posts);
