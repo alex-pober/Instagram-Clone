@@ -67,10 +67,7 @@ function App() {
           <EditCommentForm />
         </Route>
         <Route path='/posts/:id' exact={true}>
-          <>
-          <SinglePostModal />
           <SinglePost />
-          </>
         </Route>
         <Route path='/posts/:id/edit'>
           <EditPostForm />

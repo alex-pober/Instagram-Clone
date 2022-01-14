@@ -8,13 +8,14 @@ import PostContainer from '../PostContainer';
 
 const UserFeed = () => {
     const posts = useSelector(state => state.posts);
-    const user = useSelector(state => state.session.user)
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const user = useSelector(state => {
         if (state.session.user) {
             return state.session.user
-        }})
+        }
+    })
 
         //this is for followed users
     const followedUsers = useSelector(state => {
@@ -28,7 +29,7 @@ const UserFeed = () => {
 
 
  let followersPost = []
-  for (let i = 0; i < followedUsers.length; i++) {
+  for (let i = 0; i < followedUsers?.length; i++) {
     const followedUser = followedUsers[i];
     for (let i = 0; i < feed.length; i++) {
       const post = feed[i];
