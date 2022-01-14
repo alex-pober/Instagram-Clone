@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, session, request
 from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
+from app.forms import EditProfileForm
 from flask_login import current_user, login_user, logout_user, login_required
 
 auth_routes = Blueprint('auth', __name__)
@@ -81,3 +82,20 @@ def unauthorized():
     Returns unauthorized JSON when flask-login authentication fails
     """
     return {'errors': ['Unauthorized']}, 401
+
+
+@auth_routes.route('/edit-profile', methods=['PUT'])
+def edit_profile():
+    form = EditProfileForm()
+    user_id = request.json['id']
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print(form.validate_on_submit())
+    if form.validate_on_submit():
+        user = User.query.get(user_id)
+        user.username = form.data['username']
+        user.bio = form.data['bio']
+        user.profileURL = form.data['profileURL'] 
+        db.session.commit()
+
+        return user.to_dict()
+    return "Error not Updated"

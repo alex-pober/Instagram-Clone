@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "../store/posts";
 import { followUser, unfollowUser, getAllFollows } from "../store/follows"
 import { getAllFollowers } from "../store/followers"
+import { BsGearWide } from "react-icons/bs";
+import './userstyle.css'
+
 
 function User() {
   const dispatch = useDispatch()
@@ -15,10 +18,13 @@ function User() {
       return state.session.user.id
     }
   })
+  const user_id = useSelector(state => state.session.user.id)
   const isFollowed = useSelector(state => state.follows[follower])
 
   const myPosts = Object.values(post).filter(posts => posts.user_id === +userId)
   const QOfM = myPosts.length
+
+  }
 
   useEffect(() => {
     dispatch(getAllPosts())
@@ -56,8 +62,11 @@ function User() {
         <p>{user.name}</p>
         <p>{user.bio}</p>
         <p>Number of Posts {QOfM}</p>
-        <button>Edit Profile</button>
-
+        {+userId === +user_id && (
+        <NavLink to={`/profile-edit`}>
+          <BsGearWide id='gear'/>
+        </NavLink>
+        )}
         {userId && isFollowed && (
           <button onClick={() => handleFollow(userId)}>UNFOLLOW</button>
         )}
