@@ -1,6 +1,7 @@
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
+const REFRESH_USER = 'session/REFRESH_USER';
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -9,6 +10,11 @@ const setUser = (user) => ({
 
 const removeUser = () => ({
   type: REMOVE_USER,
+})
+
+const refreshUser = (user) => ({
+  type: REFRESH_USER,
+  payload: user
 })
 
 const initialState = { user: null };
@@ -126,12 +132,30 @@ export const EditProfile = (id, username, bio, profileURL) => async (dispatch) =
 }
 ////////////////
 
+export const refreshUserState = (id) => async (dispatch) => {
+
+  const response = await fetch(`/api/users/${id}`)
+  if (response.ok) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+    dispatch(refreshUser(data))
+    return data;
+  }
+
+}
+
+
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
       return { user: action.payload }
     case REMOVE_USER:
       return { user: null }
+
+    case REFRESH_USER:
+      return { user: action.payload }
     default:
       return state;
   }

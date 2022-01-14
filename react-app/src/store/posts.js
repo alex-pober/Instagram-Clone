@@ -3,6 +3,7 @@ const ADD_POST = 'posts/ADD_POST';
 const UPDATE_POST = 'posts/UPDATE_POST';
 const DELETE_POST = 'posts/DELETE_POST';
 
+
 const getPosts = posts => ({
     type: GET_POSTS,
     payload: posts
@@ -22,6 +23,8 @@ const deletePost = post => ({
     type: DELETE_POST,
     payload: post
 })
+
+
 
 export const getAllPosts = () => async dispatch => {
     const response = await fetch('/api/posts/')
@@ -76,6 +79,9 @@ export const deleteOnePost = id => async dispatch => {
     }
 }
 
+
+
+
 const initialState = {};
 
 export default function (state = initialState, action) {
@@ -103,6 +109,9 @@ export default function (state = initialState, action) {
             newState = { ...state }
             delete newState[action.payload.id]
             return newState
+
+
+
 
         default:
             return state;

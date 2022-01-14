@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from app.models import db
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import Post, Like, Comment, db
 from app.forms import NewPostForm
 from app.forms.comment_form import NewCommentForm
@@ -70,6 +70,8 @@ def delete_post(id):
 
 
 
+
+
 #### LIKES
 # POST /api/posts/<int:id>/likes
 @post_routes.route('/<int:id>/likes', methods=["POST"])
@@ -84,13 +86,13 @@ def post_like(id):
       return jsonify(existing_like[0].to_dict())
     else:
       new_like = Like(
-        user_id=user_id, 
+        user_id=user_id,
         post_id=post_id
       )
       db.session.add(new_like)
       db.session.commit()
       return jsonify(new_like.to_dict())
- 
+
 
 #### COMMENTS
 
@@ -118,4 +120,3 @@ def new_comment(id):
         db.session.commit()
         return comment.to_dict()
     return (form.errors)
-
