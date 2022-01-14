@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useParams, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "../store/posts";
 import { followUser, unfollowUser, getAllFollows } from "../store/follows"
@@ -13,18 +13,31 @@ function User() {
   const [user, setUser] = useState({});
   const { userId } = useParams();
   const post = useSelector(state => state.posts)
+  const [users, setUsers] = useState([]);
   const follower = useSelector(state => {
     if (state.session.user) {
       return state.session.user.id
     }
   })
+
   const user_id = useSelector(state => state.session.user.id)
   const isFollowed = useSelector(state => state.follows[follower])
 
+
+  const isFollowed = useSelector(state => state.follows[follower])
   const myPosts = Object.values(post).filter(posts => posts.user_id === +userId)
   const QOfM = myPosts.length
 
   }
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('/api/users/');
+      const responseData = await response.json();
+      setUsers(responseData.users);
+    }
+    fetchData();
+  }, []);
 
   useEffect(() => {
     dispatch(getAllPosts())
@@ -52,6 +65,13 @@ function User() {
     //create unfolllow and follow
     isFollowed ? dispatch(unfollowUser(follower, followed)) : dispatch(followUser(follower, followed))
   };
+
+  console.log(follower)
+  if (!users.includes(userId)) {
+    return (
+        <Redirect to='/' />
+    )
+}
 
 
   return (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -12,9 +12,11 @@ import { authenticate } from './store/session';
 import NewPostForm from './components/posts/NewPostForm';
 import UserFeed from './components/posts/UserFeed'
 import SinglePost from './components/posts/SinglePost';
+import SinglePostModal from './components/posts/SinglePostModal'
 import EditPostForm from './components/posts/EditPostForm';
 import NewCommentForm from './components/comments/NewComment';
 import EditCommentForm from './components/comments/EditCommentForm'
+import ExploreFeed from './components/posts/ExploreFeed';
 // import ProfilePage from './components/profile/ProfilePage';
 
 function App() {
@@ -28,6 +30,10 @@ function App() {
     })();
   }, [dispatch]);
 
+  useEffect(() => {
+
+  })
+
   if (!loaded) {
     return null;
   }
@@ -36,6 +42,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route exact path='/'>
+          <UserFeed />
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
@@ -45,8 +54,8 @@ function App() {
         <Route path='/profile-edit'exact={true}>
           <EditProfileForm />
         </Route>
-        <Route path='/feed' exact={true}>
-          <UserFeed />
+        <Route path='/explore' exact={true}>
+          <ExploreFeed />
         </Route>
         <Route path='/new-post' exact={true}>
           <NewPostForm />
@@ -58,7 +67,10 @@ function App() {
           <EditCommentForm />
         </Route>
         <Route path='/posts/:id' exact={true}>
+          <>
+          <SinglePostModal />
           <SinglePost />
+          </>
         </Route>
         <Route path='/posts/:id/edit'>
           <EditPostForm />
@@ -69,9 +81,9 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
+        <Route>
+          <Redirect to='/' />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
