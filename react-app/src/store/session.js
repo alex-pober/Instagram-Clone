@@ -92,7 +92,7 @@ export const signUp = (username, name, email, password) => async (dispatch) => {
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
-    return null;
+    return 'Successfully updated.'
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {
@@ -102,6 +102,35 @@ export const signUp = (username, name, email, password) => async (dispatch) => {
     return ['An error occurred. Please try again.']
   }
 }
+
+///////////////
+export const EditProfile = (id, username, bio, profileURL) => async (dispatch) => {
+  const response = await fetch('/api/auth/edit-profile', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      id,
+      username,
+      bio,
+      profileURL,
+    }),
+  });
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(setUser(data))
+    return 'Successfully updated.'
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
+  }
+}
+////////////////
 
 export const refreshUserState = (id) => async (dispatch) => {
 

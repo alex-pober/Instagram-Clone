@@ -1,13 +1,16 @@
 import React, { useEffect } from "react";
+import { Redirect, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
+import { getAllFollows } from "../../../store/follows";
 import { getAllPosts } from "../../../store/posts";
 import { refreshUserState } from "../../../store/session";
 import PostContainer from '../PostContainer';
 
 const UserFeed = () => {
     const posts = useSelector(state => state.posts);
-    const dispatch = useDispatch()
-    const user = useSelector(state => {
+    const user = useSelector(state => state.session.user)
+    const dispatch = useDispatch();
+    const history = useHistory();
 
         if (state.session.user) {
             return state.session.user
@@ -42,6 +45,12 @@ console.log(followedUsers, "followeeeeed")
         dispatch(getAllPosts())
     }, [dispatch])
 
+
+    if (!user) {
+        return (
+            <Redirect to='/login' />
+        )
+    }
 
     return(
         <div>

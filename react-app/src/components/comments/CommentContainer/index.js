@@ -1,11 +1,12 @@
-import React, {useState} from "react";
+import React, {useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteOneComment } from "../../../store/comments";
 import EditCommentForm from "../EditCommentForm";
 
 const CommentContainer = ({ comment }) => {
-    const postId = useParams().id
+    const [users, setUsers] = useState([]);
+    const postId =comment.post_id
     const dispatch = useDispatch()
     const [editPopUp, setEditPopUp] = useState(false)
     const history = useHistory()
@@ -14,14 +15,13 @@ const CommentContainer = ({ comment }) => {
             return state.session.user.id
         }})
 
-        const handleDelete = (id) => {
-            dispatch(deleteOneComment(id))
-            history.push(`/posts/${postId}`)
-        }
+    const handleDelete = (id) => {
+        dispatch(deleteOneComment(id))
+    }
 
-        const openPopUp = () => {
-            setEditPopUp(!editPopUp)
-        }
+    const openPopUp = () => {
+        setEditPopUp(!editPopUp)
+    }
 
 
     return (
@@ -35,7 +35,7 @@ const CommentContainer = ({ comment }) => {
                     <>
                         <button onClick={openPopUp}>Edit Comment</button>
                         {editPopUp && (
-                            <EditCommentForm comment={comment}/>
+                            <EditCommentForm comment={comment} editState={editPopUp}/>
                         )}
                     </>
                     )}

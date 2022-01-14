@@ -1,0 +1,23 @@
+.imageContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: 10%;
+    margin-right: 10%;
+    align-content: space-around;
+    justify-content: center;
+}
+
+.navlink {
+
+}
+
+.individualImage {
+    padding-inline-end: 4px;
+    object-fit: cover;
+}
+
+.individualImage:hover {
+    opacity: 0.5;
+}

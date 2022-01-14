@@ -9,7 +9,7 @@ def seed_posts():
         caption="Always remember that you are absolutely unique. Just like everyone else.")
     stevePost2 = Post(
         user_id=2,
-        imgURL='https://c4.wallpaperflare.com/wallpaper/168/900/28/rick-and-morty-vector-graphics-car-rainbows-wallpaper-preview.jpg',
+        imgURL='https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         caption="You change the world by being yourself.")
     stevePost3 = Post(
         user_id=2,
@@ -17,19 +17,19 @@ def seed_posts():
         caption="Success isn’t about the end result, it’s about what you learn along the way.")
     stevePost4 = Post(
         user_id=2,
-        imgURL='https://c4.wallpaperflare.com/wallpaper/168/900/28/rick-and-morty-vector-graphics-car-rainbows-wallpaper-preview.jpg',
+        imgURL='https://images.pexels.com/photos/167590/pexels-photo-167590.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         caption="You change the world by being yourself.")
     stevePost5 = Post(
         user_id=2,
-        imgURL='https://c4.wallpaperflare.com/wallpaper/61/887/701/mono-lake-california-wallpaper-preview.jpg',
+        imgURL='https://images.pexels.com/photos/264279/pexels-photo-264279.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         caption="Love the life you live. Live the life you love.")
     stevePost6 = Post(
         user_id=2,
-        imgURL='https://c4.wallpaperflare.com/wallpaper/696/292/11/game-of-thrones-jon-snow-digital-art-fantasy-art-wallpaper-preview.jpg',
+        imgURL='https://images.pexels.com/photos/3211459/pexels-photo-3211459.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         caption="Love Is The Death Of Duty.")
     stevePost7 = Post(
         user_id=2,
-        imgURL='https://c4.wallpaperflare.com/wallpaper/52/465/301/illustration-landscape-digital-art-mountains-wallpaper-preview.jpg',
+        imgURL='https://images.pexels.com/photos/876218/pexels-photo-876218.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
         caption="We become what we think about.")
     stevePost8 = Post(
         user_id=2,
@@ -37,7 +37,7 @@ def seed_posts():
         caption="I thought my life was a tragedy, turns out it’s a comedy.")
     stevePost9 = Post(
         user_id=2,
-        imgURL='https://c4.wallpaperflare.com/wallpaper/946/557/290/ice-cream-food-colorful-wallpaper-preview.jpg',
+        imgURL='https://images.pexels.com/photos/1658967/pexels-photo-1658967.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         caption="I lost some weight once, but I found it again in the fridge.")
 
 
@@ -52,15 +52,15 @@ def seed_posts():
         caption="Mac is just so much better than any other computer.")
     raulPost3 = Post(
         user_id=3,
-        imgURL='https://c0.wallpaperflare.com/preview/600/996/919/lebron-james-nike-basketball-sports.jpg',
+        imgURL='https://images.pexels.com/photos/547114/pexels-photo-547114.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         caption="Success isn’t about the end result, it’s about what you learn along the way.")
     raulPost4 = Post(
         user_id=3,
-        imgURL='https://c4.wallpaperflare.com/wallpaper/168/900/28/rick-and-morty-vector-graphics-car-rainbows-wallpaper-preview.jpg',
+        imgURL='https://images.pexels.com/photos/206359/pexels-photo-206359.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         caption="You change the world by being yourself.")
     raulPost5 = Post(
         user_id=3,
-        imgURL='https://c4.wallpaperflare.com/wallpaper/61/887/701/mono-lake-california-wallpaper-preview.jpg',
+        imgURL='https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         caption="Love the life you live. Live the life you love.")
     raulPost6 = Post(
         user_id=3,
@@ -72,18 +72,18 @@ def seed_posts():
         caption="We become what we think about.")
     raulPost8 = Post(
         user_id=3,
-        imgURL='https://c4.wallpaperflare.com/wallpaper/267/666/423/joker-2019-movie-joker-joaquin-phoenix-movies-dancing-hd-wallpaper-preview.jpg',
+        imgURL='https://images.pexels.com/photos/6043246/pexels-photo-6043246.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         caption="I thought my life was a tragedy, turns out it’s a comedy.")
     raulPost9 = Post(
         user_id=3,
-        imgURL='https://c4.wallpaperflare.com/wallpaper/946/557/290/ice-cream-food-colorful-wallpaper-preview.jpg',
+        imgURL='https://images.pexels.com/photos/685778/pexels-photo-685778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         caption="I lost some weight once, but I found it again in the fridge.")
 
 
 
     ronaldPost1 = Post(
         user_id=4,
-        imgURL='https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80',
+        imgURL='https://images.pexels.com/photos/196667/pexels-photo-196667.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         caption="Got an idea.")
     ronaldPost2 = Post(
         user_id=4,
@@ -99,7 +99,7 @@ def seed_posts():
         caption="We don't care what people think of us. Unless they're our customers. We definitely care what customers think of us.")
     ronaldPost5 = Post(
         user_id=4,
-        imgURL='https://images.unsplash.com/photo-1594769124879-8b361d7a7554?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+        imgURL='https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         caption="No thoughts brain empty just tacos and cats.")
     ronaldPost6 = Post(
         user_id=4,
@@ -107,15 +107,15 @@ def seed_posts():
         caption="I know the voices in my head aren't real, but sometimes their ideas are just too good to ignore.")
     ronaldPost7 = Post(
         user_id=4,
-        imgURL='https://images.unsplash.com/photo-1563657908433-d34c679c07b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+        imgURL='https://images.pexels.com/photos/3274903/pexels-photo-3274903.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         caption="Don't worry if plan A fails. There are 25 more letters in the alphabet.")
     ronaldPost8 = Post(
         user_id=4,
-        imgURL='https://images.unsplash.com/photo-1560696811-f59310b1eb38?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80',
+        imgURL='https://images.pexels.com/photos/33317/windows-building-pattern-modern.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         caption="If you fall, I will be there. Signed, Floor.")
     ronaldPost9 = Post(
         user_id=4,
-        imgURL='https://images.unsplash.com/photo-1521097971132-6426103fb897?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80',
+        imgURL='https://images.pexels.com/photos/34107/milky-way-stars-night-sky.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         caption="Darn it, just accidentally had another thought again.")
 
 
@@ -130,11 +130,11 @@ def seed_posts():
         caption="Better an oops than a what if.")
     susanPost3 = Post(
         user_id=5,
-        imgURL='https://images.unsplash.com/photo-1566713198695-80ada6ed1c18?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1132&q=80',
+        imgURL='https://images.pexels.com/photos/4179480/pexels-photo-4179480.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         caption="The world is changed by your example, not your opinion.")
     susanPost4 = Post(
         user_id=5,
-        imgURL='https://images.unsplash.com/photo-1612814621951-b24b753ca716?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80',
+        imgURL='https://images.pexels.com/photos/2835562/pexels-photo-2835562.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         caption="Seven billion smiles and these are my favorite.")
     susanPost5 = Post(
         user_id=5,

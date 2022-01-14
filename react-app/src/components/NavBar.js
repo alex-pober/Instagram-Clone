@@ -3,6 +3,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import DemoButton from './auth/DemoUser';
+import ExploreFeed from './posts/ExploreFeed';
 import { useSelector } from 'react-redux';
 
 const NavBar = () => {
@@ -16,8 +17,13 @@ const NavBar = () => {
     <nav>
       <ul>
         <li>
-          <NavLink to='/feed' exact={true} activeClassName='active'>
+          <NavLink to='/' exact={true} activeClassName='active'>
             Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to='/explore' exact={true} activeClassName='active'>
+            Explore
           </NavLink>
         </li>
         {!userId && (
