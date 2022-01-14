@@ -22,13 +22,10 @@ function User() {
 
   const user_id = useSelector(state => state.session.user.id)
   const isFollowed = useSelector(state => state.follows[follower])
-
-
-  const isFollowed = useSelector(state => state.follows[follower])
   const myPosts = Object.values(post).filter(posts => posts.user_id === +userId)
   const QOfM = myPosts.length
 
-  }
+
 
   useEffect(() => {
     async function fetchData() {
@@ -68,12 +65,13 @@ function User() {
      isFollowed ? dispatch(unfollowUser(follower, followed)) : dispatch(followUser(follower, followed))
   };
 
-  console.log(follower)
-  if (!users.includes(userId)) {
-    return (
-        <Redirect to='/' />
-    )
-}
+
+  // if (!users.includes(userId)) {
+  //   return (
+  //       <Redirect to='/' />
+  //   )
+  // }
+
 
 
   return (

@@ -22,7 +22,7 @@ const SinglePost = ({ post }) => {
     })
 
     ////////////////////////
-    const userIdOfThisPost = +post.user_id
+    const userIdOfThisPost = +post?.user_id
 
     useEffect(() => {
         async function fetchData() {
