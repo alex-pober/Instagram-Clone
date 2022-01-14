@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
+import { getAllFollows } from "../../../store/follows";
 import { getAllPosts } from "../../../store/posts";
 import PostContainer from '../PostContainer';
 
