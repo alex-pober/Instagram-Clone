@@ -16,7 +16,7 @@ const LoginForm = () => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      setErrors('Login failed. Please try again.');
     }
   };
 
@@ -39,9 +39,9 @@ const LoginForm = () => {
       <div className="signup">
         <form onSubmit={onLogin}>
           <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
+            {errors && (
+              <div>{errors}</div>
+            )}
           </div>
           <div>
             <img src="https://i.imgur.com/2V6sFyy.png"></img>
