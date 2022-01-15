@@ -1,0 +1,41 @@
+.footer-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    min-width: 600px;
+
+}
+.madeby {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 25px;
+    font-weight: 600;
+
+}
+.footer-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 25px;
+    font-weight: 600;
+
+}
+
+.infoConatainer {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.icons {
+}
+
+.footerIcon{
+    color: inherit;
+    font-size: 64px;
+    text-decoration: none;
+}
