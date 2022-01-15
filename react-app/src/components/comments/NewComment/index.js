@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { addOneComment } from "../../../store/comments";
+import './comment.css'
 
 const NewCommentForm = ({post}) => {
     const history = useHistory()
@@ -31,24 +32,24 @@ const NewCommentForm = ({post}) => {
     }
 
     return (
-        <form onSubmit={submit}>
+        <form onSubmit={submit} >
             <div>
                 <div>
                     {errors.map((error, ind) => (
                         <div key={ind}>{error}</div>
                     ))}
                 </div>
-                <div>
-                    <label htmlFor='comment_text'>Comment</label>
+                <div className="new-comment-box">
                     <input
+                        className="new-comment-input"
                         name='comment_text'
                         type='text'
                         placeholder="Comment..."
                         value={comment_text}
                         onChange={updateCommentText}
                     />
+                    <button className="submit-new-comment" type='submit'>Post</button>
                 </div>
-                <button type='submit'>Post</button>
             </div>
         </form>
     )

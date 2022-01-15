@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import NewCommentForm from "../../comments/NewComment";
 import { getAllPosts, deleteOnePost } from "../../../store/posts";
 import { getAllLikes, likePost, unlikePost } from "../../../store/likes";
+import { AiOutlineEdit } from "react-icons/ai";
 import CommentFeed from "../../comments/CommentFeed";
 import './ExploreFeed.css'
 import './style.css';
@@ -63,18 +64,24 @@ const ProfilePostContainer = ({ posts }) => {
     return (
         <div>
             <div >
-                <div>
-                    <img className="individualImage" key={posts.id} alt={posts.caption} src={posts.imgURL} onClick={() => setShowModal(true)} width="250px" height="250px" object-fit="cover" title="view"></img>
-                </div>
-                {showModal && (
-                    <Modal onClose={() => setShowModal(false)}>
-                        <div>
+                <img className="individualImage" key={posts.id} alt={posts.caption} src={posts.imgURL} onClick={() => setShowModal(true)} width="250px" height="250px" object-fit="cover" title="view"></img>
+            </div>
+            {showModal && (
+                <Modal onClose={() => setShowModal(false)}>
+                    <div className='post-container'>
+                        <div className='image-container'>
+                            <img className="post-image" alt={posts?.caption} src={posts?.imgURL} width="250px"></img>
+                        </div>
+                        <div className='text-comment-container'>
+                            <NavLink to={`/users/${posts.user_id}`} className="post-username-container">
+                                <img src={userInfo?.profileURL} className='post-user-profileimg'></img>
+                                <p className="post-username">{userInfo?.username}</p>
+                            </NavLink>
                             <div>
-                                <i>{userInfo?.username}</i>
+                                <p className="post-caption">{posts?.caption}</p>
                             </div>
-                            <div>
-                                <img alt={posts?.caption} src={posts?.imgURL} width="250px"></img>
-                                <p>{posts?.caption}</p>
+                            <div className="comment-feed">
+                                <CommentFeed post={posts} />
                             </div>
                             <div>
                                 {posts?.user_id === +userId && (
@@ -82,36 +89,35 @@ const ProfilePostContainer = ({ posts }) => {
                                 )}
                                 {posts?.user_id === +userId && (
                                     <NavLink to={`/posts/${posts.id}/edit`}>
-                                        <button>Edit</button>
+                                        <AiOutlineEdit />
                                     </NavLink>
 
                                 )}
-                                <div>
-                                    {userId && isLiked && (
-                                        <BsHeartFill className="hearts" id="like" onClick={() => handleLike(posts.id)} />
-                                    )}
-                                    {userId && !isLiked && (
-                                        <BsHeart className="hearts" id="unlike" onClick={() => handleLike(posts.id)} />
-                                    )}
+                                <div className='comment-like-container'>
+                                    <div className='like-container'>
+                                        {userId && isLiked && (
+                                            <BsHeartFill className="hearts" id="like" onClick={() => handleLike(posts.id)} />
+                                        )}
+                                        {userId && !isLiked && (
+                                            <BsHeart className="hearts" id="unlike" onClick={() => handleLike(posts.id)} />
+                                        )}
+                                    </div>
+                                    <div className="comment-container">
+                                        {userId && (
+                                            <>
+                                                <FaRegComment className="hearts" id='comment' onClick={() => setEditCommentOpen(!editCommentOpen)} />
+                                                {editCommentOpen && (
+                                                    <NewCommentForm post={posts} />
+                                                )}
+                                            </>
+                                        )}
+                                    </div>
                                 </div>
-                                <div>
-                                    {userId && (
-                                        <>
-                                            <FaRegComment className="hearts" id='comment' onClick={() => setEditCommentOpen(true)} />
-                                            {editCommentOpen && (
-                                                <NewCommentForm post={posts} />
-                                            )}
-                                        </>
-                                    )}
-                                </div>
-                            </div>
-                            <div>
-                                <CommentFeed post={posts} />
                             </div>
                         </div>
-                    </Modal>
-                )}
-            </div>
+                    </div>
+                </Modal>
+            )}
         </div>
     )
 }

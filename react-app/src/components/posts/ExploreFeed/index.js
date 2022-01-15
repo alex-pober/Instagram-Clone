@@ -35,7 +35,7 @@ const ExploreFeed = () => {
                 <div>
                     <ExplorePostContainer posts={post[1]} />
                 </div>
-            )})
+            )}
         </div>
     )
 }
