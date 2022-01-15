@@ -40,7 +40,6 @@ const UserFeed = () => {
 }
 
 
-console.log(followedUsers, "followeeeeed")
     useEffect (() => {
         dispatch(refreshUserState(user?.id))
         dispatch(getAllPosts())

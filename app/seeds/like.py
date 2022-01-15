@@ -2,100 +2,100 @@ from app.models import db, Like
 
 def seed_likes():
     demoLike1 = Like(
-        userId=1,
-        postId=1
+        user_id=1,
+        post_id=1
     )
     demoLike2 = Like(
-        userId=1,
-        postId=2
+        user_id=1,
+        post_id=2
     )
     demoLike3 = Like(
-        userId=1,
-        postId=3
+        user_id=1,
+        post_id=3
     )
     steveLike1 = Like(
-        userId=2,
-        postId=4
+        user_id=2,
+        post_id=4
     )
     steveLike2 = Like(
-        userId=2,
-        postId=4
+        user_id=2,
+        post_id=4
     )
     steveLike3 = Like(
-        userId=2,
-        postId=3
+        user_id=2,
+        post_id=3
     )
     steveLike4 = Like(
-        userId=2,
-        postId=6
+        user_id=2,
+        post_id=6
     )
     steveLike5 = Like(
-        userId=2,
-        postId=7
+        user_id=2,
+        post_id=7
     )
     steveLike6 = Like(
-        userId=2,
-        postId=8
+        user_id=2,
+        post_id=8
     )
     steveLike7 = Like(
-        userId=2,
-        postId=9
+        user_id=2,
+        post_id=9
     )
     steveLike8 = Like(
-        userId=2,
-        postId=10
+        user_id=2,
+        post_id=10
     )
     steveLike9 = Like(
-        userId=2,
-        postId=21
+        user_id=2,
+        post_id=21
     )
     raulLike1 = Like(
-        userId=3,
-        postId=5
+        user_id=3,
+        post_id=5
     )
     raulLike2 = Like(
-        userId=3,
-        postId=6
+        user_id=3,
+        post_id=6
     )
     raulLike3 = Like(
-        userId=3,
-        postId=7
+        user_id=3,
+        post_id=7
     )
     raulLike4 = Like(
-        userId=3,
-        postId=8
+        user_id=3,
+        post_id=8
     )
     raulLike5 = Like(
-        userId=3,
-        postId=9
+        user_id=3,
+        post_id=9
     )
     ronaldLike1 = Like(
-        userId=4,
-        postId=10
+        user_id=4,
+        post_id=10
     )
     ronaldLike2 = Like(
-        userId=4,
-        postId=11
+        user_id=4,
+        post_id=11
     )
     ronaldLike3 = Like(
-        userId=4,
-        postId=8
+        user_id=4,
+        post_id=8
     )
     ronaldLike4 = Like(
-        userId=4,
-        postId=3
+        user_id=4,
+        post_id=3
     )
     susanLike1 = Like(
-        userId=5,
-        postId=2
+        user_id=5,
+        post_id=2
     )
     susanLike2 = Like(
-        userId=5,
-        postId=1
+        user_id=5,
+        post_id=1
     )
     susanLike3 = Like(
-        userId=5,
-        postId=8
+        user_id=5,
+        post_id=8
     )
     db.session.add(demoLike1)
     db.session.add(demoLike2)

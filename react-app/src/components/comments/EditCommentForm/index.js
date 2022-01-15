@@ -7,7 +7,6 @@ const EditCommentForm = ({comment, editState}) => {
     const history = useHistory();
     const postId = useParams().id
     const dispatch = useDispatch();
-    console.log(comment)
     const [errors, setErrors] = useState([]);
     const [editPopUp, setEditPopUp] = useState(editState)
     const [comment_text, setComment] = useState('');

@@ -49,19 +49,21 @@ export const likePost = (userId, postId) => async (dispatch) => {
 };
 
 export const unlikePost = (userId, postId) => async (dispatch) => {
-  const res = await fetch(`/api/posts/${postId}/likes`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ userId, postId }),
-  });
+  if (postId) {
+    const res = await fetch(`/api/posts/${postId}/likes`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId, postId }),
+    });
 
-  if (res.ok) {
-    const data = await res.json();
-    if (data.errors) {
-      return;
+    if (res.ok) {
+      const data = await res.json();
+      if (data.errors) {
+        return;
+      }
+      dispatch(removeLike(data));
+      return data
     }
-    dispatch(removeLike(data));
-    return data
   }
 };
 

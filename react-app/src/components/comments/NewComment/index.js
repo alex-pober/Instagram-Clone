@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { addOneComment } from "../../../store/comments";
 
 const NewCommentForm = ({post}) => {
-    const history = useHistory()
     const [errors, setErrors] = useState([]);
     const [comment_text, setCommentText] = useState('');
     const user = useSelector(state => state.session.user);
