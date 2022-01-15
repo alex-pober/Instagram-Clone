@@ -53,7 +53,7 @@ def update_post(id):
         post.caption = form.data['caption']
         db.session.commit()
         return {'post': post.to_dict()}
-    return "Post updated"
+    return (form.errors)
 
 
 # DELETE /api/posts/:id

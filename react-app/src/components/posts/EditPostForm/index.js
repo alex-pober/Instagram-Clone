@@ -30,16 +30,23 @@ const EditPostForm = () => {
 
     const onEdit = async e => {
         e.preventDefault()
+        setErrors([]);
+
         const editedPost = {
             id: +postId,
             user_id: userId,
             imgURL: image,
             caption
         }
-        let submitted = await dispatch(updateOnePost(editedPost))
-        if (submitted) {
-            history.push(`/posts/${postId}`)
-        }
+        return dispatch(updateOnePost(editedPost))
+        .catch(async (res) => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors);
+          })
+          .then((res) => res && history.push(`/posts/${postId}`));
+        // if (submitted) {
+        //     history.push(`/posts/${postId}`)
+
     }
 
     return (

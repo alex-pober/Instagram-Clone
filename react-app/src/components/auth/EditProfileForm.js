@@ -13,8 +13,28 @@ const EditProfileForm = () => {
   const user_id = useSelector(state => state.session?.user?.id);
   const dispatch = useDispatch();
 
+
+  const validate = () => {
+    const errors = [];
+
+
+
+    if (!username) {
+      errors.push("please provide a username")
+    }
+    if (!profileURL) errors.push('Please provide a bio');
+    if (!bio) errors.push('Please provide a valid image URL');
+        return errors
+
+  }
+
+
+
   const onEditProfile = async (e) => {
     e.preventDefault();
+    const errors = validate();
+    if (errors.length > 0) return setErrors(errors);
+
       const data = await dispatch(EditProfile(user_id, username, bio, profileURL));
       if (data) {
         setErrors(data)
@@ -42,9 +62,9 @@ const EditProfileForm = () => {
   return (
     <form onSubmit={onEditProfile}>
       <div>
-        {/* {errors.map((error, ind) => (
+        {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
-        ))} */}
+        ))}
       </div>
       <div>
         <label>User Name</label>
