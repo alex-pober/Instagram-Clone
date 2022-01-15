@@ -27,5 +27,6 @@ class Post(db.Model):
             'caption': self.caption,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
-            'likeCounter': len([like.id for like in self.likes])
+            'likeCounter': len([like.id for like in self.likes]),
+            'userProfilePic': self.users.profileURL
         }
