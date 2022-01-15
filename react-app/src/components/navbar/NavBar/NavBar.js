@@ -17,7 +17,9 @@ const NavBar = () => {
     }
   })
 
-  let post = 'a'
+  let circleProfile = profileInfoOpen ? 'clicked-circle' : ""
+
+  // if (user?.id) setProfileInfoOpen(false)
 
   return (
     <nav>
@@ -35,7 +37,7 @@ const NavBar = () => {
           <NavLink to='/explore' exact={true} activeClassName='active'>
             <AiOutlineCompass id='exploreIcon' />
           </NavLink>
-          {!user?.id && (
+          {/* {!user?.id && (
             <NavLink to='/login' exact={true} activeClassName='active'>
               Login
             </NavLink>
@@ -44,24 +46,23 @@ const NavBar = () => {
             <NavLink to='/sign-up' exact={true} activeClassName='active'>
               Sign Up
             </NavLink>
-          )}
-          <div id='profilePicDiv'>
-            <img id='profileButton' src={user?.profileURL} alt={user?.username} onClick={() => setProfileInfoOpen(!profileInfoOpen)} />
-          </div>
-          <NavLink to={`/users/${user?.id}`} exact={true} activeClassName='active'>
-          </NavLink>
-          {/* {user.id && (
-            <LogoutButton />
           )} */}
-
-        <i id='userOptionsDiv'>
-          {profileInfoOpen && (
-            <UserOptions />
-          )}
-        </i>
+          <div id='profilePicDiv'>
+            <img id='profileButton' className={circleProfile} src={user?.profileURL} alt={user?.username}
+              onClick={() => setProfileInfoOpen(!profileInfoOpen)}
+            />
+            {profileInfoOpen && (
+              <div id='userOptionsDiv' className='dropdown-content'
+                onMouseLeave={() => setProfileInfoOpen(false)}
+                onClick={() => setProfileInfoOpen(false)}
+              >
+                <UserOptions />
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </nav>
+    </nav >
   );
 }
 

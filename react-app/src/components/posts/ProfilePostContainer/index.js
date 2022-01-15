@@ -13,7 +13,6 @@ import './ExploreFeed.css'
 import './style.css';
 
 const ProfilePostContainer = ({ posts }) => {
-    const [postUser, setpostUsers] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [editCommentOpen, setEditCommentOpen] = useState(false)
     const dispatch = useDispatch()
@@ -23,20 +22,6 @@ const ProfilePostContainer = ({ posts }) => {
             return state.session.user.id
         }
     })
-    //////////////////////// Evalute the posibility to change into a reducer/store
-    const userIdOfThisPost = +posts?.user_id
-
-    useEffect(() => {
-        async function fetchData() {
-            const response = await fetch('/api/users/');
-            const responseData = await response.json();
-            setpostUsers(responseData.users);
-        }
-        fetchData();
-    }, []);
-
-    const userInfo = postUser?.find(owner => owner.id === userIdOfThisPost)
-    ///////////////////////
 
     const allLikeToThisPost = useSelector(state => {
         if (state.likes) {
@@ -48,8 +33,9 @@ const ProfilePostContainer = ({ posts }) => {
     const isLiked = allLikeToThisPost.filter(like => like.user_id === userId).length > 0 ? true : false
 
     useEffect(() => {
-        dispatch(getAllPosts())
-        dispatch(getAllLikes())
+        //we do not need this in here since we load all posts and likes on app.js
+        // dispatch(getAllPosts())
+        // dispatch(getAllLikes())
     }, [dispatch])
 
     const handleDelete = (id) => {
@@ -74,8 +60,8 @@ const ProfilePostContainer = ({ posts }) => {
                         </div>
                         <div className='text-comment-container'>
                             <NavLink to={`/users/${posts.user_id}`} className="post-username-container">
-                                <img src={userInfo?.profileURL} className='post-user-profileimg'></img>
-                                <p className="post-username">{userInfo?.username}</p>
+                                <img src={posts.userProfilePic} className='post-user-profileimg'></img>
+                                <p className="post-username">{posts.username}</p>
                             </NavLink>
                             <div>
                                 <p className="post-caption">{posts?.caption}</p>

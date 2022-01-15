@@ -2,24 +2,17 @@
   width: 20%;
 }
 
-.menu{
-  border:1px solid orange;
-  padding: 12px;
-  border-radius: 10px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 18px;
-  text-decoration: none;
-  color: white;
-  background: orange;
-
-}
-
 #profileButton{
-  border: none;
   border-radius: 50%;
   max-width: 35px;
   max-height: 35px;
+  padding: 1.5px;
 }
+
+.clicked-circle {
+  background-color: rgba(51, 51, 51, 0.589);
+}
+
 
 #navBarDiv {
   /* border: red solid 1px; */
@@ -42,11 +35,11 @@
 #userOptionsDiv {
   display: block;
   position: absolute;
-  margin-top: 200px;
-  margin-left: 50px;
   background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  min-width: 200px;
+  margin-left: -175px;
+  /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+  border: 1px rgb(202, 202, 202) solid;
   z-index: 1;
   border-radius: 10px;
   font-family: Arial, Helvetica, sans-serif;
@@ -83,4 +76,8 @@ p {
 #logoutButtom {
   margin-left: 20px;
   cursor: pointer;
+}
+
+.textProfileDropDown:hover {
+  color: #b3b3b3;
 }
