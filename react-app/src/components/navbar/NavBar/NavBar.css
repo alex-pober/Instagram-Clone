@@ -1,0 +1,86 @@
+#logo{
+  width: 20%;
+}
+
+.menu{
+  border:1px solid orange;
+  padding: 12px;
+  border-radius: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  text-decoration: none;
+  color: white;
+  background: orange;
+
+}
+
+#profileButton{
+  border: none;
+  border-radius: 50%;
+  max-width: 35px;
+  max-height: 35px;
+}
+
+#navBarDiv {
+  /* border: red solid 1px; */
+  display: flex;
+  justify-content: space-around;
+}
+
+#exploreIcon, #homeIcon, #addPostIcon {
+  font-size: 35px;
+  color: rgb(51, 51, 51);
+}
+
+#iconsDiv {
+  width: 20rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#userOptionsDiv {
+  display: block;
+  position: absolute;
+  margin-top: 200px;
+  margin-left: 50px;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.textProfileDropDown {
+  padding: 0% 20px;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+  text-decoration: none;
+}
+
+p {
+  text-decoration: none;
+}
+
+#profileProfile {
+  margin-right: 20px;
+}
+
+#gearProfile {
+  margin-right: 20px;
+}
+
+
+#logoutButtomDiv {
+  border-top: 2px solid rgb(202, 202, 202);
+  align-items: center; 
+}
+
+#logoutButtom {
+  margin-left: 20px;
+  cursor: pointer;
+}

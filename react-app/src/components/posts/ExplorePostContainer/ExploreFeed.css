@@ -14,6 +14,20 @@
     object-fit: cover;
 }
 
-.individualImage:hover {
+.individualImage:hover{
     opacity: 0.5;
 }
+
+
+#counterHeart, #likeCounter {
+    color: red;
+    position: absolute;
+    margin-top: -2rem;
+    margin-left: 12rem;
+}
+
+#likeCounter {
+    color: black;
+    margin-left: 13.5rem
+}
+

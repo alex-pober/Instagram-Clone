@@ -73,7 +73,7 @@ const SinglePost = ({ post }) => {
                 <div>
                     {userId && (
                         <>
-                            <FaRegComment className="hearts" id='comment' onClick={() => setEditCommentOpen(true)} />
+                            <FaRegComment className="hearts" id='comment' onClick={() => setEditCommentOpen(!editCommentOpen)} />
                             {editCommentOpen && (
                                 <NewCommentForm post={post} />
                             )}
