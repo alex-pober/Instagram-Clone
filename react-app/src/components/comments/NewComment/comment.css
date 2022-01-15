@@ -1,0 +1,36 @@
+.new-comment-box {
+    display: flex;
+    position: relative;
+    left: -15%;
+    margin-top: 20px;
+    margin-left: 30px;
+    justify-content: space-between;
+    width: 100%;
+    min-width: 50%;
+}
+
+.new-comment-input {
+    font-size: 16px;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, Arial, "Lucida Grande", sans-serif;
+    width: 80%;
+}
+
+.submit-new-comment {
+    color: lightskyblue;
+    font-size: 20px;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, Arial, "Lucida Grande", sans-serif;
+
+    font-weight: bold;
+    background-color: white;
+    border: none;
+    transition: color 0.5s;
+    position:relative;
+}
+
+.submit-new-comment:hover {
+    color:rgb(46, 144, 206);
+    cursor: pointer;
+
+}

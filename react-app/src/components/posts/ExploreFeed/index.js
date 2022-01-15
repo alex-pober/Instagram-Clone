@@ -11,7 +11,6 @@ const ExploreFeed = () => {
     //shuffles feed
     const shuffledArray = feed.slice().sort((a, b) => 0.5 - Math.random());
 
-
     return (
         <div className="imageContainer" title='view'>
             {shuffledArray.map(post =>

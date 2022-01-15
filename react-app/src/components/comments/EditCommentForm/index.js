@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { updateOneComment } from "../../../store/comments";
+import './EditComment.css'
 
-const EditCommentForm = ({comment, editState}) => {
+const EditCommentForm = ({comment, editState, sendDataToParent}) => {
     const history = useHistory();
     const postId = useParams().id
     const dispatch = useDispatch();
@@ -36,7 +37,8 @@ const EditCommentForm = ({comment, editState}) => {
         let submitted = await dispatch(updateOneComment(editComment))
 
         if (submitted) {
-            setEditPopUp(false)
+            setEditPopUp(!editPopUp)
+            sendDataToParent(!editPopUp)
         }
     }
 
@@ -52,6 +54,7 @@ const EditCommentForm = ({comment, editState}) => {
                     </div>
                     <div>
                         <input
+                            className="edit-comment-input"
                             name='comment'
                             type='text'
                             placeholder="comment..."
@@ -59,7 +62,7 @@ const EditCommentForm = ({comment, editState}) => {
                             onChange={updateComment}
                         />
                     </div>
-                    <button type='submit'>Post</button>
+                    <button className="hidden-submit" type='submit'>Update</button>
                 </div>
             </form>
         )}
