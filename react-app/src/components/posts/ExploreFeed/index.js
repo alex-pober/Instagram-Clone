@@ -1,40 +1,29 @@
-import React, { useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import React from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllPosts } from "../../../store/posts";
-import PostContainer from '../PostContainer';
-import './ExploreFeed.css'
+
+import { BsHeartFill } from "react-icons/bs";
+import ExplorePostContainer from "../ExplorePostContainer";
 
 const ExploreFeed = () => {
     const posts = useSelector(state => state.posts);
-    const dispatch = useDispatch()
-    useEffect (() => {
-        dispatch(getAllPosts())
-    }, [dispatch])
-    const feed = Object.entries(posts)
+    
+    const feed = Object.values(posts)
     //shuffles feed
-    function shuffle(sourceArray) {
-        for (var i = 0; i < sourceArray.length - 1; i++) {
-            var j = i + Math.floor(Math.random() * (sourceArray.length - i));
+    const shuffledArray = feed.slice().sort((a, b) => 0.5 - Math.random());
 
-            var temp = sourceArray[j];
-            sourceArray[j] = sourceArray[i];
-            sourceArray[i] = temp;
-        }
-        return sourceArray;
-    }
-    shuffle(feed)
-
-    return(
+    return (
         <div className="imageContainer" title='view'>
-            {feed.map(posts => (
-                // <PostContainer className='imageContainer' key={posts[0]} posts={posts[1]} />
-                    <NavLink className="navlink" to={`/posts/${posts[0]}`}>
-                    <img className="individualImage" key={posts[0]} alt={posts[1].caption} src={posts[1].imgURL} width="250px" height="250px" object-fit="cover" title="view"></img>
-                    </NavLink>
-            ))}
+            {shuffledArray.map(post =>
+                <div key={post.id}>
+                    <ExplorePostContainer posts={post} />
+                    <div id='likeDiv'>
+                        <BsHeartFill id="counterHeart" />
+                        <i id='likeCounter'>{post.likeCounter}</i>
+                    </div>
+                </div>
+            )}
         </div>
-        )
+    )
 }
 
 export default ExploreFeed

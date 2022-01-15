@@ -2,6 +2,19 @@ from app.models import db, Post
 
 
 def seed_posts():
+    demoPost1 = Post(
+        user_id=1,
+        imgURL='https://images.pexels.com/photos/3913025/pexels-photo-3913025.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        caption="If you want to be strong, learn how to fight alone.")
+    demoPost2 = Post(
+        user_id=1,
+        imgURL='https://images.pexels.com/photos/3970330/pexels-photo-3970330.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+        caption="I don’t need your attitude, I have my own.")
+    demoPost3 = Post(
+        user_id=1,
+        imgURL='https://images.pexels.com/photos/3825569/pexels-photo-3825569.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        caption="Life is the biggest party you'll ever be at.")
+
 
     stevePost1 = Post(
         user_id=2,
@@ -158,6 +171,10 @@ def seed_posts():
         caption="Stop working hard and start working smart.")
 
 
+
+    db.session.add(demoPost1)
+    db.session.add(demoPost2)
+    db.session.add(demoPost3)
 
     db.session.add(stevePost1)
     db.session.add(stevePost2)

@@ -20,7 +20,6 @@ const removeFollow = follow => ({
 
 //SELECTORS
 export const getAllFollows = (id) => async dispatch => {
-    console.log(id, typeof id)
     const res = await fetch(`/api/follows/${id}`)
     if (res.ok) {
       const data = await res.json();

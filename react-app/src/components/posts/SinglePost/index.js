@@ -5,9 +5,9 @@ import { getAllPosts, deleteOnePost } from "../../../store/posts";
 import { getAllLikes, likePost, unlikePost } from "../../../store/likes";
 import CommentFeed from "../../comments/CommentFeed";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
+import { AiOutlineEdit } from "react-icons/ai";
 import { FaRegComment } from "react-icons/fa";
 import './style.css';
-import EditCommentForm from "../../comments/EditCommentForm";
 import NewCommentForm from "../../comments/NewComment";
 
 const SinglePost = ({ post }) => {
@@ -26,13 +26,13 @@ const SinglePost = ({ post }) => {
 
     useEffect(() => {
         async function fetchData() {
-          const response = await fetch('/api/users/');
-          const responseData = await response.json();
-          setpostUsers(responseData.users);
+            const response = await fetch('/api/users/');
+            const responseData = await response.json();
+            setpostUsers(responseData.users);
         }
         fetchData();
-      }, []);
-      const userInfo = postUser.find(owner => owner.id === userIdOfThisPost)
+    }, []);
+    const userInfo = postUser.find(owner => owner.id === userIdOfThisPost)
     ///////////////////////
 
     const allLikeToThisPost = useSelector(state => {
@@ -51,7 +51,7 @@ const SinglePost = ({ post }) => {
 
     const handleDelete = (id) => {
         dispatch(deleteOnePost(id))
-        history.push(`/feed`)
+        history.push(`/`)
     }
 
     const handleLike = () => {
@@ -59,45 +59,51 @@ const SinglePost = ({ post }) => {
     }
 
     return (
-        <div>
-            <div>
-                <i>{userInfo?.username}</i>
+        <div className='post-container'>
+            <div className='image-container'>
+                <img className="post-image" alt={post?.caption} src={post?.imgURL} width="250px"></img>
             </div>
-            <div>
-                <img alt={post?.caption} src={post?.imgURL} width="250px"></img>
-                <p>{post?.caption}</p>
-            </div>
-            <div>
-                {post?.user_id === +userId && (
-                    <button onClick={() => handleDelete(post.id)}>Delete</button>
-                )}
-                {post?.user_id === +userId && (
-                    <NavLink to={`/posts/${post.id}/edit`}>
-                        <button>Edit</button>
-                    </NavLink>
-
-                )}
+            <div className='text-comment-container'>
+                <NavLink to={`/users/${post.user_id}`} className="post-username-container">
+                    <img src={userInfo?.profileURL} className='post-user-profileimg'></img>
+                    <p className="post-username">{userInfo?.username}</p>
+                </NavLink>
                 <div>
-                    {userId && isLiked && (
-                        <BsHeartFill className="hearts" id="like" onClick={() => handleLike(post.id)} />
-                    )}
-                    {userId && !isLiked && (
-                        <BsHeart className="hearts" id="unlike" onClick={() => handleLike(post.id)} />
-                    )}
+                    <p className="post-caption">{post?.caption}</p>
+                </div>
+                <div className="comment-feed">
+                    <CommentFeed post={post} />
                 </div>
                 <div>
-                    {userId && (
-                        <>
-                        <FaRegComment className="hearts" id='comment' onClick={() => setEditCommentOpen(true)}/>
-                        {editCommentOpen && (
-                            <NewCommentForm post={post} />
-                        )}
-                        </>
+                    {post?.user_id === +userId && (
+                        <button onClick={() => handleDelete(post.id)}>Delete</button>
                     )}
+                    {post?.user_id === +userId && (
+                        <NavLink to={`/posts/${post.id}/edit`}>
+                            <AiOutlineEdit />
+                        </NavLink>
+                    )}
+                    <div className='comment-like-container'>
+                        <div className='like-container'>
+                            {userId && isLiked && (
+                                <BsHeartFill className="hearts" id="like" onClick={() => handleLike(post.id)} />
+                            )}
+                            {userId && !isLiked && (
+                                <BsHeart className="hearts" id="unlike" onClick={() => handleLike(post.id)} />
+                            )}
+                        </div>
+                        <div className="comment-container">
+                            {userId && (
+                                <>
+                                    <FaRegComment className="hearts" id='comment' onClick={() => setEditCommentOpen(!editCommentOpen)} />
+                                    {editCommentOpen && (
+                                        <NewCommentForm post={post} />
+                                    )}
+                                </>
+                            )}
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <CommentFeed post={post}/>
             </div>
         </div>
     )
