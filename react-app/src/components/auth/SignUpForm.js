@@ -13,8 +13,31 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  const validate = () => {
+    const errors = [];
+
+
+
+    if (!username) {
+      errors.push("please provide a username")
+    }
+    if (!name) errors.push('Please provide a name');
+    if (!email) errors.push('Please provide an email address');
+    if (!password) errors.push('Please provide a password');
+    if (!repeatPassword) errors.push('Please confirm your password');
+
+    return errors
+
+  }
+
   const onSignUp = async (e) => {
     e.preventDefault();
+    const errors = validate();
+
+    if (errors.length > 0) return setErrors(errors);
+
+
+
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, name, email, password));
       if (data) {

@@ -11,15 +11,34 @@ const NewPostForm = () => {
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch()
 
+
+
+    const validate = () => {
+        const errors = [];
+
+
+
+        if (!imgURL) {
+          errors.push("please provide an image url")
+        }
+        if (!caption) errors.push('Please provide a caption');
+
+            return errors
+
+      }
+
     const submit = async (e) => {
         e.preventDefault();
+        const errors = validate();
+
+        if (errors.length > 0) return setErrors(errors);
 
         const newPost = {
             user_id: user.id,
             imgURL,
             caption,
         }
-        let submited = dispatch(addOnePost(newPost))
+        let submited = await dispatch(addOnePost(newPost))
         if (submited) {
             history.push('/feed')
         }
@@ -34,12 +53,20 @@ const NewPostForm = () => {
     }
 
     return (
+
+
+
         <form onSubmit={submit}>
             <div>
                 <div>
-                    {errors.map((error, ind) => (
-                        <div key={ind}>{error}</div>
-                    ))}
+                {errors.length > 0 && (
+            <div>
+              The following errors were found:
+              <ul>
+                {errors.map(error => <li key={error}>{error}</li>)}
+              </ul>
+            </div>
+          )}
                 </div>
                 <div>
                     <label htmlFor='imgURL'>Image URL</label>
@@ -49,6 +76,7 @@ const NewPostForm = () => {
                         placeholder="Image URL"
                         value={imgURL}
                         onChange={updateImgURL}
+
                     />
                 </div>
                 <div>
@@ -64,6 +92,7 @@ const NewPostForm = () => {
                 <button type='submit'>Post</button>
             </div>
         </form>
+
     )
 };
 

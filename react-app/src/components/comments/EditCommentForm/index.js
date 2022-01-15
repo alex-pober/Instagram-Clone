@@ -27,6 +27,8 @@ const EditCommentForm = ({comment, editState}) => {
 
     const onEdit = async e => {
         e.preventDefault()
+        setErrors([]);
+
         const editComment = {
             id: +comment.id,
             user_id: userId,
@@ -35,7 +37,10 @@ const EditCommentForm = ({comment, editState}) => {
         }
 
         let submitted = await dispatch(updateOneComment(editComment))
-
+        .catch(async res => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors);
+        })
         if (submitted) {
             setEditPopUp(false)
         }
