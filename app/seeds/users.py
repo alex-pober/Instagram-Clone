@@ -12,7 +12,7 @@ def seed_users():
     ronald = User(
         name='ronald', username='rony', profileURL='https://images.megapixl.com/4707/47075236.jpg', email='ronald@gmail.com', hashed_password='pbkdf2:sha256:260000$1VplqmGDpJCoRwRJ$9836268dc67e008195ab32b99201c824f2a3e7166098460d17bfcd3ebae0b884', bio='I would rather die of passion than of boredom.')
     susan = User(
-        name='susan', username='susy', profileURL='https://cdn.icon-icons.com/icons2/1999/PNG/512/avatar_people_person_profile_user_woman_icon_123355.png', email='susy@gmail.com', hashed_password='pbkdf2:sha256:260000$mBaQlFyHKARMfP3L$4b0d77a94b9251468edacff236cce9af59e155b9d9b88d7b234db7419043bf34', bio='A very caffeine dependent life form.')
+        name='susan', username='susy', profileURL='https://images.pexels.com/photos/3361154/pexels-photo-3361154.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260', bio='A very caffeine dependent life form.')
 
     db.session.add(demo)
     db.session.add(steve)

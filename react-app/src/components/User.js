@@ -58,12 +58,8 @@ function User() {
   ///////////////////////////
 
 
-  // Like post function
   const handleFollow = async () => {
     let followed = +userId
-    //create unfolllow and follow
-
-
      isFollowed ? dispatch(unfollowUser(follower, followed)) : dispatch(followUser(follower, followed))
   };
 

@@ -1,39 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllPosts } from "../../../store/posts";
-import ExplorePostContainer from "../ExplorePostContainer";
-import PostContainer from '../PostContainer';
+
 import { BsHeartFill } from "react-icons/bs";
-import './ExploreFeed.css'
+import ExplorePostContainer from "../ExplorePostContainer";
 
 const ExploreFeed = () => {
     const posts = useSelector(state => state.posts);
-
-    const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(getAllPosts())
-    }, [dispatch])
-    const feed = Object.entries(posts)
-
+    
+    const feed = Object.values(posts)
     //shuffles feed
-    function shuffle(sourceArray) {
-        for (var i = 0; i < sourceArray.length - 1; i++) {
-            var j = i + Math.floor(Math.random() * (sourceArray.length - i));
-
-            var temp = sourceArray[j];
-            sourceArray[j] = sourceArray[i];
-            sourceArray[i] = temp;
-        }
-        return sourceArray;
-    }
-
-    // shuffle(feed)
+    const shuffledArray = feed.slice().sort((a, b) => 0.5 - Math.random());
 
     return (
         <div className="imageContainer" title='view'>
-            {feed.map(post =>
-                <div>
-                    <ExplorePostContainer posts={post[1]} />
+            {shuffledArray.map(post =>
+                <div key={post.id}>
+                    <ExplorePostContainer posts={post} />
+                    <div id='likeDiv'>
+                        <BsHeartFill id="counterHeart" />
+                        <i id='likeCounter'>{post.likeCounter}</i>
+                    </div>
                 </div>
             )}
         </div>

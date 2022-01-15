@@ -82,7 +82,6 @@ const SinglePost = ({ post }) => {
                         <NavLink to={`/posts/${post.id}/edit`}>
                             <AiOutlineEdit />
                         </NavLink>
-
                     )}
                     <div className='comment-like-container'>
                         <div className='like-container'>

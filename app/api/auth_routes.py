@@ -63,11 +63,13 @@ def sign_up():
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        profileURL = 'https://dineoncampus.com/img/staff-placeholder.jpg'
         user = User(
             username=form.data['username'],
             name=form.data['name'],
             email=form.data['email'],
-            password=form.data['password']
+            password=form.data['password'],
+            profileURL=profileURL
         )
         db.session.add(user)
         db.session.commit()
@@ -94,7 +96,7 @@ def edit_profile():
         user = User.query.get(user_id)
         user.username = form.data['username']
         user.bio = form.data['bio']
-        user.profileURL = form.data['profileURL'] 
+        user.profileURL = form.data['profileURL']
         db.session.commit()
 
         return user.to_dict()

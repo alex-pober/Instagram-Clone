@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { Modal } from "../../../context/Modal";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
@@ -6,8 +6,8 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { FaRegComment } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
 import NewCommentForm from "../../comments/NewComment";
-import { getAllPosts, deleteOnePost } from "../../../store/posts";
-import { getAllLikes, likePost, unlikePost } from "../../../store/likes";
+import { deleteOnePost } from "../../../store/posts";
+import { likePost, unlikePost } from "../../../store/likes";
 import CommentFeed from "../../comments/CommentFeed";
 import './ExploreFeed.css'
 import './style.css';
@@ -23,20 +23,6 @@ const ExplorePostContainer = ({ posts }) => {
             return state.session.user.id
         }
     })
-    //////////////////////// Evalute the posibility to change into a reducer/store
-    const userIdOfThisPost = +posts?.user_id
-
-    useEffect(() => {
-        async function fetchData() {
-            const response = await fetch('/api/users/');
-            const responseData = await response.json();
-            setpostUsers(responseData.users);
-        }
-        fetchData();
-    }, []);
-
-    const userInfo = postUser?.find(owner => owner.id === userIdOfThisPost)
-    ///////////////////////
 
     const allLikeToThisPost = useSelector(state => {
         if (state.likes) {
@@ -47,10 +33,6 @@ const ExplorePostContainer = ({ posts }) => {
 
     const isLiked = allLikeToThisPost.filter(like => like.user_id === userId).length > 0 ? true : false
 
-    useEffect(() => {
-        dispatch(getAllPosts())
-        dispatch(getAllLikes())
-    }, [dispatch])
 
     const handleDelete = (id) => {
         dispatch(deleteOnePost(id))
