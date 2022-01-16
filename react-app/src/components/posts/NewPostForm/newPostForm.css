@@ -24,7 +24,7 @@
     align-items: center;
 }
 
-.post {
+.newpost {
     border: 1px solid #bbbbbb;
     background-color: white;
     box-sizing: border-box;
@@ -34,7 +34,7 @@
 
 }
 
-.post img {
+.newpost img {
     max-width: 220px;
 }
 
@@ -85,14 +85,14 @@ input {
 
 
 
-.post a {
+.newpost a {
     color: #0095f6;
     color: rgba(var(--fe0,0,55,107),1);
     text-decoration: none;
 
 }
 
-.post button {
+.newpost button {
     display: flex;
     justify-content: center;
     align-items: center;
