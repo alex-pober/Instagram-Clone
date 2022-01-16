@@ -35,7 +35,7 @@ const NewCommentForm = ({ post }) => {
     }
 
     return (
-        <form onSubmit={submit} >
+        <form className="new-comment-form" onSubmit={submit} >
             <div>
                 <div>
                     {errors.map((error, ind) => (
