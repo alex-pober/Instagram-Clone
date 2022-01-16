@@ -32,7 +32,7 @@ function App() {
     (async() => {
       await dispatch(authenticate());
       await dispatch(getAllPosts())
-      await dispatch(getAllRandomPosts(userId))
+      await dispatch(getAllRandomPosts())
       setLoaded(true);
     })();
   }, [dispatch]);
