@@ -10,6 +10,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import { getAllPosts } from './store/posts';
+import { getAllLikesAllPosts } from './store/likesfromallposts';
 import NewPostForm from './components/posts/NewPostForm';
 import UserFeed from './components/posts/UserFeed'
 import SinglePost from './components/posts/SinglePost';
@@ -28,13 +29,11 @@ function App() {
     (async() => {
       await dispatch(authenticate());
       await dispatch(getAllPosts())
+      await dispatch(getAllLikesAllPosts())
       setLoaded(true);
     })();
   }, [dispatch]);
 
-  useEffect(() => {
-
-  })
 
   if (!loaded) {
     return null;

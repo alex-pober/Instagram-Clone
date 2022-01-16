@@ -10,14 +10,14 @@ const UserOptions = () => {
     const userId = useSelector(state => state?.session.user?.id)
 
     return (
-        <div>
+        <div className="drop-downmenu">
             <NavLink to={`/users/${userId}`}>
                 <p className="textProfileDropDown"><CgProfile id='profileProfile' />Profile</p>
             </NavLink>
             <NavLink to={`/profile-edit`}>
                 <p className="textProfileDropDown"><BsGearWide id='gearProfile' />Edit Profile</p>
             </NavLink>
-            <div id="logoutButtomDiv">
+            <div className="textProfileDropDown" id="logoutButtomDiv">
                 <LogoutButton/>
             </div>
         </div>

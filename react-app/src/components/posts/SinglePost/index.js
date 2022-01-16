@@ -3,6 +3,7 @@ import { NavLink, useHistory, useParams, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllPosts, deleteOnePost } from "../../../store/posts";
 import { getAllLikes, likePost, unlikePost } from "../../../store/likes";
+import { getAllLikesAllPosts } from '../../../store/likesfromallposts';
 import CommentFeed from "../../comments/CommentFeed";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
 import { AiOutlineEdit, AiFillDelete } from "react-icons/ai";
@@ -20,20 +21,6 @@ const SinglePost = ({ post }) => {
             return state.session.user.id
         }
     })
-
-    ////////////////////////
-    const userIdOfThisPost = +post?.user_id
-
-    useEffect(() => {
-        async function fetchData() {
-            const response = await fetch('/api/users/');
-            const responseData = await response.json();
-            setpostUsers(responseData.users);
-        }
-        fetchData();
-    }, []);
-    const userInfo = postUser.find(owner => owner.id === userIdOfThisPost)
-    ///////////////////////
 
     const allLikeToThisPost = useSelector(state => {
         if (state.likes) {
@@ -65,8 +52,8 @@ const SinglePost = ({ post }) => {
             </div>
             <div className='text-comment-container'>
                 <NavLink to={`/users/${post?.user_id}`} className="post-username-container">
-                    <img src={userInfo?.profileURL} className='post-user-profileimg'></img>
-                    <p className="post-username">{userInfo?.username}</p>
+                    <img src={posts?.userProfilePic} className='post-user-profileimg'></img>
+                    <p className="post-username">{posts?.username}</p>
                 </NavLink>
                 <div>
                     <p className="post-caption">{post?.caption}</p>

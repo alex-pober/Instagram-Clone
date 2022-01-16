@@ -120,3 +120,10 @@ def new_comment(id):
         db.session.commit()
         return comment.to_dict()
     return (form.errors)
+
+
+# GET /api/postsforlikes
+@post_routes.route('/forlikes')
+def get_posts_likes():
+    posts = Post.query.all()
+    return {'posts': [post.likes_to_dict() for post in posts]}

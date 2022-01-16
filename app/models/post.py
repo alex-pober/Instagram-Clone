@@ -30,3 +30,10 @@ class Post(db.Model):
             'likeCounter': len([like.id for like in self.likes]),
             'userProfilePic': self.users.profileURL
         }
+    
+    def likes_to_dict(self):
+
+        return {
+            'id': self.id,
+            'likeCounter': len([like.id for like in self.likes]),
+        }
