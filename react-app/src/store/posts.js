@@ -38,21 +38,6 @@ export const getAllPosts = () => async dispatch => {
     }
 }
 
-//random posts
-export const getAllRandomPosts = () => async dispatch => {
-    const response = await fetch('/api/posts/')
-    if (response.ok) {
-        const data = await response.json();
-        if (data.errors) {
-            return;
-        }
-
-        const shuffledArray = {posts: data.posts.slice().sort((a, b) => 0.5 - Math.random())};
-        dispatch(getPosts(data));
-        return data
-    }
-}
-
 export const addOnePost = post => async dispatch => {
     const response = await fetch('/api/posts/', {
         method: 'POST',

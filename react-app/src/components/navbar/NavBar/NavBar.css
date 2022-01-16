@@ -4,18 +4,23 @@
 
 #profileButton{
   border-radius: 50%;
+  margin-left: 5px;
   max-width: 35px;
   max-height: 35px;
-  padding: 1.5px;
+  padding: 1px;
+}
+
+#profilePicInnerDiv{
+  width: 45px;
+  height: 45px;
 }
 
 .clicked-circle {
-  background-color: rgba(51, 51, 51, 0.589);
+  border: solid 3px rgb(51, 51, 51);
 }
 
 
 #navBarDiv {
-  /* border: red solid 1px; */
   display: flex;
   justify-content: space-around;
 }

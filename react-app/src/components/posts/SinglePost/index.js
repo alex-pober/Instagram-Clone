@@ -3,6 +3,7 @@ import { NavLink, useHistory, useParams, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllPosts, deleteOnePost } from "../../../store/posts";
 import { getAllLikes, likePost, unlikePost } from "../../../store/likes";
+import { getAllLikesAllPosts } from '../../../store/likesfromallposts';
 import CommentFeed from "../../comments/CommentFeed";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
 import { AiOutlineEdit } from "react-icons/ai";
@@ -65,8 +66,8 @@ const SinglePost = ({ post }) => {
             </div>
             <div className='text-comment-container'>
                 <NavLink to={`/users/${post.user_id}`} className="post-username-container">
-                    <img src={userInfo?.profileURL} className='post-user-profileimg'></img>
-                    <p className="post-username">{userInfo?.username}</p>
+                    <img src={post.userProfilePic} className='post-user-profileimg'></img>
+                    <p className="post-username">{post.username}</p>
                 </NavLink>
                 <div>
                     <p className="post-caption">{post?.caption}</p>

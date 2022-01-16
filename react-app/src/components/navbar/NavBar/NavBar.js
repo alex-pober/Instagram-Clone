@@ -48,9 +48,11 @@ const NavBar = () => {
             </NavLink>
           )} */}
           <div id='profilePicDiv'>
-            <img id='profileButton' className={circleProfile} src={user?.profileURL} alt={user?.username}
-              onClick={() => setProfileInfoOpen(!profileInfoOpen)}
-            />
+            <div id='profilePicInnerDiv'>
+              <img id='profileButton' className={circleProfile} src={user?.profileURL} alt={user?.username}
+                onClick={() => setProfileInfoOpen(!profileInfoOpen)}
+              />
+            </div>
             {profileInfoOpen && (
               <div id='userOptionsDiv' className='dropdown-content'
                 onMouseLeave={() => setProfileInfoOpen(false)}

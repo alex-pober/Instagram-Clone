@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { Modal } from "../../../context/Modal";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
@@ -7,6 +7,7 @@ import { FaRegComment } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
 import NewCommentForm from "../../comments/NewComment";
 import { deleteOnePost } from "../../../store/posts";
+import { getAllLikesAllPosts } from '../../../store/likesfromallposts';
 import { likePost, unlikePost } from "../../../store/likes";
 import CommentFeed from "../../comments/CommentFeed";
 import './ExploreFeed.css'
@@ -32,7 +33,6 @@ const ExplorePostContainer = ({ posts }) => {
     })
 
     const isLiked = allLikeToThisPost.filter(like => like.user_id === userId).length > 0 ? true : false
-
 
     const handleDelete = (id) => {
         dispatch(deleteOnePost(id))
