@@ -1,3 +1,7 @@
+.new-comment-form {
+    padding: 0;
+}
+
 .new-comment-box {
     display: flex;
     position: relative;
