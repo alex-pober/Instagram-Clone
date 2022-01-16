@@ -5,6 +5,7 @@ import { getAllFollows } from "../../../store/follows";
 import { getAllPosts } from "../../../store/posts";
 import { refreshUserState } from "../../../store/session";
 import PostContainer from '../PostContainer';
+import './UserFeed.css'
 
 const UserFeed = () => {
     const posts = useSelector(state => state.posts);
@@ -48,6 +49,7 @@ const UserFeed = () => {
             <Redirect to='/login' />
         )
     }
+
 
     return (
         <div>

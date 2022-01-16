@@ -10,6 +10,7 @@
   padding: 1px;
 }
 
+
 #profilePicInnerDiv{
   width: 45px;
   height: 45px;
@@ -20,7 +21,18 @@
 }
 
 
+/* #navBarDiv {
+.======= */
+nav{
+  display: block;
+  align-items: center;
+  -webkit-box-align: center;
+}
+
 #navBarDiv {
+  /* border: red solid 1px; */
+  border-bottom: 1px solid rgba(219,219,219);
+  margin-bottom: 10px;
   display: flex;
   justify-content: space-around;
 }
@@ -75,7 +87,7 @@ p {
 
 #logoutButtomDiv {
   border-top: 2px solid rgb(202, 202, 202);
-  align-items: center; 
+  align-items: center;
 }
 
 #logoutButtom {
@@ -86,3 +98,4 @@ p {
 .textProfileDropDown:hover {
   color: #b3b3b3;
 }
+
