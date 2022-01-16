@@ -1,12 +1,21 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useSelector, useDispatch } from 'react-redux';
-
+import { getAllLikes } from "../../../store/likes";
+import { getAllPosts } from "../../../store/posts";
 import { BsHeartFill } from "react-icons/bs";
 import ExplorePostContainer from "../ExplorePostContainer";
 
 const ExploreFeed = () => {
     const posts = useSelector(state => state.posts);
+    const dispatch = useDispatch()
     
+    useEffect(() => {
+        dispatch(getAllLikes())
+    }, [])
+
+
+
+
     const feed = Object.values(posts)
     //shuffles feed
     const shuffledArray = feed.slice().sort((a, b) => 0.5 - Math.random());

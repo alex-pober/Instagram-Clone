@@ -12,10 +12,11 @@ const NewPostForm = () => {
     const [caption, setCaption] = useState('');
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch()
+    const validUrl = require('valid-url');
 
     const validate = () => {
         const errors = [];
-        if (!imgURL) {
+        if (!imgURL || !validUrl.isUri(imgURL)){
             errors.push("Please provide an image URL for your photo.")
         }
         return errors
@@ -34,7 +35,7 @@ const NewPostForm = () => {
         }
         let submited = await dispatch(addOnePost(newPost))
         if (submited) {
-            history.push('/feed')
+            history.push(`/users/${user?.id}`)
         }
     }
 
@@ -47,7 +48,7 @@ const NewPostForm = () => {
     }
 
     return (
-        <div class="post-main">
+        <div className="post-main">
 
             <div className="post">
                 <form onSubmit={submit}>
@@ -71,7 +72,7 @@ const NewPostForm = () => {
                         <div>
                             <label  htmlFor='caption'>Caption</label>
                             <input
-                                class='input-element'
+                                className='input-element'
                                 name='caption'
                                 type='text'
                                 placeholder="add caption"
@@ -79,7 +80,7 @@ const NewPostForm = () => {
                                 onChange={updateCaption}
                             />
                         </div>
-                        <button class='button1' type='submit'>Post</button>
+                        <button className='button1' type='submit'>Post</button>
                     </div>
                 </form>
             </div>

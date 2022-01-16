@@ -54,7 +54,7 @@ const ProfilePostContainer = ({ posts }) => {
 
     const handleDelete = (id) => {
         dispatch(deleteOnePost(id))
-        history.push(`/`)
+        setShowModal(false)
     }
 
     const handleLike = () => {

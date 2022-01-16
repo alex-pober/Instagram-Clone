@@ -47,7 +47,7 @@ export const getAllRandomPosts = () => async dispatch => {
             return;
         }
 
-        const shuffledArray = {posts: data.posts.slice().sort((a, b) => 0.5 - Math.random())};
+        const shuffledArray = { posts: data.posts.slice().sort((a, b) => 0.5 - Math.random()) };
         dispatch(getPosts(data));
         return data
     }
@@ -85,7 +85,7 @@ export const updateOnePost = post => async dispatch => {
 
 export const deleteOnePost = id => async dispatch => {
     const response = await fetch(`/api/posts/${id}`, {
-        method: 'DELETE',
+        method: 'DELETE'
     })
     if (response.ok) {
         dispatch(deletePost(id))
@@ -121,11 +121,8 @@ export default function (state = initialState, action) {
 
         case DELETE_POST:
             newState = { ...state }
-            delete newState[action.payload.id]
+            delete newState[action.payload]
             return newState
-
-
-
 
         default:
             return state;

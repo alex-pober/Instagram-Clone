@@ -75,7 +75,7 @@ function User() {
   // }
 
 
-  console.log(userId, follower)
+  // console.log(userId, follower)
 
 
   return (

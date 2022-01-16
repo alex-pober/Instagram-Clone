@@ -4,7 +4,7 @@ import SinglePost from '../SinglePost';
 
 function SinglePostModal() {
   const [showModal, setShowModal] = useState(false);
-
+  
   return (
     <>
       <button onClick={() => setShowModal(true)}>See Post</button>
