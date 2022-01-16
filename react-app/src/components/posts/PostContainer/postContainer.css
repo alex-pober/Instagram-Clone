@@ -1,17 +1,62 @@
+* {
+    background-color: #fafafa;
+}
+
 .post {
     display: flex;
-    border: 1px solid red;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
+    border: 1px solid #dbdbdb;
+    background-color: white;
+    border-radius: 3px;
+    margin: auto;
+    width: 600px;
+    align-items: flex-start;
+    margin-bottom: 24px;
+    flex-direction: column;
+}
+
+.heartinpost{
+    background-color: white;
+    margin-top: 5px;
+
+}
+
+.viewComments{
+    cursor: pointer;
+    color: #8e8e8e;
+    margin-top: 0;
+}
+
+.likeCounter{
+    color: #262626;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0;
+}
+
+.usernameCaption {
+    color: #262626;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.post p {
+    padding-left: 16px;
+    padding-right: 16px;
+    background-color: white;
+}
+.post a {
+    background-color: white;
+}
+.username p {
     margin-left: 10%;
     margin-right: 10%;
-    align-content: space-around;
-    justify-content: center;
+    width: 600px;
+
 }
 
 .post img {
     width: 600px;
     height: 650px;
     object-fit: cover;
+    background-color: white;
 }

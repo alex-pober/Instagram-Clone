@@ -51,11 +51,12 @@ const UserFeed = () => {
     }
 
     return (
-        <div>
+        <>
             {followersPost.map(posts => (
                 <PostContainer key={posts.id} posts={posts} />
             ))}
-        </div>
+        </>
+     
     )
 }
 
