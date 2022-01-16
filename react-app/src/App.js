@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import EditProfileForm from './components/auth/EditProfileForm';
@@ -10,7 +10,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import { getAllPosts } from './store/posts';
-import { getAllLikesAllPosts } from './store/likesfromallposts';
+import { getAllRandomPosts } from './store/allpostsrandom';
 import NewPostForm from './components/posts/NewPostForm';
 import UserFeed from './components/posts/UserFeed'
 import SinglePost from './components/posts/SinglePost';
@@ -24,12 +24,13 @@ import ExploreFeed from './components/posts/ExploreFeed';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
-
+  const allPostsRandomOrder = useSelector(state => state.allpostsrandom)
+  const randomOrder = Object.values(allPostsRandomOrder)
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
       await dispatch(getAllPosts())
-      await dispatch(getAllLikesAllPosts())
+      await dispatch(getAllRandomPosts())
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -56,7 +57,7 @@ function App() {
           <EditProfileForm />
         </Route>
         <Route path='/explore' exact={true}>
-          <ExploreFeed />
+          <ExploreFeed randomOrder={randomOrder}/>
         </Route>
         <Route path='/new-post' exact={true}>
           <NewPostForm />

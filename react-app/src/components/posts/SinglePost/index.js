@@ -3,7 +3,7 @@ import { NavLink, useHistory, useParams, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllPosts, deleteOnePost } from "../../../store/posts";
 import { getAllLikes, likePost, unlikePost } from "../../../store/likes";
-import { getAllLikesAllPosts } from '../../../store/likesfromallposts';
+import { getAllLikesAllPosts } from '../../../store/allpostsrandom';
 import CommentFeed from "../../comments/CommentFeed";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
 import { AiOutlineEdit } from "react-icons/ai";
