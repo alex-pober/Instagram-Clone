@@ -25,13 +25,14 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
   const allPostsRandomOrder = useSelector(state => state.allpostsrandom)
-  const randomOrder = Object.values(allPostsRandomOrder)
+  const userId = useSelector(state => state.session.user?.id)
+  const randomOrder = Object.values(allPostsRandomOrder).filter(post => post.user_id !== userId)
   
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
       await dispatch(getAllPosts())
-      await dispatch(getAllRandomPosts())
+      await dispatch(getAllRandomPosts(userId))
       setLoaded(true);
     })();
   }, [dispatch]);
