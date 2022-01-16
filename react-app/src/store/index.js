@@ -6,7 +6,7 @@ import likes from './likes'
 import comments from './comments'
 import follows from './follows'
 import followers from './followers';
-import likefromallposts from './likesfromallposts';
+import allpostsrandom from './allpostsrandom';
 
 
 const rootReducer = combineReducers({
@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
   comments,
   follows,
   followers,
-  likefromallposts
+  allpostsrandom
 });
 
 

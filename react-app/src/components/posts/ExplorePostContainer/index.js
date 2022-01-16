@@ -6,8 +6,7 @@ import { AiOutlineEdit, AiFillDelete } from "react-icons/ai";
 import { FaRegComment } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
 import NewCommentForm from "../../comments/NewComment";
-import { deleteOnePost } from "../../../store/posts";
-import { getAllLikesAllPosts } from '../../../store/likesfromallposts';
+import { getAllPosts, deleteOnePost } from "../../../store/posts";
 import { likePost, unlikePost } from "../../../store/likes";
 import CommentFeed from "../../comments/CommentFeed";
 import './ExploreFeed.css'
@@ -41,6 +40,7 @@ const ExplorePostContainer = ({ posts }) => {
 
     const handleLike = () => {
         isLiked ? dispatch(unlikePost(userId, posts.id)) : dispatch(likePost(userId, posts.id))
+        dispatch(getAllPosts())
     }
 
     return (

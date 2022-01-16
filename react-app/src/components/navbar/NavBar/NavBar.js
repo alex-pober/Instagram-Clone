@@ -1,7 +1,8 @@
 
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllRandomPosts } from '../../../store/allpostsrandom'
 import { BsFillHouseDoorFill } from "react-icons/bs";
 import { AiOutlineCompass } from "react-icons/ai";
 import { CgAddR } from "react-icons/cg";
@@ -10,6 +11,7 @@ import './NavBar.css'
 
 
 const NavBar = () => {
+  const dispatch = useDispatch();
   const [profileInfoOpen, setProfileInfoOpen] = useState(false)
   const user = useSelector(state => {
     if (state.session.user) {
@@ -18,7 +20,9 @@ const NavBar = () => {
   })
 
   let circleProfile = profileInfoOpen ? 'clicked-circle' : ""
-
+  const onClick = () => {
+    dispatch(getAllRandomPosts())
+  } 
   // if (user?.id) setProfileInfoOpen(false)
 
   return (
@@ -29,10 +33,10 @@ const NavBar = () => {
         </NavLink>
         <div id='iconsDiv'>
           <NavLink to='/' exact={true} activeClassName='active'>
-            <BsFillHouseDoorFill id='homeIcon' />
+            <BsFillHouseDoorFill onClick={onClick} id='homeIcon' />
           </NavLink>
           <NavLink to='/new-post' exact={true} activeClassName='active'>
-            <CgAddR id='addPostIcon' />
+            <CgAddR onClick={onClick} id='addPostIcon' />
           </NavLink>
           <NavLink to='/explore' exact={true} activeClassName='active'>
             <AiOutlineCompass id='exploreIcon' />
