@@ -4,6 +4,7 @@ from flask_login import login_required, current_user
 from app.models import Post, Like, Comment, db
 from app.forms import NewPostForm
 from app.forms.comment_form import NewCommentForm
+import random
 
 
 post_routes = Blueprint('posts', __name__)
@@ -54,6 +55,14 @@ def update_post(id):
         db.session.commit()
         return {'post': post.to_dict()}
     return (form.errors)
+
+# GET /api/postsrandom
+@post_routes.route('/random-order-posts')
+def get_random_posts():
+    posts = Post.query.all()
+    allPosts = [post.to_dict() for post in posts]
+    random.shuffle(allPosts)
+    return {'allrandomposts': allPosts}
 
 
 # DELETE /api/posts/:id

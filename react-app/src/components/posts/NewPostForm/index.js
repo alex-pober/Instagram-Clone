@@ -50,7 +50,7 @@ const NewPostForm = () => {
     return (
         <div class="post-main">
 
-            <div className="post">
+            <div className="newpost">
                 <form onSubmit={submit}>
                     <div>
                         <div>
