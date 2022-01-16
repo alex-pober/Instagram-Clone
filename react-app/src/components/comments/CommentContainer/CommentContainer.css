@@ -1,15 +1,17 @@
 .comment-text {
+    align-self: flex-start;
+    justify-self: flex-end;
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
     Helvetica, Arial, "Lucida Grande", sans-serif;
     font-size: 16px;
-    margin: 10px 0px;
+    margin: 0 0 10px 0;
 }
 
 .small-comment-container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin: 20px 0px;
+    align-items: start;
+    margin: 20px 10px;
 }
 
 .edit-comment {
@@ -36,4 +38,25 @@
 .delete-comment:hover {
     opacity: 100%;
     cursor: pointer;
+}
+
+.username-container {
+    display: flex;
+    width: 25%;
+}
+
+.comment-username {
+    align-items: flex-start;
+    text-decoration: none;
+    color:cornflowerblue;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: bold;
+}
+
+.comment-text-container {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    /* width: 75%; */
 }

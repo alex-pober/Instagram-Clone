@@ -26,6 +26,7 @@ function App() {
   const dispatch = useDispatch();
   const allPostsRandomOrder = useSelector(state => state.allpostsrandom)
   const randomOrder = Object.values(allPostsRandomOrder)
+  
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());

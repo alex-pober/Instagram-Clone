@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import './LoginForm.css'
+import DemoButton from './DemoUser'
 import Footer from "../footer"
 
 const LoginForm = () => {
@@ -16,7 +17,7 @@ const LoginForm = () => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      setErrors('Login failed. Please try again.');
     }
   };
 
@@ -39,9 +40,9 @@ const LoginForm = () => {
       <div className="signup">
         <form onSubmit={onLogin}>
           <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
+            {errors && (
+              <div>{errors}</div>
+            )}
           </div>
           <div>
             <img src="https://i.imgur.com/2V6sFyy.png"></img>
@@ -66,6 +67,8 @@ const LoginForm = () => {
           </div>
             <br></br>
             <button type='submit'>Login</button>
+            <br></br>
+          <DemoButton/>
         </form>
         <div>
           <p>Don't have an account?

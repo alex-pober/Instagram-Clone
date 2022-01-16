@@ -10,6 +10,7 @@ const ExploreFeed = ({randomOrder}) => {
     useEffect(() => {
         dispatch(getAllLikes())
       }, [dispatch])
+
     return (
         <div className="imageContainer" title='view'>
             {randomOrder.map(post =>
@@ -24,5 +25,6 @@ const ExploreFeed = ({randomOrder}) => {
         </div>
     )
 }
+
 
 export default ExploreFeed

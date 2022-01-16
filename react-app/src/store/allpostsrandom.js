@@ -12,6 +12,7 @@ export const getAllRandomPosts = () => async dispatch => {
     if (data.errors) {
       return;
     }
+    console.log(data)
     dispatch(getAllPostsRandom(data));
     return data
   }

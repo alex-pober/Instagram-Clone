@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addOneComment } from "../../../store/comments";
 import './comment.css'
 
-const NewCommentForm = ({post}) => {
+const NewCommentForm = ({ post }) => {
     const [errors, setErrors] = useState([]);
     const [comment_text, setCommentText] = useState('');
     const user = useSelector(state => state.session.user);
@@ -15,6 +15,7 @@ const NewCommentForm = ({post}) => {
 
     const submit = async e => {
         e.preventDefault()
+        setErrors([]);
 
         const newComment = {
             user_id: user.id,
@@ -22,7 +23,11 @@ const NewCommentForm = ({post}) => {
             comment_text
         }
 
-        let submitted = dispatch(addOneComment(newComment))
+        let submitted = await dispatch(addOneComment(newComment))
+            .catch(async res => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            })
 
         if (submitted) {
             setCommentText('')

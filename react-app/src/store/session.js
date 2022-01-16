@@ -103,7 +103,6 @@ export const signUp = (username, name, email, password) => async (dispatch) => {
   }
 }
 
-///////////////
 export const EditProfile = (id, username, bio, profileURL) => async (dispatch) => {
   const response = await fetch('/api/auth/edit-profile', {
     method: 'PUT',
@@ -130,7 +129,6 @@ export const EditProfile = (id, username, bio, profileURL) => async (dispatch) =
     return ['An error occurred. Please try again.']
   }
 }
-////////////////
 
 export const refreshUserState = (id) => async (dispatch) => {
 
@@ -145,7 +143,6 @@ export const refreshUserState = (id) => async (dispatch) => {
   }
 
 }
-
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {

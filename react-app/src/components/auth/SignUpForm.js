@@ -5,6 +5,7 @@ import { signUp } from '../../store/session';
 import './SignUpForm.css'
 import Footer from "../footer"
 
+
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
@@ -15,8 +16,32 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  const validate = () => {
+    const errors = [];
+
+
+
+    if (!username) {
+      errors.push("Please provide a username.")
+    }
+    if (!name) errors.push('Please provide a name.');
+    if (!email || !email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) errors.push('Please provide a valid email address.');
+    if (!password) errors.push('Please provide a password');
+    if (!repeatPassword) errors.push('Please confirm your password.');
+    if (!(password === repeatPassword)) errors.push('Passwords did not match.')
+
+    return errors
+
+  }
+
   const onSignUp = async (e) => {
     e.preventDefault();
+    const errors = validate();
+
+    if (errors.length > 0) return setErrors(errors);
+
+
+
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, name, email, password));
       if (data) {
