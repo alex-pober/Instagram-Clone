@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import NewCommentForm from "../../comments/NewComment";
 import { getAllPosts, deleteOnePost } from "../../../store/posts";
 import { getAllLikes, likePost, unlikePost } from "../../../store/likes";
-import { AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineEdit, AiFillDelete } from "react-icons/ai";
 import CommentFeed from "../../comments/CommentFeed";
 import './ExploreFeed.css'
 import './style.css';
@@ -80,19 +80,20 @@ const ProfilePostContainer = ({ posts }) => {
                             <div>
                                 <p className="post-caption">{posts?.caption}</p>
                             </div>
+                            <div className="user-options-container">
+                                {posts?.user_id === +userId && (
+                                    <NavLink to={`/posts/${posts.id}/edit`}>
+                                        <AiOutlineEdit className="edit-profile-link" />
+                                    </NavLink>
+                                )}
+                                {posts?.user_id === +userId && (
+                                    <AiFillDelete  onClick={() => handleDelete(posts.id)} className="post-delete-button" />
+                                )}
+                            </div>
                             <div className="comment-feed">
                                 <CommentFeed post={posts} />
                             </div>
                             <div>
-                                {posts?.user_id === +userId && (
-                                    <button onClick={() => handleDelete(posts.id)}>Delete</button>
-                                )}
-                                {posts?.user_id === +userId && (
-                                    <NavLink to={`/posts/${posts.id}/edit`}>
-                                        <AiOutlineEdit />
-                                    </NavLink>
-
-                                )}
                                 <div className='comment-like-container'>
                                     <div className='like-container'>
                                         {userId && isLiked && (

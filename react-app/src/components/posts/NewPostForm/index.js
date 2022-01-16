@@ -13,15 +13,26 @@ const NewPostForm = () => {
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch()
 
+    const validate = () => {
+        const errors = [];
+        if (!imgURL) {
+            errors.push("Please provide an image URL for your photo.")
+        }
+        return errors
+    }
+
     const submit = async (e) => {
         e.preventDefault();
+        const errors = validate();
+
+        if (errors.length > 0) return setErrors(errors);
 
         const newPost = {
             user_id: user.id,
             imgURL,
             caption,
         }
-        let submited = dispatch(addOnePost(newPost))
+        let submited = await dispatch(addOnePost(newPost))
         if (submited) {
             history.push('/feed')
         }
