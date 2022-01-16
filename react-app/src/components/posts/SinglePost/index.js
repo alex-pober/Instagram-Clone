@@ -52,8 +52,8 @@ const SinglePost = ({ post }) => {
             </div>
             <div className='text-comment-container'>
                 <NavLink to={`/users/${post?.user_id}`} className="post-username-container">
-                    <img src={posts?.userProfilePic} className='post-user-profileimg'></img>
-                    <p className="post-username">{posts?.username}</p>
+                    <img src={post?.userProfilePic} className='post-user-profileimg'></img>
+                    <p className="post-username">{post?.username}</p>
                 </NavLink>
                 <div>
                     <p className="post-caption">{post?.caption}</p>

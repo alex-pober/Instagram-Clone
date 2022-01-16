@@ -10,7 +10,6 @@ import './userstyle.css'
 
 function User() {
   const dispatch = useDispatch()
-  const [user, setUser] = useState({});
   const { userId } = useParams();
   const [users, setUsers] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -20,6 +19,7 @@ function User() {
       return state.session.user.id
     }
   })
+  const user = useSelector(state => state.session.user) 
   const post = useSelector(state => state.posts)
   const user_id = useSelector(state => state.session.user.id)
   const isFollowed = useSelector(state => state.follows[follower])
@@ -48,34 +48,11 @@ function User() {
     dispatch(getAllFollowers(+userId))
   }, [dispatch])
 
-  //////////////////////////// Evalute the posibility to change into a reducer/store
-  useEffect(() => {
-    if (!userId) {
-      return;
-    }
-    (async () => {
-      const response = await fetch(`/api/users/${userId}`);
-      const user = await response.json();
-      setUser(user);
-    })();
-  }, [userId]);
-  ///////////////////////////
-
-
+  
   const handleFollow = async () => {
     let followed = +userId
     isFollowed ? dispatch(unfollowUser(follower, followed)) : dispatch(followUser(follower, followed))
   };
-
-
-  // if (!users.includes(userId)) {
-  //   return (
-  //       <Redirect to='/' />
-  //   )
-  // }
-
-
-  console.log(userId, follower)
 
 
   return (

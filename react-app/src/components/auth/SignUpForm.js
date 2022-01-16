@@ -5,6 +5,7 @@ import { signUp } from '../../store/session';
 import './SignUpForm.css'
 import Footer from "../footer"
 
+
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');

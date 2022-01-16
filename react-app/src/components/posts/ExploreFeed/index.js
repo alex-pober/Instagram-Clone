@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-
 import { BsHeartFill } from "react-icons/bs";
 import ExplorePostContainer from "../ExplorePostContainer";
+import { getAllLikes } from "../../../store/likes";
 
 const ExploreFeed = () => {
+    const dispatch = useDispatch();
     const posts = useSelector(state => state.posts);
+
+    useEffect(() => {
+        dispatch(getAllLikes());
+    }, []);
+
     const likefromallposts = useSelector(state => state.likefromallposts);
     //necesito buscar la cantidad de likes de acuerdo al nuevo store que cree cruzandolo con posts
     const feed = Object.values(posts)

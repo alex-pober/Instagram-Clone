@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import './LoginForm.css'
+import DemoButton from './DemoUser'
 import Footer from "../footer"
 
 const LoginForm = () => {
@@ -66,6 +67,8 @@ const LoginForm = () => {
           </div>
             <br></br>
             <button type='submit'>Login</button>
+            <br></br>
+          <DemoButton/>
         </form>
         <div>
           <p>Don't have an account?
