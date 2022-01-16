@@ -32,11 +32,11 @@ const ProfilePostContainer = ({ posts }) => {
 
     const isLiked = allLikeToThisPost.filter(like => like.user_id === userId).length > 0 ? true : false
 
-    useEffect(() => {
-        //we do not need this in here since we load all posts and likes on app.js
-        // dispatch(getAllPosts())
-        // dispatch(getAllLikes())
-    }, [dispatch])
+    // useEffect(() => {
+    //     //we do not need this in here since we load all posts and likes on app.js
+    //     // dispatch(getAllPosts())
+    //     // dispatch(getAllLikes())
+    // }, [dispatch])
 
     const handleDelete = (id) => {
         dispatch(deleteOnePost(id))
@@ -73,7 +73,7 @@ const ProfilePostContainer = ({ posts }) => {
                                     </NavLink>
                                 )}
                                 {posts?.user_id === +userId && (
-                                    <AiFillDelete  onClick={() => handleDelete(posts.id)} className="post-delete-button" />
+                                    <AiFillDelete onClick={() => handleDelete(posts.id)} className="post-delete-button" />
                                 )}
                             </div>
                             <div className="comment-feed">

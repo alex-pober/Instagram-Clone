@@ -50,7 +50,6 @@ const UserFeed = () => {
         )
     }
 
-
     return (
         <div>
             {followersPost.map(posts => (
