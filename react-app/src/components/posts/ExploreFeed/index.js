@@ -18,7 +18,7 @@ const ExploreFeed = () => {
                     <ExplorePostContainer posts={post} />
                     <div id='likeDiv'>
                         <BsHeartFill id="counterHeart" />
-                        <i id='likeCounter'>{likefromallposts[post.id].likeCounter}</i>
+                        <i id='likeCounter'>{likefromallposts[post.id]?.likeCounter}</i>
                     </div>
                 </div>
             )}
