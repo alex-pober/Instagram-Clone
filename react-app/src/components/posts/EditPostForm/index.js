@@ -43,7 +43,7 @@ const EditPostForm = () => {
             const data = await res.json();
             if (data && data.errors) setErrors(data.errors);
           })
-          .then((res) => res && history.push(`/posts/${postId}`));
+          .then((res) => res && history.push(`/`));
         // if (submitted) {
         //     history.push(`/posts/${postId}`)
 

@@ -21,12 +21,13 @@ const SignUpForm = () => {
 
 
     if (!username) {
-      errors.push("please provide a username")
+      errors.push("Please provide a username.")
     }
-    if (!name) errors.push('Please provide a name');
-    if (!email) errors.push('Please provide an email address');
+    if (!name) errors.push('Please provide a name.');
+    if (!email || !email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) errors.push('Please provide a valid email address.');
     if (!password) errors.push('Please provide a password');
-    if (!repeatPassword) errors.push('Please confirm your password');
+    if (!repeatPassword) errors.push('Please confirm your password.');
+    if (!(password === repeatPassword)) errors.push('Passwords did not match.')
 
     return errors
 

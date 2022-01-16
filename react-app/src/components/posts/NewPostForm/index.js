@@ -11,21 +11,13 @@ const NewPostForm = () => {
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch()
 
-
-
     const validate = () => {
         const errors = [];
-
-
-
         if (!imgURL) {
-          errors.push("please provide an image url")
+            errors.push("Please provide an image URL for your photo.")
         }
-        if (!caption) errors.push('Please provide a caption');
-
-            return errors
-
-      }
+        return errors
+    }
 
     const submit = async (e) => {
         e.preventDefault();
@@ -59,14 +51,11 @@ const NewPostForm = () => {
         <form onSubmit={submit}>
             <div>
                 <div>
-                {errors.length > 0 && (
-            <div>
-              The following errors were found:
-              <ul>
-                {errors.map(error => <li key={error}>{error}</li>)}
-              </ul>
-            </div>
-          )}
+                    {errors.length > 0 && (
+                        <div>
+                            {errors}
+                        </div>
+                    )}
                 </div>
                 <div>
                     <label htmlFor='imgURL'>Image URL</label>
