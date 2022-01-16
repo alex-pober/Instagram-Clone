@@ -5,6 +5,7 @@ import { getAllFollows } from "../../../store/follows";
 import { getAllPosts } from "../../../store/posts";
 import { refreshUserState } from "../../../store/session";
 import PostContainer from '../PostContainer';
+import './UserFeed.css'
 
 const UserFeed = () => {
     const posts = useSelector(state => state.posts);
@@ -53,9 +54,9 @@ const UserFeed = () => {
     }
 
     return(
-        <div>
+        <div >
             {followersPost.map(posts => (
-                <PostContainer key={posts[0]} posts={posts[1]} />
+                <PostContainer className="post" key={posts[0]} posts={posts[1]} />
             ))}
         </div>
         )
