@@ -5,7 +5,7 @@ import { getAllPosts, deleteOnePost } from "../../../store/posts";
 import { getAllLikes, likePost, unlikePost } from "../../../store/likes";
 import CommentFeed from "../../comments/CommentFeed";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
-import { AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineEdit, AiFillDelete } from "react-icons/ai";
 import { FaRegComment } from "react-icons/fa";
 import './style.css';
 import NewCommentForm from "../../comments/NewComment";
@@ -71,18 +71,20 @@ const SinglePost = ({ post }) => {
                 <div>
                     <p className="post-caption">{post?.caption}</p>
                 </div>
+                <div className="user-options-container">
+                    {post?.user_id === +userId && (
+                        <NavLink to={`/posts/${post.id}/edit`}>
+                            <AiOutlineEdit className="edit-profile-link" />
+                        </NavLink>
+                    )}
+                    {post?.user_id === +userId && (
+                        <AiFillDelete onClick={() => handleDelete(post.id)} className="post-delete-button" />
+                    )}
+                </div>
                 <div className="comment-feed">
                     <CommentFeed post={post} />
                 </div>
                 <div>
-                    {post?.user_id === +userId && (
-                        <button onClick={() => handleDelete(post.id)}>Delete</button>
-                    )}
-                    {post?.user_id === +userId && (
-                        <NavLink to={`/posts/${post.id}/edit`}>
-                            <AiOutlineEdit />
-                        </NavLink>
-                    )}
                     <div className='comment-like-container'>
                         <div className='like-container'>
                             {userId && isLiked && (
