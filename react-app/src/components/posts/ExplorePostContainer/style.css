@@ -137,6 +137,15 @@
   opacity: 60%;
   transition: 0.5s;
   margin-right: 15px;
+  background-color: white;
+}
+
+.edit-profile-link a {
+  background-color: white;
+}
+
+a {
+  background-color: white;
 }
 
 
