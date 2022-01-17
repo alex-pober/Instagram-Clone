@@ -52,7 +52,8 @@ const UserFeed = () => {
         )
     }
 
-    let isFollowing = userInfo.following.length > 1;
+    let isFollowing = userInfo.following.length > 0;
+    console.log(isFollowing)
 
 
     return (
