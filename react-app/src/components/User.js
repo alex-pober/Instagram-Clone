@@ -19,10 +19,12 @@ function User() {
       return state.session.user.id
     }
   })
+  
+  const isThisFollowed = useSelector(state => state.followers[follower])
+  const [isFollowed, setIsFollowed] = useState(isThisFollowed)
   const user = useSelector(state => state.session.user)
   const post = useSelector(state => state.posts)
   const user_id = useSelector(state => state.session.user.id)
-  const isFollowed = useSelector(state => state.follows[follower])
   const followers = useSelector(state => state.followers)
   const following = useSelector(state => state.follows)
 
@@ -30,6 +32,10 @@ function User() {
   const QOfM = myPosts.length
   const numOfFollowers = Object.values(followers)?.length
   const numOfFollowing = Object.values(following)?.length
+
+  console.log(follower)
+
+  console.log(isFollowed)
 
 
 
@@ -42,6 +48,8 @@ function User() {
     fetchData();
   }, []);
 
+  const profile_owner = users.filter(owner => owner.id == userId)[0]
+
   useEffect(() => {
     dispatch(getAllPosts())
     dispatch(getAllFollows(+userId))
@@ -52,6 +60,7 @@ function User() {
   const handleFollow = async () => {
     let followed = +userId
     isFollowed ? dispatch(unfollowUser(follower, followed)) : dispatch(followUser(follower, followed))
+    setIsFollowed(!isFollowed)
   };
 
 
@@ -60,11 +69,11 @@ function User() {
       <div>
         <div className='top-user-container'>
           <div className='profile-img-container'>
-            <img src={user.profileURL} alt={user.username} width="75px" max-height='75px' className='user-pro-pic' />
+            <img src={profile_owner?.profileURL} alt={profile_owner?.username} width="75px" max-height='75px' className='user-pro-pic' />
           </div>
           <div className='user-info-right'>
             <div className='user-info-right-top'>
-              <p className='user-name-bold'>{user.username}</p>
+              <p className='user-name-bold'>{profile_owner?.username}</p>
               {+userId === +user_id && (
                 <NavLink to={`/profile-edit`}>
                   {/* <BsGearWide id='gear' /> */}
@@ -78,8 +87,8 @@ function User() {
               <p><b>{numOfFollowing}</b> following</p>
             </div>
             <div className='user-info-right-bot'>
-              <p>{user.name}</p>
-              <p>{user.bio}</p>
+              <p>{profile_owner?.name}</p>
+              <p>{profile_owner?.bio}</p>
             </div>
           </div>
         </div>
