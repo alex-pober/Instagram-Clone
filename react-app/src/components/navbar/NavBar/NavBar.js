@@ -35,9 +35,11 @@ const NavBar = () => {
           <NavLink to='/' exact={true} activeClassName='active'>
             <BsFillHouseDoorFill className="iconwhite" onClick={onClick} id='homeIcon' />
           </NavLink>
+          {user && (
           <NavLink to='/new-post' exact={true} activeClassName='active'>
             <CgAddR className="iconwhite" onClick={onClick} id='addPostIcon' />
           </NavLink>
+          )}
           <NavLink to='/explore' exact={true} activeClassName='active'>
             <AiOutlineCompass className="iconwhite" id='exploreIcon' />
           </NavLink>

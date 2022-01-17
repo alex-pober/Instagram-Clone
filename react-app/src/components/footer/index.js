@@ -35,7 +35,7 @@ const Footer = () => {
                   <a href="https://github.com/christopher-hauser">
                     <FaGithubSquare className="footerIcon" />
                   </a>
-                  <a href="https://https://www.linkedin.com/in/christopher-hauser-083723bb/">
+                  <a href="https://www.linkedin.com/in/christopher-hauser-083723bb/">
                     <FaLinkedin className="footerIcon" />
                   </a>
                 </div>
