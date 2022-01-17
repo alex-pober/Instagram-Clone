@@ -39,3 +39,13 @@
     cursor: pointer;
 
 }
+ .errors {
+     display: flex;
+     color: red;
+     font-weight: 700;
+     word-wrap: break-word !important;
+     overflow: hidden;
+     white-space: break-spaces;
+     height: auto;
+     width: 290px;
+ }

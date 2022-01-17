@@ -78,37 +78,41 @@ const EditProfileForm = () => {
 
   return (
     <>
-    <div className='page-container'>
-      <div className='edit-profile-container'>
-        <div id='edit-profile-title'>
-          <p id='edit-profile-title-text'>Edit Profile</p>
+      <div>
+        <span className="edit-profile-title">Edit Profile</span>
+      </div>
+      <div className="splitlabels">
+        <div className='labels'>
+          <label>User Name</label>
+          <label>Profile Picture URL</label>
+          <label>Name</label>
+          <label >Bio</label>
         </div>
-        <form className="editProfileForm" onSubmit={onEditProfile}>
-          <div id="error-container">
-            {errors?.map((error, ind) => (
-              <div key={ind} className='error-item'>{error}</div>
-            ))}
-          </div>
-          <div className='user-input'>
-            <label for='username'>User Name</label>
+        <form className="editProfileForm"onSubmit={onEditProfile}>
+          <div>
+
             <input type='text' name='username' onChange={updateUsername} value={username} />
           </div>
           <div className='user-input'>
             <label for='profileURL'>Profile Picture URL</label>
             <input type='text' name='profileURL' onChange={updateProfileURL} value={profileURL} />
           </div>
-          <div className='user-input'>
-            <label for='bio'>Bio</label>
-            <input className='input-element-edit-prof' type='text' name='bio' onChange={updateBio} value={bio} />
+          <div>
+
+            <input type='text' name='name' onChange={updateName} value={name} />
           </div>
-          <div className='user-input'>
-            <label for='name'>Name</label>
-            <input className='input-element-edit-prof' type='text' name='name' onChange={updateName} value={name} />
+          <div>
+
+            <textarea className='input-element-edit-prof' type='text' name='bio' onChange={updateBio} value={bio} />
           </div>
-          <button class='button-edit-prof' type='submit'>Submit</button>
+          <button class='submit-new-comment' type='submit'>Submit</button>
+          <div className="errors">
+            {errors?.map((error, ind) => (
+          <div key={ind}>{error}</div>
+          ))}
+          </div>
         </form>
       </div>
-    </div>
     </>
   );
 };

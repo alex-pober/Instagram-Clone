@@ -39,7 +39,7 @@ const LoginForm = () => {
       <img className="loginImage" src="https://i.imgur.com/RLu5D1T.png"></img>
       <div className="signup">
         <form onSubmit={onLogin}>
-          <div>
+          <div className="errors">
             {errors && (
               <div>{errors}</div>
             )}
@@ -72,7 +72,7 @@ const LoginForm = () => {
         </form>
         <div>
           <p>Don't have an account?
-            <a tabindex="0" href="/sign-up">   Sign Up</a>
+            <a href="/sign-up">   Sign Up</a>
           </p>
         </div>
       </div>

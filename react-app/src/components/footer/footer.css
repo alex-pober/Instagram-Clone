@@ -32,10 +32,18 @@
 }
 
 .icons {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .footerIcon{
     color: inherit;
     font-size: 64px;
     text-decoration: none;
+}
+
+.footerIcon:hover {
+   filter:invert();
 }
