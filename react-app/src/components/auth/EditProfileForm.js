@@ -30,6 +30,9 @@ const EditProfileForm = () => {
     if (!username) {
       errors.push("Please provide an updated username.")
     }
+    if (profileURL.length > 2000) {
+      errors.push("Please provide a valid URL.")
+    }
     if (!profileURL) errors.push('Please provide an image URL for your profile picture.');
     setErrors(errors)
     return errors;
@@ -40,13 +43,11 @@ const EditProfileForm = () => {
     let errors = validate();
     if (errors.length > 0) return setErrors(errors);
 
-    const updated = await dispatch(EditProfile(user_id, username, bio, profileURL));
+    const updated = await dispatch(EditProfile(user_id, username, bio, name, profileURL));
+    console.log(updated)
     if (updated[0].includes('Username is already in use')) {
-      console.log(updated)
-      console.log(errors)
-      console.log(updated[0].split(":")[1])
-
-      setErrors([updated[0].split(':')[1]])
+      console.log(updated[0])
+      setErrors(updated)
       console.log(errors)
 
     } else {
@@ -77,40 +78,37 @@ const EditProfileForm = () => {
 
   return (
     <>
-      <div>
-        <span>Edit Profile</span>
-      </div>
-      <div className="splitlabels">
-        <div className='labels'>
-          <label>User Name</label>
-          <label>Profile Picture URL</label>
-          <label>Name</label>
-          <label>Bio</label>
+    <div className='page-container'>
+      <div className='edit-profile-container'>
+        <div id='edit-profile-title'>
+          <p id='edit-profile-title-text'>Edit Profile</p>
         </div>
-        <form className="editProfileForm"onSubmit={onEditProfile}>
-          <div>
+        <form className="editProfileForm" onSubmit={onEditProfile}>
+          <div id="error-container">
             {errors?.map((error, ind) => (
-          <div key={ind}>{error}</div>
-          ))}
+              <div key={ind} className='error-item'>{error}</div>
+            ))}
           </div>
-          <div>
-
+          <div className='user-input'>
+            <label for='username'>User Name</label>
             <input type='text' name='username' onChange={updateUsername} value={username} />
           </div>
-          <div>
-
+          <div className='user-input'>
+            <label for='profileURL'>Profile Picture URL</label>
             <input type='text' name='profileURL' onChange={updateProfileURL} value={profileURL} />
           </div>
-          <div>
-
-            <input className='input-element-edit-prof' type='text' name='name' onChange={updateName} value={name} />
-          </div>
-          <div>
+          <div className='user-input'>
+            <label for='bio'>Bio</label>
             <input className='input-element-edit-prof' type='text' name='bio' onChange={updateBio} value={bio} />
+          </div>
+          <div className='user-input'>
+            <label for='name'>Name</label>
+            <input className='input-element-edit-prof' type='text' name='name' onChange={updateName} value={name} />
           </div>
           <button class='button-edit-prof' type='submit'>Submit</button>
         </form>
       </div>
+    </div>
     </>
   );
 };
