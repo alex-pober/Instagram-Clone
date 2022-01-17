@@ -17,8 +17,11 @@ function User() {
 
   useEffect( async () => {
     // await dispatch(getAllPosts())
-    await dispatch(getAllFollows(+userId))
-    await dispatch(getAllFollowers(+userId))
+    dispatch(getAllFollows(+userId))
+    dispatch(getAllFollowers(+userId))
+    setTimeout(() => {
+      return
+    }, 1000)
   }, [dispatch])
 
   const follower = useSelector(state => {
@@ -27,7 +30,7 @@ function User() {
     }
   })
 
-  const isThisFollowed = useSelector(state => state.followers[follower])
+  const isThisFollowed = useSelector(state => state.session.user.following.includes(+userId))
   const [isFollowed, setIsFollowed] = useState(isThisFollowed)
   const user = useSelector(state => state.session.user)
   const post = useSelector(state => state.posts)
@@ -40,7 +43,7 @@ function User() {
   const numOfFollowers = Object.values(followers)?.length
   const numOfFollowing = Object.values(following)?.length
 
-  console.log(follower)
+  console.log(isThisFollowed)
   console.log(isFollowed)
 
   useEffect(() => {

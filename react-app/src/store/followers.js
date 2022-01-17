@@ -17,6 +17,7 @@ const removeFollow = follow => ({
   payload: follow
 })
 
+
 export const getAllFollowers = (id) => async dispatch => {
   const res = await fetch(`/api/follows/${id}/followers`)
   if (res.ok) {
@@ -81,8 +82,7 @@ export default function (state = initialState, action) {
       newState = { ...state };
       delete newState[action.payload.id];
       return newState;
-
-
+      
     default:
       return state;
   }
