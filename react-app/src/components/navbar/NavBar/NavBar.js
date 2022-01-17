@@ -22,7 +22,7 @@ const NavBar = () => {
   let circleProfile = profileInfoOpen ? 'clicked-circle' : ""
   const onClick = () => {
     dispatch(getAllRandomPosts())
-  } 
+  }
   // if (user?.id) setProfileInfoOpen(false)
 
   return (
@@ -33,13 +33,13 @@ const NavBar = () => {
         </NavLink>
         <div id='iconsDiv'>
           <NavLink to='/' exact={true} activeClassName='active'>
-            <BsFillHouseDoorFill onClick={onClick} id='homeIcon' />
+            <BsFillHouseDoorFill className="iconwhite" onClick={onClick} id='homeIcon' />
           </NavLink>
           <NavLink to='/new-post' exact={true} activeClassName='active'>
-            <CgAddR onClick={onClick} id='addPostIcon' />
+            <CgAddR className="iconwhite" onClick={onClick} id='addPostIcon' />
           </NavLink>
           <NavLink to='/explore' exact={true} activeClassName='active'>
-            <AiOutlineCompass id='exploreIcon' />
+            <AiOutlineCompass className="iconwhite" id='exploreIcon' />
           </NavLink>
           {/* {!user?.id && (
             <NavLink to='/login' exact={true} activeClassName='active'>

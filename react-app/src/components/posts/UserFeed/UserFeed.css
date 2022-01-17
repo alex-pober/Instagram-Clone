@@ -1,0 +1,27 @@
+.notFollowing {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
+    font-size: 20px;
+    font-weight: 900;
+    color: rgb(158, 158, 158);
+}
+
+.exploreStr{
+    display: flex;
+    margin: auto;
+    flex-direction: row;
+    font-size: 20px;
+    font-weight: 900;
+    color: rgb(158, 158, 158);
+    justify-content: center;
+    align-items: center;
+}
+
+.clickExplore {
+    font-size: 40px;
+    margin-left: 5px;
+    margin-right: 5px;
+}

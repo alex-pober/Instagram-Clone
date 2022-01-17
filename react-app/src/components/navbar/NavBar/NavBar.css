@@ -1,5 +1,5 @@
 #logo{
-  width: 20%;
+  width: 200px;
 }
 
 #profileButton{
@@ -8,18 +8,26 @@
   max-width: 35px;
   max-height: 35px;
   padding: 1px;
+  background-color: white;
 }
 
+#profilePicDiv {
+  background-color: white;
+}
 
 #profilePicInnerDiv{
   width: 45px;
   height: 45px;
+  display: contents;
 }
 
 .clicked-circle {
   border: solid 3px rgb(51, 51, 51);
 }
 
+.iconwhite{
+  background-color: white;
+}
 
 /* #navBarDiv {
 .======= */
@@ -32,9 +40,13 @@ nav{
 #navBarDiv {
   /* border: red solid 1px; */
   border-bottom: 1px solid rgba(219,219,219);
+  background-color: white;
   margin-bottom: 10px;
   display: flex;
   justify-content: space-around;
+}
+#navBarDiv a {
+  background-color: white;
 }
 
 #exploreIcon, #homeIcon, #addPostIcon {
@@ -46,6 +58,7 @@ nav{
   width: 20rem;
   display: flex;
   justify-content: space-around;
+  background-color: white;
   align-items: center;
 }
 
@@ -98,4 +111,3 @@ p {
 .textProfileDropDown:hover {
   color: #b3b3b3;
 }
-
