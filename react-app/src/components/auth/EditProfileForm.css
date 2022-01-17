@@ -19,10 +19,26 @@
     align-items: flex-end;
     padding: 0;
     background-color: white;
+    margin: 0 30%;
+}
+
+.editProfileForm label {
+    padding-right: 10px;
 }
 
 .editProfileForm div {
     background-color: white;
+}
+
+#edit-profile-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 30%;
+}
+
+#edit-profile-title-text {
+    font-weight: bold;
 }
 
 .labels {
@@ -74,6 +90,22 @@
 
 .newpost-edit-profile img {
     max-width: 220px;
+}
+
+.button-edit-prof {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-self: center;
+    align-self: center;
+    font-weight: bold;
+    cursor: pointer;
+    float: right;
+    border: none;
+    color: rgb(76, 76, 255);
+    background: white;
+    height: auto;
+    font-size: 18px;
+    padding-top: 30px;
 }
 
 .button-edit-prof p {
@@ -144,4 +176,36 @@ input {
     height: auto;
     padding: 10px;
     font-size: 14px;
+}
+
+.edit-profile-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #bbbbbb;
+    background-color: white;
+    box-sizing: border-box;
+    width: 600px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-block-end: 20px;
+    margin: 2% 30%;
+}
+
+.page-container {
+    display: flex;
+    justify-content: center;
+}
+
+.user-input {
+    padding: 10px 0px;
+}
+
+
+#error-container {
+    display: flex;
+    justify-self: center;
+}
+
+.error-item {
+    color: red;
 }

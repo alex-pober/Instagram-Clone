@@ -127,7 +127,7 @@ export const EditProfile = (id, username, name, bio, profileURL) => async (dispa
       return data.errors;
     }
   } else {
-    return ['An error occurred. Please try again.']
+    return ['Username is already in use.']
   }
 }
 

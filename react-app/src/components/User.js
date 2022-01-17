@@ -19,7 +19,7 @@ function User() {
       return state.session.user.id
     }
   })
-  
+
   const isThisFollowed = useSelector(state => state.followers[follower])
   const [isFollowed, setIsFollowed] = useState(isThisFollowed)
   const user = useSelector(state => state.session.user)
@@ -49,6 +49,7 @@ function User() {
   }, []);
 
   const profile_owner = users.filter(owner => owner.id == userId)[0]
+  console.log(profile_owner)
 
   useEffect(() => {
     dispatch(getAllPosts())
