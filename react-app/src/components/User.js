@@ -19,6 +19,7 @@ function User() {
       return state.session.user.id
     }
   })
+  
   const isThisFollowed = useSelector(state => state.followers[follower])
   const [isFollowed, setIsFollowed] = useState(isThisFollowed)
   const user = useSelector(state => state.session.user)
@@ -75,7 +76,8 @@ function User() {
               <p className='user-name-bold'>{profile_owner?.username}</p>
               {+userId === +user_id && (
                 <NavLink to={`/profile-edit`}>
-                  <BsGearWide id='gear' />
+                  {/* <BsGearWide id='gear' /> */}
+                  <button className="edit-profile-button">Edit Profile</button>
                 </NavLink>
               )}
             </div>
