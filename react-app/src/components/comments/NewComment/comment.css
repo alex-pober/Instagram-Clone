@@ -11,6 +11,7 @@
     justify-content: space-between;
     width: 100%;
     min-width: 50%;
+    background-color: white;
 }
 
 .new-comment-input {

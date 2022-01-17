@@ -3,12 +3,14 @@ import { Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllFollows } from "../../../store/follows";
 import { getAllPosts } from "../../../store/posts";
+import { AiOutlineCompass } from "react-icons/ai";
 import { refreshUserState } from "../../../store/session";
 import PostContainer from '../PostContainer';
 import './UserFeed.css'
 
 const UserFeed = () => {
     const posts = useSelector(state => state.posts);
+    const userInfo = useSelector(state => state.session.user);
     const dispatch = useDispatch();
 
     const user = useSelector(state => {
@@ -50,13 +52,25 @@ const UserFeed = () => {
         )
     }
 
+    let isFollowing = userInfo.following.length > 1;
+
+
     return (
         <>
+            {!isFollowing && (
+                <>
+                    <p className="notFollowing">Looks like you aren't following anyone</p>
+                    <p className="exploreStr">click the <AiOutlineCompass className="clickExplore"/> icon to explore</p>
+
+
+                </>
+            )
+                }
             {followersPost.map(posts => (
                 <PostContainer key={posts.id} posts={posts} />
             ))}
         </>
-     
+
     )
 }
 

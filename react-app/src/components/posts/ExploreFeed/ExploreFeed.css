@@ -9,11 +9,44 @@
     justify-content: center;
 }
 
+
 .individualImage {
     padding-inline-end: 4px;
     object-fit: cover;
 }
 
-.individualImage:hover {
-    opacity: 0.4;
+/* .likecounter:hover {
+
+    filter:invert()
+} */
+
+.likeDiv {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.heartIG {
+    background-color: rgba(255, 255, 255, 0);
+    font-size: 25px;
+    color: white;
+}
+
+.likecounter {
+    position: absolute;
+    display: flex;
+    top: 80%;
+    left: 40%;
+    background-color: rgba(255, 255, 255, 0);
+    align-items: center;
+    flex-direction: row;
+}
+
+.likecounter p {
+    font-size: 27px;
+    font-weight: 900;
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    margin: auto;
+    margin-right: 10px;
 }

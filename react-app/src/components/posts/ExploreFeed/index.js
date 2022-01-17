@@ -15,13 +15,17 @@ const ExploreFeed = ({ randomOrder }) => {
     return (
         <div className="imageContainer" title='view'>
             {randomOrder.map(post =>
-                <div key={post.id}>
-                    <ExplorePostContainer posts={post} />
-                    <div id='likeDiv'>
-                        <i id='likeCounter'>{posts[post.id]?.likeCounter}</i>
-                        <BsHeartFill id="counterHeart" />
+            <>
+                <div className='likeDiv' key={post.id}>
+                    <div className="likecounter">
+                        <p>{posts[post.id]?.likeCounter}</p>
+                        <BsHeartFill className="heartIG" />
                     </div>
+                    <ExplorePostContainer  posts={post} />
                 </div>
+                <div className='likeDiv'>
+                </div>
+            </>
             )}
         </div>
     )

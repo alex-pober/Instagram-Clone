@@ -23,6 +23,11 @@
   height: 100%;
   min-width: 80%;
   min-height: 80%;
+  background-color: white;
+}
+
+.post-container div {
+  background-color: white;
 }
 
 .post-username {
@@ -52,7 +57,7 @@
   margin-top: 30px;
   padding-bottom: 30px;
   border-bottom: 1px solid rgb(228, 228, 228);
-
+  background-color: white;
 }
 
 .image-container {
@@ -67,6 +72,7 @@
   width: 35%;
   height: 60%;
   padding: 2%;
+  background-color: white;
 }
 
 .post-user-profileimg {
@@ -104,6 +110,7 @@
 
 .like-container {
   width: 60px;
+  border-top: 1px solid rgb(228, 228, 228);
 }
 
 .comment-container {
@@ -114,6 +121,7 @@
   max-height: 80%;
   overflow-y: scroll;
   scrollbar-color: white;
+  background-color: white;
   padding: 0px 3% 0px 3%;
 }
 

@@ -22,10 +22,12 @@
   height: 100%;
   min-width: 80%;
   min-height: 80%;
+  background-color: white;
 }
 
 .post-username {
   margin-left: 20px;
+  background-color: white;
   font-size: 18px;
   font-weight: bold;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
@@ -36,6 +38,7 @@
   border-bottom: 1px solid lightgray;
   padding-bottom: 10px;
   align-items: center;
+  background-color: white;
 }
 
 .post-image {
@@ -51,6 +54,7 @@
   margin-top: 30px;
   padding-bottom: 30px;
   border-bottom: 1px solid rgb(228, 228, 228);
+  background-color: white;
 
 }
 
@@ -66,6 +70,7 @@
   width: 35%;
   height: 60%;
   padding: 2%;
+  background-color: white;
 }
 
 .post-user-profileimg {
@@ -106,7 +111,8 @@
 }
 
 .comment-container {
-  width: 90%
+  width: 90%;
+  background-color: white;
 }
 
 .comment-feed {
@@ -154,4 +160,3 @@
   justify-content: flex-end;
   padding-right: 5%;
 }
-

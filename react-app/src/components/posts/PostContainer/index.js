@@ -41,6 +41,7 @@ const PostContainer = ({ posts }) => {
                 <NavLink to={`/users/${posts.user_id}`}>
                     <p className="usernameCaption">{posts.username}</p>
                 </NavLink>
+
                     <img key={posts.id} alt={posts.caption} src={posts.imgURL} onClick={() => setShowModal(true)} width="250px"></img>
                     <div className='heartinpost'>
                             {userId && isLiked && (
@@ -56,6 +57,7 @@ const PostContainer = ({ posts }) => {
                         {posts.caption}
                     </p>
                     <p className="viewComments" onClick={() => setShowModal(true)} >View Comments</p>
+                    <p className="date">{posts.created_at.toString().split(" ").slice(0, 4).join(" ")}</p>
                 {showModal && (
                     <Modal onClose={() => setShowModal(false)}>
                         <SinglePost post={posts} />

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
+import {BsCardImage} from 'react-icons/bs';
 import { addOnePost } from "../../../store/posts";
 import './newPostForm.css';
 
@@ -19,8 +20,12 @@ const NewPostForm = () => {
         if (!imgURL || !validUrl.isUri(imgURL)) {
             errors.push("Please provide an image URL for your photo.")
         }
+        else if (caption.length > 2200) {
+            errors.push("Character limit is 2200.")
+        }
         return errors
     }
+
 
     const submit = async (e) => {
         e.preventDefault();
@@ -42,48 +47,56 @@ const NewPostForm = () => {
     const updateImgURL = e => {
         setImgURL(e.target.value)
     }
+    console.log(imgURL)
 
     const updateCaption = e => {
         setCaption(e.target.value)
     }
 
-    return (
-        <div class="post-main">
+    const empty = (imgURL == "")
 
-            <div className="newpost">
-                <form onSubmit={submit}>
-                    <div>
-                        <div>
-                            {errors.map((error, ind) => (
-                                <div key={ind}>{error}</div>
-                            ))}
-                        </div>
-                        <div>
-                        <img src="https://i.imgur.com/2V6sFyy.png"></img>
-                            <label htmlFor='imgURL'>Image URL</label>
-                            <input
-                                name='imgURL'
-                                type='text'
-                                placeholder="add image url"
-                                value={imgURL}
-                                onChange={updateImgURL}
-                            />
-                        </div>
-                        <div>
-                            <label  htmlFor='caption'>Caption</label>
-                            <input
-                                className='input-element'
-                                name='caption'
-                                type='text'
-                                placeholder="add caption"
-                                value={caption}
-                                onChange={updateCaption}
-                            />
-                        </div>
-                        <button class='button1' type='submit'>Post</button>
-                    </div>
-                </form>
-            </div>
+    return (
+        <div className="newpost">
+            <form className="newpostForm" onSubmit={submit}>
+                <div>
+                    {errors.map((error, ind) => (
+                        <div key={ind}>{error}</div>
+                    ))}
+                </div>
+                <div className="nameandpic">
+                    <img id="profileButton" class="" src={user.profileURL} alt="demo"></img>
+                    <p>&nbsp;&nbsp;{user.name}</p>
+                </div>
+                <p className="createTitle">Create new post</p>
+                {empty
+                    ? <BsCardImage className="holderimg"/>
+                    : <img className="previewImage" src={imgURL} ></img>
+                }
+                <div>
+                    <label htmlFor='imgURL'></label>
+                    <input
+                        name='imgURL'
+                        type='text'
+                        placeholder="Image URL"
+                        value={imgURL}
+                        onChange={updateImgURL}
+                        width="600px"
+                    />
+                </div>
+                <div>
+                    <label  htmlFor='caption'></label>
+                    <textarea
+                        className='input-element'
+                        name='caption'
+                        type='text'
+                        placeholder="Write a caption..."
+                        value={caption}
+                        onChange={updateCaption}
+                    />
+                    <p className="characterLimit">{caption.length}/2200</p>
+                </div>
+                <button type='submit'>Share</button>
+            </form>
         </div>
     )
 };
