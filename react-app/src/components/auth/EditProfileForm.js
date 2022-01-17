@@ -30,19 +30,27 @@ const EditProfileForm = () => {
     if (!username) {
       errors.push("Please provide an updated username.")
     }
+    if (profileURL.length > 2000) {
+      errors.push("Please provide a valid URL.")
+    }
     if (!profileURL) errors.push('Please provide an image URL for your profile picture.');
-    return errors
-
+    setErrors(errors)
+    return errors;
   }
-
 
   const onEditProfile = async (e) => {
     e.preventDefault();
-    const errors = validate();
+    let errors = validate();
     if (errors.length > 0) return setErrors(errors);
 
-    const updated = await dispatch(EditProfile(user_id, username, name, bio, profileURL));
-    if (updated) {
+    const updated = await dispatch(EditProfile(user_id, username, bio, name, profileURL));
+    console.log(updated)
+    if (updated[0].includes('Username is already in use')) {
+      console.log(updated[0])
+      setErrors(updated)
+      console.log(errors)
+
+    } else {
       history.push(`/users/${user_id}`)
     }
   };
@@ -85,8 +93,8 @@ const EditProfileForm = () => {
 
             <input type='text' name='username' onChange={updateUsername} value={username} />
           </div>
-          <div>
-
+          <div className='user-input'>
+            <label for='profileURL'>Profile Picture URL</label>
             <input type='text' name='profileURL' onChange={updateProfileURL} value={profileURL} />
           </div>
           <div>

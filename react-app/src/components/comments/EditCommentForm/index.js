@@ -50,7 +50,7 @@ const EditCommentForm = ({comment, editState, sendDataToParent}) => {
     return (
         <>
         {editPopUp && (
-            <form onSubmit={onEdit}>
+            <form className='edit-your-comment' onSubmit={onEdit}>
                 <div>
                     <div>
                         {errors.map((error, ind) => (
