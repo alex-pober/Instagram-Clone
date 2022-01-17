@@ -17,26 +17,29 @@ const EditProfileForm = () => {
 
   const validate = () => {
     const errors = [];
-
-
-
     if (!username) {
       errors.push("Please provide an updated username.")
     }
     if (!profileURL) errors.push('Please provide an image URL for your profile picture.');
-    return errors
-
+    setErrors(errors)
+    return errors;
   }
-
-
 
   const onEditProfile = async (e) => {
     e.preventDefault();
-    const errors = validate();
+    let errors = validate();
     if (errors.length > 0) return setErrors(errors);
 
     const updated = await dispatch(EditProfile(user_id, username, bio, profileURL));
-    if (updated) {
+    if (updated[0].includes('Username is already in use')) {
+      console.log(updated)
+      console.log(errors)
+      console.log(updated[0].split(":")[1])
+
+      setErrors([updated[0].split(':')[1]])
+      console.log(errors)
+
+    } else {
       history.push(`/users/${user_id}`)
     }
   };
@@ -59,7 +62,7 @@ const EditProfileForm = () => {
 
 
   return (
-    <div class="post-main-edit-prof">
+    <div className="post-main-edit-prof">
       <div className="newpost-edit-profile">
 
         <form onSubmit={onEditProfile}>
@@ -82,7 +85,7 @@ const EditProfileForm = () => {
               <input className='input-element-edit-prof' type='text' name='bio' onChange={updateBio} value={bio} />
             </div>
 
-          <button class='button-edit-prof' type='submit'>Submit</button>
+          <button className='button-edit-prof' type='submit'>Submit</button>
         </form>
       </div>
     </div>
