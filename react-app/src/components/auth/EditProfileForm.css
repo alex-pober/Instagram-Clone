@@ -36,6 +36,18 @@
     font-weight: 900;
     background-color: white;
 }
+.labels label {
+    background-color: white;
+}
+.edit-profile-title{
+    font-size: 18px;
+    font-weight: 900;
+    margin: auto;
+    display: flex;
+    justify-content: flex-start;
+    width: 500px;
+    margin: auto;
+}
 
 .splitlabels {
     display: flex;
@@ -43,9 +55,22 @@
     width: 500px;
     margin: auto;
     white-space: nowrap;
-    border: 1px solid grey;
+    border: 1px solid rgba(219,219,219);
+    border-radius: 3px;
+    padding: 25px;
 }
 
+.input-element-edit-prof {
+    height: 200px !important;
+    width: 273px;
+    background-color: white;
+    border-radius: 3px;
+    border: 1px solid #dbdbdb;
+    resize: none;
+    font-size: 16px;
+    color: #262626;
+    padding: 5px 10px;
+    }
 .editProfileForm input {
     background: 0 0;
     background-color: white;
@@ -89,10 +114,6 @@
     height: 600px;
 }
 
-.input-element-edit-prof {
-    height: 80px;
-    width: 400px;
-    }
 
 form {
     width: 100%;

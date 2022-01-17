@@ -71,21 +71,16 @@ const EditProfileForm = () => {
   return (
     <>
       <div>
-        <span>Edit Profile</span>
+        <span className="edit-profile-title">Edit Profile</span>
       </div>
       <div className="splitlabels">
         <div className='labels'>
           <label>User Name</label>
           <label>Profile Picture URL</label>
           <label>Name</label>
-          <label>Bio</label>
+          <label >Bio</label>
         </div>
         <form className="editProfileForm"onSubmit={onEditProfile}>
-          <div>
-            {errors?.map((error, ind) => (
-          <div key={ind}>{error}</div>
-          ))}
-          </div>
           <div>
 
             <input type='text' name='username' onChange={updateUsername} value={username} />
@@ -96,13 +91,18 @@ const EditProfileForm = () => {
           </div>
           <div>
 
-            <input className='input-element-edit-prof' type='text' name='name' onChange={updateName} value={name} />
+            <input type='text' name='name' onChange={updateName} value={name} />
           </div>
           <div>
 
-            <input className='input-element-edit-prof' type='text' name='bio' onChange={updateBio} value={bio} />
+            <textarea className='input-element-edit-prof' type='text' name='bio' onChange={updateBio} value={bio} />
           </div>
-          <button class='button-edit-prof' type='submit'>Submit</button>
+          <button class='submit-new-comment' type='submit'>Submit</button>
+          <div className="errors">
+            {errors?.map((error, ind) => (
+          <div key={ind}>{error}</div>
+          ))}
+          </div>
         </form>
       </div>
     </>

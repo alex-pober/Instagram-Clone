@@ -58,7 +58,7 @@ const NewPostForm = () => {
     return (
         <div className="newpost">
             <form className="newpostForm" onSubmit={submit}>
-                <div>
+                <div className="errors">
                     {errors.map((error, ind) => (
                         <div key={ind}>{error}</div>
                     ))}
