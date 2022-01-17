@@ -131,26 +131,26 @@
   color:black;
   width: 30px;
   height: 30px;
-  opacity: 60%;
+  opacity: 0.6;
   transition: 0.5s;
   margin-right: 15px;
 }
 
 
 .edit-profile-link:hover {
-  opacity: 100%;
+  opacity: 1;
 }
 
 .post-delete-button {
   color:black;
   width: 30px;
   height: 30px;
-  opacity: 60%;
+  opacity: 0.6;
   transition: 0.5s;
 }
 
 .post-delete-button:hover {
-  opacity: 100%;
+  opacity: 1;
   cursor: pointer;
 }
 

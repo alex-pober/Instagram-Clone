@@ -16,7 +16,7 @@ function User() {
   const [showModal, setShowModal] = useState(false);
 
   useEffect( async () => {
-    // await dispatch(getAllPosts())
+    await dispatch(getAllPosts())
     dispatch(getAllFollows(+userId))
     dispatch(getAllFollowers(+userId))
     setTimeout(() => {
