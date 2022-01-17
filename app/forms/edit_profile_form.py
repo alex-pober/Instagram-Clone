@@ -10,6 +10,7 @@ def username_exists(form, field):
         raise ValidationError('Username is already in use.')
 
 class EditProfileForm(FlaskForm):
-    username = StringField('username', validators=[DataRequired(), username_exists])
+    username = StringField('username', validators=[DataRequired()])
+    name = StringField('name')
     bio = StringField('bio')
     profileURL = StringField('profileURL')

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
@@ -11,12 +11,22 @@ const EditProfileForm = () => {
   const [username, setUsername] = useState('');
   const [bio, setBio] = useState('');
   const [profileURL, setprofileURL] = useState('');
+  const [name, setName] = useState('')
   const user_id = useSelector(state => state.session?.user?.id);
+  const userSession = useSelector(state => state.session.user)
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    setUsername(userSession.username)
+    setBio(userSession.bio)
+    setprofileURL(userSession.profileURL)
+    setName(userSession.name)
+  }, [])
 
   const validate = () => {
     const errors = [];
+
+
     if (!username) {
       errors.push("Please provide an updated username.")
     }
@@ -56,39 +66,52 @@ const EditProfileForm = () => {
     setprofileURL(e.target.value);
   };
 
+  const updateName = (e) => {
+    setName(e.target.value);
+  };
+
   if (!user_id) {
     return <Redirect to='/feed' />;
   }
 
 
   return (
-    <div className="post-main-edit-prof">
-      <div className="newpost-edit-profile">
-
-        <form onSubmit={onEditProfile}>
-            <div>
-              {errors?.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
-         <div>
-            <img src="https://i.imgur.com/2V6sFyy.png"></img>
+    <>
+      <div>
+        <span>Edit Profile</span>
+      </div>
+      <div className="splitlabels">
+        <div className='labels'>
           <label>User Name</label>
-          <input type='text' name='username' onChange={updateUsername} value={username} required />
-        </div>
-        <div>
           <label>Profile Picture URL</label>
-              <input type='text' name='profileURL' onChange={updateProfileURL} value={profileURL} />
-            </div>
-              <div>
-                <label>Bio</label>
-              <input className='input-element-edit-prof' type='text' name='bio' onChange={updateBio} value={bio} />
-            </div>
+          <label>Name</label>
+          <label>Bio</label>
+        </div>
+        <form className="editProfileForm"onSubmit={onEditProfile}>
+          <div>
+            {errors?.map((error, ind) => (
+          <div key={ind}>{error}</div>
+          ))}
+          </div>
+          <div>
 
-          <button className='button-edit-prof' type='submit'>Submit</button>
+            <input type='text' name='username' onChange={updateUsername} value={username} />
+          </div>
+          <div>
+
+            <input type='text' name='profileURL' onChange={updateProfileURL} value={profileURL} />
+          </div>
+          <div>
+
+            <input className='input-element-edit-prof' type='text' name='name' onChange={updateName} value={name} />
+          </div>
+          <div>
+            <input className='input-element-edit-prof' type='text' name='bio' onChange={updateBio} value={bio} />
+          </div>
+          <button class='button-edit-prof' type='submit'>Submit</button>
         </form>
       </div>
-    </div>
+    </>
   );
 };
 
