@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, useParams, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "../store/posts";
-import { followUser, unfollowUser, getAllFollows } from "../store/follows"
+import { getAllFollows } from "../store/follows"
+import { followUser, unfollowUser } from '../store/followers';
 import { getAllFollowers } from "../store/followers"
 import { BsGearWide } from "react-icons/bs";
 import ProfilePostContainer from './posts/ProfilePostContainer'
@@ -14,13 +15,22 @@ function User() {
   const [users, setUsers] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
+  useEffect( async () => {
+    // await dispatch(getAllPosts())
+    dispatch(getAllFollows(+userId))
+    dispatch(getAllFollowers(+userId))
+    setTimeout(() => {
+      return
+    }, 1000)
+  }, [dispatch])
+
   const follower = useSelector(state => {
     if (state.session.user) {
       return state.session.user.id
     }
   })
 
-  const isThisFollowed = useSelector(state => state.followers[follower])
+  const isThisFollowed = useSelector(state => state.session.user.following.includes(+userId))
   const [isFollowed, setIsFollowed] = useState(isThisFollowed)
   const user = useSelector(state => state.session.user)
   const post = useSelector(state => state.posts)
@@ -33,11 +43,8 @@ function User() {
   const numOfFollowers = Object.values(followers)?.length
   const numOfFollowing = Object.values(following)?.length
 
-  console.log(follower)
-
+  console.log(isThisFollowed)
   console.log(isFollowed)
-
-
 
   useEffect(() => {
     async function fetchData() {
@@ -49,13 +56,7 @@ function User() {
   }, []);
 
   const profile_owner = users.filter(owner => owner.id == userId)[0]
-  console.log(profile_owner)
 
-  useEffect(() => {
-    dispatch(getAllPosts())
-    dispatch(getAllFollows(+userId))
-    dispatch(getAllFollowers(+userId))
-  }, [dispatch])
 
 
   const handleFollow = async () => {

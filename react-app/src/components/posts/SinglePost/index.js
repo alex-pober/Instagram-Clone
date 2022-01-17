@@ -31,10 +31,10 @@ const SinglePost = ({ post }) => {
 
     const isLiked = allLikeToThisPost.filter(like => like.user_id === userId).length > 0 ? true : false
 
-    useEffect(() => {
-        dispatch(getAllPosts())
-        dispatch(getAllLikes())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getAllPosts())
+    //     dispatch(getAllLikes())
+    // }, [dispatch])
 
     const handleDelete = (id) => {
         dispatch(deleteOnePost(id))
