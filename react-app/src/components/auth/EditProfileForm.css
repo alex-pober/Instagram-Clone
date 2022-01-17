@@ -19,7 +19,7 @@
     align-items: flex-end;
     padding: 0;
     background-color: white;
-    margin: 0 30%;
+    width:400px
 }
 
 .editProfileForm label {
@@ -34,7 +34,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 30%;
 }
 
 #edit-profile-title-text {
@@ -68,12 +67,13 @@
 .splitlabels {
     display: flex;
     background-color: white;
-    width: 500px;
+    width: 550px;
     margin: auto;
     white-space: nowrap;
     border: 1px solid rgba(219,219,219);
     border-radius: 3px;
     padding: 25px;
+    margin-top: 10px;
 }
 
 .input-element-edit-prof {
