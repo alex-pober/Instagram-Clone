@@ -31,7 +31,7 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
-      await dispatch(getAllPosts())
+      // await dispatch(getAllPosts())
       await dispatch(getAllRandomPosts())
       setLoaded(true);
     })();

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, useParams, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "../store/posts";
-import { followUser, unfollowUser, getAllFollows } from "../store/follows"
+import { getAllFollows } from "../store/follows"
+import { followUser, unfollowUser } from '../store/followers';
 import { getAllFollowers } from "../store/followers"
 import { BsGearWide } from "react-icons/bs";
 import ProfilePostContainer from './posts/ProfilePostContainer'
@@ -13,6 +14,12 @@ function User() {
   const { userId } = useParams();
   const [users, setUsers] = useState([]);
   const [showModal, setShowModal] = useState(false);
+
+  useEffect( async () => {
+    // await dispatch(getAllPosts())
+    await dispatch(getAllFollows(+userId))
+    await dispatch(getAllFollowers(+userId))
+  }, [dispatch])
 
   const follower = useSelector(state => {
     if (state.session.user) {
@@ -34,10 +41,7 @@ function User() {
   const numOfFollowing = Object.values(following)?.length
 
   console.log(follower)
-
   console.log(isFollowed)
-
-
 
   useEffect(() => {
     async function fetchData() {
@@ -49,13 +53,7 @@ function User() {
   }, []);
 
   const profile_owner = users.filter(owner => owner.id == userId)[0]
-  console.log(profile_owner)
 
-  useEffect(() => {
-    dispatch(getAllPosts())
-    dispatch(getAllFollows(+userId))
-    dispatch(getAllFollowers(+userId))
-  }, [dispatch])
 
 
   const handleFollow = async () => {

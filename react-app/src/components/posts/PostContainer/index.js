@@ -19,10 +19,10 @@ const PostContainer = ({ posts }) => {
     })
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(getAllPosts())
-        dispatch(getAllLikes())
-    }, [dispatch])
+    // useEffect(() => {
+        // dispatch(getAllPosts())
+        // dispatch(getAllLikes())
+    // }, [dispatch])
 
     const allLikeToThisPost = useSelector(state => {
         if (state.likes) {
