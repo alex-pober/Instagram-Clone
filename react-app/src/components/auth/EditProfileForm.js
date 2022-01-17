@@ -43,7 +43,7 @@ const EditProfileForm = () => {
     let errors = validate();
     if (errors.length > 0) return setErrors(errors);
 
-    const updated = await dispatch(EditProfile(user_id, username, bio, name, profileURL));
+    const updated = await dispatch(EditProfile(user_id, username, name, bio, profileURL));
     console.log(updated)
     if (updated[0].includes('Username is already in use')) {
       console.log(updated[0])
