@@ -10,7 +10,7 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-
+    border: 2px solid red;
     min-width: 600px;
     top: 30%;
 
@@ -24,27 +24,24 @@
     align-items: center;
 }
 
+.createTitle {
+    color: #262626;
+    background-color: white;
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: 600;
+}
+
 .newpost {
+    display: flex;
     border: 1px solid #bbbbbb;
+    margin: auto;
     background-color: white;
     box-sizing: border-box;
+    width: 650px;
     padding-left: 20px;
     padding-right: 20px;
     padding-block-end: 20px;
-
-}
-
-.newpost img {
-    max-width: 220px;
-}
-
-.button1 p {
-    color: #8e8e8e;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 20px;
-    margin-bottom: 30px;
-    text-align: center;
 }
 
 .loginImage {
@@ -52,38 +49,60 @@
 }
 
 .input-element{
-    height: 80px;
-    width: 400px;
+    font-size: 18px;
+   border: none;
+   width: inherit;
+   max-width: 600px;
+   width: 600px;
+   height: 200px;
+   background-color: white;
+   margin-top: 10px;
     }
 
-form {
-    width: 100%;
-    box-sizing: border-box;
-    align-self: center;
-    line-height: 25px;
-    padding: 80px;
+.holderimg {
+    font-size: 200px;
+    color: grey;
+    background-color: white;
+}
+
+.input-element:focus{
+    outline-width: 0;
+}
+
+.newpostForm {
+    background-color: white;
   }
 
-::placeholder {
-    font-size: small;
+.newpostForm div {
+background-color: white;
 }
 
-input {
-    border: 1px solid #d6d5d5;
-    background-color: rgb(245, 245, 245);
-    white-space: 5px;
-    box-sizing: border-box;
-    border-radius: 3px;
-    color: rgba(0, 0, 0, 0.6);
+.characterLimit {
+    background-color: white;
+    color: grey;
+
+}
+
+.input-element::placeholder {
     font-size: 18px;
-    height: 100%;
-    padding: 10px 15px;
-    width: 50pv;
-    margin-bottom:5px;
-    float: inline-end;
 }
 
+.previewImage{
+    width: inherit;
+    margin: auto;
 
+}
+
+.nameandpic{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(219,219,219);
+    background-color: white;
+}
+
+.nameandpic p{
+    background-color: white;
+}
 
 .newpost a {
     color: #0095f6;
@@ -94,16 +113,13 @@ input {
 
 .newpost button {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px;
-    margin:auto;
-    color: white;
+    flex-direction: row-reverse;
+    font-weight: bold;
+    cursor: pointer;
+    float: right;
+    border: none;
+    color: rgb(76, 76, 255);
     background: white;
-    background-color: #205cff;
-    border-radius: 3px;
-    width: 220px;
     height: auto;
-    padding: 10px;
-    font-size: 14px;
+    font-size: 18px;
 }
