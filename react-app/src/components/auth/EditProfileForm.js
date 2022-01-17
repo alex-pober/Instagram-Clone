@@ -90,19 +90,15 @@ const EditProfileForm = () => {
         </div>
         <form className="editProfileForm"onSubmit={onEditProfile}>
           <div>
-
             <input type='text' name='username' onChange={updateUsername} value={username} />
           </div>
-          <div className='user-input'>
-            <label for='profileURL'>Profile Picture URL</label>
+          <div>
             <input type='text' name='profileURL' onChange={updateProfileURL} value={profileURL} />
           </div>
           <div>
-
             <input type='text' name='name' onChange={updateName} value={name} />
           </div>
           <div>
-
             <textarea className='input-element-edit-prof' type='text' name='bio' onChange={updateBio} value={bio} />
           </div>
           <button class='submit-new-comment' type='submit'>Submit</button>
