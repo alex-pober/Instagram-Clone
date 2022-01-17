@@ -53,7 +53,6 @@ const UserFeed = () => {
     }
 
     let isFollowing = userInfo.following.length > 1;
-    console.log(isFollowing)
 
 
     return (
@@ -62,8 +61,6 @@ const UserFeed = () => {
                 <>
                     <p className="notFollowing">Looks like you aren't following anyone</p>
                     <p className="exploreStr">click the <AiOutlineCompass className="clickExplore"/> icon to explore</p>
-
-
                 </>
             )
                 }

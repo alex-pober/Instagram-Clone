@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { updateOnePost } from "../../../store/posts";
+import "./EditPostForm.css"
 
 const EditPostForm = () => {
     const history = useHistory();
@@ -50,27 +51,25 @@ const EditPostForm = () => {
     }
 
     return (
-        <form onSubmit={onEdit}>
-            <div>
-                <div>
-                    {errors.map((error, ind) => (
-                        <div key={ind}>{error}</div>
-                    ))}
-                </div>
-                <div>
-                    <img alt={postId} src={image} width="250px"></img>
-                </div>
-                <div>
-                    <label htmlFor='caption'>Caption</label>
-                    <input
-                        name='caption'
-                        type='text'
-                        placeholder="Caption"
-                        value={caption}
-                        onChange={updateCaption}
-                    />
-                </div>
-                <button type='submit'>Post</button>
+        <form className="edit-all" onSubmit={onEdit}>
+            <div className="errors">
+                {errors.map((error, ind) => (
+                    <div key={ind}>{error}</div>
+                ))}
+            </div>
+            <div className="edit-image">
+                <img alt={postId} src={image} width="400px"></img>
+            </div>
+            <div className="edit-caption">
+                <p htmlFor='caption'>Caption</p>
+                <textarea
+                    name='caption'
+                    type='text'
+                    placeholder="Caption"
+                    value={caption}
+                    onChange={updateCaption}
+                />
+            <button className="submit-new-comment" type='submit'>Update Caption</button>
             </div>
         </form>
     )
