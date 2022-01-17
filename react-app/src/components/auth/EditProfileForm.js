@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { EditProfile } from '../../store/session';
+import './EditProfileForm.css'
 
 const EditProfileForm = () => {
   const history = useHistory()
@@ -58,27 +59,33 @@ const EditProfileForm = () => {
 
 
   return (
-    <form onSubmit={onEditProfile}>
-      <div>
-        {errors?.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label>User Name</label>
-        <input type='text' name='username' onChange={updateUsername} value={username} required />
-      </div>
-      <div>
-        <label>Profile Picture URL</label>
-        <input type='text' name='profileURL' onChange={updateProfileURL} value={profileURL} />
-      </div>
-      <div>
-        <label>Bio</label>
-        <textarea type='text' name='bio' onChange={updateBio} value={bio} />
-      </div>
+    <div class="post-main-edit-prof">
+      <div className="newpost-edit-profile">
 
-      <button type='submit'>Submit</button>
-    </form>
+        <form onSubmit={onEditProfile}>
+            <div>
+              {errors?.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
+         <div>
+            <img src="https://i.imgur.com/2V6sFyy.png"></img>
+          <label>User Name</label>
+          <input type='text' name='username' onChange={updateUsername} value={username} required />
+        </div>
+        <div>
+          <label>Profile Picture URL</label>
+              <input type='text' name='profileURL' onChange={updateProfileURL} value={profileURL} />
+            </div>
+              <div>
+                <label>Bio</label>
+              <input className='input-element-edit-prof' type='text' name='bio' onChange={updateBio} value={bio} />
+            </div>
+
+          <button class='button-edit-prof' type='submit'>Submit</button>
+        </form>
+      </div>
+    </div>
   );
 };
 
