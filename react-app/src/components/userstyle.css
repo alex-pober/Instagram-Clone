@@ -53,6 +53,21 @@
   padding-right: 100px;
 }
 
+.edit-profile-button {
+  background-color: transparent;
+  border: 1px solid #dbdbdb;
+  color: #262626;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 7px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.edit-profile-button:hover {
+  box-shadow: 0 0 5px 1px rgb(0, 162, 255);
+}
+
 .user-info-right-bot {
   display: flex;
   flex-direction: column;

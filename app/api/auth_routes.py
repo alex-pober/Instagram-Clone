@@ -94,10 +94,12 @@ def edit_profile():
     print(form.validate_on_submit())
     if form.validate_on_submit():
         user = User.query.get(user_id)
-        user.username = form.data['username']
+        if form.data['username'] != user.username:
+            user.username = form.data['username']
+        user.name = form.data['name']
         user.bio = form.data['bio']
         user.profileURL = form.data['profileURL']
         db.session.commit()
 
         return user.to_dict()
-    return "Error not Updated"
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401

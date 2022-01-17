@@ -19,7 +19,7 @@ function User() {
       return state.session.user.id
     }
   })
-  const user = useSelector(state => state.session.user) 
+  const user = useSelector(state => state.session.user)
   const post = useSelector(state => state.posts)
   const user_id = useSelector(state => state.session.user.id)
   const isFollowed = useSelector(state => state.follows[follower])
@@ -48,7 +48,7 @@ function User() {
     dispatch(getAllFollowers(+userId))
   }, [dispatch])
 
-  
+
   const handleFollow = async () => {
     let followed = +userId
     isFollowed ? dispatch(unfollowUser(follower, followed)) : dispatch(followUser(follower, followed))
@@ -67,7 +67,8 @@ function User() {
               <p className='user-name-bold'>{user.username}</p>
               {+userId === +user_id && (
                 <NavLink to={`/profile-edit`}>
-                  <BsGearWide id='gear' />
+                  {/* <BsGearWide id='gear' /> */}
+                  <button className="edit-profile-button">Edit Profile</button>
                 </NavLink>
               )}
             </div>

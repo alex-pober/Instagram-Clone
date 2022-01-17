@@ -103,7 +103,7 @@ export const signUp = (username, name, email, password) => async (dispatch) => {
   }
 }
 
-export const EditProfile = (id, username, bio, profileURL) => async (dispatch) => {
+export const EditProfile = (id, username, name, bio, profileURL) => async (dispatch) => {
   const response = await fetch('/api/auth/edit-profile', {
     method: 'PUT',
     headers: {
@@ -112,6 +112,7 @@ export const EditProfile = (id, username, bio, profileURL) => async (dispatch) =
     body: JSON.stringify({
       id,
       username,
+      name,
       bio,
       profileURL,
     }),
