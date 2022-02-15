@@ -39,12 +39,14 @@ export const getAllPosts = () => async dispatch => {
 }
 
 export const addOnePost = post => async dispatch => {
+    console.log('here', post);
     const response = await fetch('/api/posts/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(post)
+        // body: post
     })
     if (response.ok) {
         const data = await response.json();
