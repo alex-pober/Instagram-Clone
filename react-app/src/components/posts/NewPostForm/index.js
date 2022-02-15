@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import {BsCardImage} from 'react-icons/bs';
+import { BsCardImage } from 'react-icons/bs';
 import { addOnePost } from "../../../store/posts";
 import './newPostForm.css';
 
@@ -35,7 +35,7 @@ const NewPostForm = () => {
         if (errors.length > 0) return setErrors(errors);
         const newPost = {
             user_id: user.id,
-            image:imgURL,
+            image: imgURL,
             caption,
         }
         setImgLoading(true);
@@ -45,11 +45,15 @@ const NewPostForm = () => {
             history.push(`/users/${user.id}`)
         }
     }
-
-    const updateImgURL = e => {
+    
+    const showPreview = e => {
         setImgURL(e.target.files[0])
+        if (e.target.files.length > 0) {
+            const src = URL.createObjectURL(e.target.files[0]);
+            const preview = document.getElementById("previewImg");
+            preview.src = src;
+        }
     }
-
     const updateCaption = e => {
         setCaption(e.target.value)
     }
@@ -65,13 +69,13 @@ const NewPostForm = () => {
                     ))}
                 </div>
                 <div className="nameandpic">
-                    <img id="profileButton" class="" src={user.profileURL} alt="demo"></img>
+                    <img id="profileButton" className="" src={user.profileURL} alt="demo"></img>
                     <p>&nbsp;&nbsp;{user.name}</p>
                 </div>
                 <p className="createTitle">Create new post</p>
                 {empty
-                    ? <BsCardImage className="holderimg"/>
-                    : <img className="previewImage" src={imgURL} ></img>
+                    ? <BsCardImage className="holderimg" />
+                    : <img className="previewImage" id='previewImg' src='' />
                 }
                 <div>
                     <label htmlFor='imgURL'></label>
@@ -80,12 +84,12 @@ const NewPostForm = () => {
                         type='file'
                         accept="image/*"
                         placeholder="Image"
-                        onChange={updateImgURL}
+                        onChange={showPreview}
                         width="600px"
                     />
                 </div>
                 <div>
-                    <label  htmlFor='caption'></label>
+                    <label htmlFor='caption'></label>
                     <textarea
                         className='input-element'
                         name='caption'
