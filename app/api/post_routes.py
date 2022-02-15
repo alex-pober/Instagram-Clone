@@ -5,6 +5,7 @@ from app.models import Post, Like, Comment, db
 from app.forms import NewPostForm
 from app.forms.comment_form import NewCommentForm
 import random
+from app.AWS.aws import (upload_file_to_s3, allowed_file, get_unique_filename)
 
 
 post_routes = Blueprint('posts', __name__)
@@ -24,16 +25,31 @@ def get_feed():
     return {'posts': [post.to_dict() for post in posts]}
 
 # POST /api/posts
+
+
 @post_routes.route('/', methods=["POST"])
 @login_required
 def new_post():
-    data = request.json
+    if "image" not in request.files:
+        return {"errors": "image required"}, 400
+
+    image = request.files["image"]
+    data = request.form
+    if not allowed_file(image.filename):
+        return {"errors": "file type not permitted"}, 400
+    image.filename = get_unique_filename(image.filename)
+    upload = upload_file_to_s3(image)
+
+    if "url" not in upload:
+        return upload, 400
+    imgURL = upload["url"]
+
     form = NewPostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         post = Post(
             user_id=data['user_id'],
-            imgURL=form.data['imgURL'],
+            imgURL=imgURL,
             caption=form.data['caption']
         )
         db.session.add(post)
@@ -57,6 +73,8 @@ def update_post(id):
     return (form.errors)
 
 # GET /api/postsrandom
+
+
 @post_routes.route('/random-order-posts')
 def get_random_posts():
     posts = Post.query.all()
@@ -77,38 +95,35 @@ def delete_post(id):
 # GET /api/posts/:username (FOR FEED)
 
 
-
-
-
-
-#### LIKES
+# LIKES
 # POST /api/posts/<int:id>/likes
 @post_routes.route('/<int:id>/likes', methods=["POST"])
 @login_required
 def post_like(id):
     user_id = request.json['userId']
     post_id = request.json['postId']
-    existing_like = Like.query.filter(Like.user_id == user_id, Like.post_id == id).all()
+    existing_like = Like.query.filter(
+        Like.user_id == user_id, Like.post_id == id).all()
     if existing_like:
-      db.session.delete(existing_like[0])
-      db.session.commit()
-      return jsonify(existing_like[0].to_dict())
+        db.session.delete(existing_like[0])
+        db.session.commit()
+        return jsonify(existing_like[0].to_dict())
     else:
-      new_like = Like(
-        user_id=user_id,
-        post_id=post_id
-      )
-      db.session.add(new_like)
-      db.session.commit()
-      return jsonify(new_like.to_dict())
+        new_like = Like(
+            user_id=user_id,
+            post_id=post_id
+        )
+        db.session.add(new_like)
+        db.session.commit()
+        return jsonify(new_like.to_dict())
 
 
-#### COMMENTS
+# COMMENTS
 
 # GET /api/posts/:id/comments
 @post_routes.route('/<int:id>/comments')
 def get_posts_comments(id):
-    comments = Comment.query.filter(Comment.post_id==id).all()
+    comments = Comment.query.filter(Comment.post_id == id).all()
     return {'comments': [comment.to_dict() for comment in comments]}
 
 

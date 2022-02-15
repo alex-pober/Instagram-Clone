@@ -26,8 +26,6 @@ const CommentContainer = ({ comment }) => {
         setEditPopUp(data)
     }
 
-    console.log(comment)
-
     return (
         <div className="small-comment-container">
             <div className="username-container">

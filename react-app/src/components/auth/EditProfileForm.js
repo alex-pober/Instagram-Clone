@@ -44,11 +44,8 @@ const EditProfileForm = () => {
     if (errors.length > 0) return setErrors(errors);
 
     const updated = await dispatch(EditProfile(user_id, username, name, bio, profileURL));
-    console.log(updated)
     if (updated[0].includes('Username is already in use')) {
-      console.log(updated[0])
       setErrors(updated)
-      console.log(errors)
 
     } else {
       history.push(`/users/${user_id}`)

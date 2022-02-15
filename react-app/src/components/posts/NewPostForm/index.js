@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import {BsCardImage} from 'react-icons/bs';
+import { BsCardImage } from 'react-icons/bs';
 import { addOnePost } from "../../../store/posts";
 import './newPostForm.css';
 
@@ -9,7 +9,8 @@ import './newPostForm.css';
 const NewPostForm = () => {
     const history = useHistory();
     const [errors, setErrors] = useState([]);
-    const [imgURL, setImgURL] = useState('');
+    const [imgURL, setImgURL] = useState(null);
+    const [imgLoading, setImgLoading] = useState(false);
     const [caption, setCaption] = useState('');
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch()
@@ -17,12 +18,12 @@ const NewPostForm = () => {
 
     const validate = () => {
         const errors = [];
-        if (!imgURL || !validUrl.isUri(imgURL)) {
-            errors.push("Please provide an image URL for your photo.")
-        }
-        else if (caption.length > 2200) {
-            errors.push("Character limit is 2200.")
-        }
+        // if (!imgURL || !validUrl.isUri(imgURL)) {
+        //     errors.push("Please provide an image URL for your photo.")
+        // }
+        // else if (caption.length > 2200) {
+        //     errors.push("Character limit is 2200.")
+        // }
         return errors
     }
 
@@ -32,23 +33,27 @@ const NewPostForm = () => {
         const errors = validate();
 
         if (errors.length > 0) return setErrors(errors);
-
         const newPost = {
             user_id: user.id,
-            imgURL,
+            image: imgURL,
             caption,
         }
+        setImgLoading(true);
         let submited = await dispatch(addOnePost(newPost))
         if (submited) {
+            setImgLoading(false);
             history.push(`/users/${user.id}`)
         }
     }
-
-    const updateImgURL = e => {
-        setImgURL(e.target.value)
+    
+    const showPreview = e => {
+        setImgURL(e.target.files[0])
+        if (e.target.files.length > 0) {
+            const src = URL.createObjectURL(e.target.files[0]);
+            const preview = document.getElementById("previewImg");
+            preview.src = src;
+        }
     }
-    console.log(imgURL)
-
     const updateCaption = e => {
         setCaption(e.target.value)
     }
@@ -64,27 +69,27 @@ const NewPostForm = () => {
                     ))}
                 </div>
                 <div className="nameandpic">
-                    <img id="profileButton" class="" src={user.profileURL} alt="demo"></img>
+                    <img id="profileButton" className="" src={user.profileURL} alt="demo"></img>
                     <p>&nbsp;&nbsp;{user.name}</p>
                 </div>
                 <p className="createTitle">Create new post</p>
                 {empty
-                    ? <BsCardImage className="holderimg"/>
-                    : <img className="previewImage" src={imgURL} ></img>
+                    ? <BsCardImage className="holderimg" />
+                    : <img className="previewImage" id='previewImg' src='' />
                 }
                 <div>
                     <label htmlFor='imgURL'></label>
                     <input
                         name='imgURL'
-                        type='text'
-                        placeholder="Image URL"
-                        value={imgURL}
-                        onChange={updateImgURL}
+                        type='file'
+                        accept="image/*"
+                        placeholder="Image"
+                        onChange={showPreview}
                         width="600px"
                     />
                 </div>
                 <div>
-                    <label  htmlFor='caption'></label>
+                    <label htmlFor='caption'></label>
                     <textarea
                         className='input-element'
                         name='caption'

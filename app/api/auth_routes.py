@@ -91,7 +91,6 @@ def edit_profile():
     form = EditProfileForm()
     user_id = request.json['id']
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(form.validate_on_submit())
     if form.validate_on_submit():
         user = User.query.get(user_id)
         if form.data['username'] != user.username:
