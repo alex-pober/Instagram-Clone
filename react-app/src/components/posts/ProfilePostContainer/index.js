@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink, useHistory, useParams } from "react-router-dom";
 import { Modal } from "../../../context/Modal";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
 import { FaRegComment } from "react-icons/fa";
@@ -16,7 +16,9 @@ const ProfilePostContainer = ({ posts }) => {
     const [showModal, setShowModal] = useState(false);
     const [editCommentOpen, setEditCommentOpen] = useState(false)
     const dispatch = useDispatch()
-    const history = useHistory()
+    const history = useHistory();
+    const currentUserId = useParams().userId;
+    console.log(currentUserId)
     const userId = useSelector(state => {
         if (state.session.user) {
             return state.session.user.id
@@ -32,11 +34,9 @@ const ProfilePostContainer = ({ posts }) => {
 
     const isLiked = allLikeToThisPost.filter(like => like.user_id === userId).length > 0 ? true : false
 
-    // useEffect(() => {
-    //     //we do not need this in here since we load all posts and likes on app.js
-    //     // dispatch(getAllPosts())
-    //     // dispatch(getAllLikes())
-    // }, [dispatch])
+    useEffect(() => {
+        setShowModal(false);
+    }, [currentUserId])
 
     const handleDelete = (id) => {
         dispatch(deleteOnePost(id))

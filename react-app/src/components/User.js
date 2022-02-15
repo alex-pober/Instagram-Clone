@@ -53,6 +53,10 @@ function User() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    setShowModal(false);
+  }, userId)
+
   const profile_owner = users.filter(owner => owner.id == userId)[0]
 
 
