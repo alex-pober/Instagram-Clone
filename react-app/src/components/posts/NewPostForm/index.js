@@ -38,7 +38,6 @@ const NewPostForm = () => {
             image:imgURL,
             caption,
         }
-        console.log(newPost.image);
         setImgLoading(true);
         let submited = await dispatch(addOnePost(newPost))
         if (submited) {

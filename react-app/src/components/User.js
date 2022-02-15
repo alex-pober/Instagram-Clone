@@ -43,8 +43,6 @@ function User() {
   const numOfFollowers = Object.values(followers)?.length
   const numOfFollowing = Object.values(following)?.length
 
-  console.log(isThisFollowed)
-  console.log(isFollowed)
 
   useEffect(() => {
     async function fetchData() {

@@ -39,17 +39,17 @@ export const getAllPosts = () => async dispatch => {
 }
 
 export const addOnePost = post => async dispatch => {
-    console.log('here', post);
+    const imgForm = new FormData()
+    imgForm.append('user_id', post.user_id); 
+    imgForm.append('image', post.image); 
+    imgForm.append('caption', post.caption);
     const response = await fetch('/api/posts/', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(post)
-        // body: post
+        'Content-Type': 'multipart/form-data',
+        body: imgForm
     })
     if (response.ok) {
-        const data = await response.json();
+        const data = await response;
         dispatch(addPost(data))
         return data
     }
