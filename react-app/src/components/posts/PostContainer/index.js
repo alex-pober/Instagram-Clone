@@ -19,10 +19,10 @@ const PostContainer = ({ posts }) => {
     })
     const dispatch = useDispatch()
 
-    // useEffect(() => {
-        // dispatch(getAllPosts())
-        // dispatch(getAllLikes())
-    // }, [dispatch])
+    useEffect(() => {
+        dispatch(getAllPosts())
+        dispatch(getAllLikes())
+    }, [dispatch])
 
     const allLikeToThisPost = useSelector(state => {
         if (state.likes) {
@@ -30,7 +30,7 @@ const PostContainer = ({ posts }) => {
             .filter(like => like?.post_id === +posts.id)
         }
     })
-    const isLiked = allLikeToThisPost.filter(like => like.user_id === userId).length > 0 ? true : false
+    const isLiked = allLikeToThisPost.filter(like => like?.user_id === userId).length > 0 ? true : false
 
     const handleLike = () => {
         isLiked ? dispatch(unlikePost(userId, posts.id)) : dispatch(likePost(userId, posts.id))
