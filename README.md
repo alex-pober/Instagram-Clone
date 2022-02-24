@@ -3,8 +3,27 @@
 You can check it out here: [Pro.gram](https://aa-pro-gram.herokuapp.com/)
 
 ## Screenshots
+Summary gif:
+![ProGramHomePage](https://raw.githubusercontent.com/alex-pober/Instagram-Clone/main/react-app/public/Pro.Gram/pro-gram.gif)
 
-![ProGramLogin](https://raw.githubusercontent.com/alex-pober/Instagram-Clone/main/react-app/public/Pro.Gram/2.png)
+Login & Sign Up:
+<br/>
+<img alt='Login' src="https://raw.githubusercontent.com/alex-pober/Instagram-Clone/main/react-app/public/Pro.Gram/2.png" height="250" />
+<img alt='Sign Up' src="https://raw.githubusercontent.com/alex-pober/Instagram-Clone/main/react-app/public/Pro.Gram/3.png" height="250" />
+
+Feed/Home:
+![ProGramHomePage](https://raw.githubusercontent.com/alex-pober/Instagram-Clone/main/react-app/public/Pro.Gram/4.png)
+
+Explore:
+![ProGramHomePage](https://raw.githubusercontent.com/alex-pober/Instagram-Clone/main/react-app/public/Pro.Gram/5.png)
+
+Profile:
+![ProGramHomePage](https://raw.githubusercontent.com/alex-pober/Instagram-Clone/main/react-app/public/Pro.Gram/6.png)
+
+New Post:
+![ProGramHomePage](https://raw.githubusercontent.com/alex-pober/Instagram-Clone/main/react-app/public/Pro.Gram/8.png)
+
+
 
 ## Features
 -   Sign up/in
