@@ -1,5 +1,6 @@
 # Pro.Gram
 
+Create an account and start using Pro.Gram is a free, online photosharing application and social network platform. Pro.Gram allows users to upload, share and edit photos with captions. New users can find people to follow using 'Explore', your Pro.Gram 'Feed' is a place where you can share and connect with the users you follow.
 You can check it out here: [Pro.gram](https://aa-pro-gram.herokuapp.com/)
 
 ## Screenshots
