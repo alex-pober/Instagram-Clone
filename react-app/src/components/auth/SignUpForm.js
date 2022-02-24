@@ -77,7 +77,7 @@ const SignUpForm = () => {
   return (
     <>
     <div className="mainsignup">
-      <img className="loginImage" src="https://i.imgur.com/RLu5D1T.png"></img>
+      <img className="loginImage" src="https://i.imgur.com/whoaWyj.png"></img>
       <div className="signup">
         <form onSubmit={onSignUp}>
           <div>

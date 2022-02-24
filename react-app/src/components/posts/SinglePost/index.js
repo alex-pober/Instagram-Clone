@@ -13,7 +13,7 @@ import NewCommentForm from "../../comments/NewComment";
 
 const SinglePost = ({ post }) => {
     const [postUser, setpostUsers] = useState([]);
-    const [editCommentOpen, setEditCommentOpen] = useState(false)
+    const [editCommentOpen, setEditCommentOpen] = useState(true)
     const dispatch = useDispatch()
     const history = useHistory()
     const userId = useSelector(state => {
