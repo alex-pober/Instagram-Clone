@@ -13,6 +13,7 @@
 
 #profilePicDiv {
   background-color: white;
+  cursor: pointer;
 }
 
 #profilePicInnerDiv{
