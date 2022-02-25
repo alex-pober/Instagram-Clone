@@ -5,9 +5,10 @@ const Footer = () => {
 
     return(
       <>
+      <p className="program-github">Pro.Gram&nbsp; <a href="https://github.com/alex-pober/Instagram-Clone"> <FaGithubSquare className="GitIcon" /> </a></p>
       <p className="madeby">Made proudly by:</p>
         <div className='footer-bar'>
-            <div>
+            <div className="infoContainer">
               <p>Alex Poverezhskiy</p>
                 <div className="icons">
                   <a href="https://github.com/alex-pober">

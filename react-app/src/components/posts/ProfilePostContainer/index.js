@@ -14,7 +14,7 @@ import './style.css';
 
 const ProfilePostContainer = ({ posts }) => {
     const [showModal, setShowModal] = useState(false);
-    const [editCommentOpen, setEditCommentOpen] = useState(false)
+    const [editCommentOpen, setEditCommentOpen] = useState(true)
     const dispatch = useDispatch()
     const history = useHistory();
     const currentUserId = useParams().userId;

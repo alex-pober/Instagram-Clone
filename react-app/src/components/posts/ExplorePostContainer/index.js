@@ -15,7 +15,7 @@ import './style.css';
 const ExplorePostContainer = ({ posts }) => {
     const [postUser, setpostUsers] = useState([]);
     const [showModal, setShowModal] = useState(false);
-    const [editCommentOpen, setEditCommentOpen] = useState(false)
+    const [editCommentOpen, setEditCommentOpen] = useState(true)
     const dispatch = useDispatch()
     const history = useHistory()
     const userId = useSelector(state => {
