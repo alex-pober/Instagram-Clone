@@ -9,7 +9,7 @@ const Footer = () => {
       <p className="madeby">Made proudly by:</p>
         <div className='footer-bar'>
             <div className="infoContainer">
-              <p>Alex Poverezhskiy</p>
+              <p>Alex Poberezhskiy</p>
                 <div className="icons">
                   <a href="https://github.com/alex-pober">
                     <FaGithubSquare className="footerIcon" />
