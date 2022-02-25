@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, session, request
+import requests
 from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
@@ -88,8 +89,28 @@ def unauthorized():
 
 @auth_routes.route('/edit-profile', methods=['PUT'])
 def edit_profile():
+    print('INSIDE OF PUT ROUTE', 'Posted file:', request.files.get('image'))
+
+
+    if "image" not in request.files:
+        return {"errors": "image required"}, 400
+
+    image = request.files["image"]
+    print('***********', image)
+    data = request.form
+    print('***********', data)
+
+    if not allowed_file(image.filename):
+        return {"errors": "file type not permitted"}, 400
+    image.filename = get_unique_filename(image.filename)
+    upload = upload_file_to_s3(image)
+
+    if "url" not in upload:
+        return upload, 400
+    profileURL = upload["url"]
+
     form = EditProfileForm()
-    user_id = request.json['id']
+    user_id = data['id']
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         user = User.query.get(user_id)
@@ -97,7 +118,7 @@ def edit_profile():
             user.username = form.data['username']
         user.name = form.data['name']
         user.bio = form.data['bio']
-        user.profileURL = form.data['profileURL']
+        user.profileURL = profileURL
         db.session.commit()
 
         return user.to_dict()

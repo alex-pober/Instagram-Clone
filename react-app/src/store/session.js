@@ -103,20 +103,20 @@ export const signUp = (username, name, email, password) => async (dispatch) => {
   }
 }
 
-export const EditProfile = (id, username, name, bio, profileURL) => async (dispatch) => {
+export const EditProfile = (updatedProfile) => async (dispatch) => {
+  const form = new FormData();
+  form.append('id', updatedProfile.id)
+  form.append('username', updatedProfile.username)
+  form.append('name', updatedProfile.name)
+  form.append('bio', updatedProfile.bio)
+  form.append('image', updatedProfile.image)
   const response = await fetch('/api/auth/edit-profile', {
     method: 'PUT',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'multipart/form-data',
     },
-    body: JSON.stringify({
-      id,
-      username,
-      name,
-      bio,
-      profileURL,
-    }),
-  });
+    body: form
+    });
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))

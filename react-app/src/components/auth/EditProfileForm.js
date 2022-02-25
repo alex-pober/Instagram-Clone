@@ -10,7 +10,7 @@ const EditProfileForm = () => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [bio, setBio] = useState('');
-  const [profileURL, setprofileURL] = useState('');
+  const [profileURL, setprofileURL] = useState(null);
   const [name, setName] = useState('')
   const user_id = useSelector(state => state.session?.user?.id);
   const userSession = useSelector(state => state.session.user)
@@ -19,7 +19,7 @@ const EditProfileForm = () => {
   useEffect(() => {
     setUsername(userSession.username)
     setBio(userSession.bio)
-    setprofileURL(userSession.profileURL)
+    // setprofileURL(userSession.profileURL)
     setName(userSession.name)
   }, [])
 
@@ -30,10 +30,10 @@ const EditProfileForm = () => {
     if (!username) {
       errors.push("Please provide an updated username.")
     }
-    if (profileURL.length > 2000) {
-      errors.push("Please provide a valid URL.")
-    }
-    if (!profileURL) errors.push('Please provide an image URL for your profile picture.');
+    // if (profileURL.length > 2000) {
+    //   errors.push("Please provide a valid URL.")
+    // }
+    // if (!profileURL) errors.push('Please provide an image URL for your profile picture.');
     setErrors(errors)
     return errors;
   }
@@ -43,7 +43,15 @@ const EditProfileForm = () => {
     let errors = validate();
     if (errors.length > 0) return setErrors(errors);
 
-    const updated = await dispatch(EditProfile(user_id, username, name, bio, profileURL));
+    const updatedProfile = {
+      user_id: user_id,
+      username: username,
+      name: name,
+      bio: bio,
+      image: profileURL
+    }
+
+    const updated = await dispatch(EditProfile(updatedProfile));
     if (updated[0].includes('Username is already in use')) {
       setErrors(updated)
 
@@ -61,7 +69,7 @@ const EditProfileForm = () => {
   };
 
   const updateProfileURL = (e) => {
-    setprofileURL(e.target.value);
+    setprofileURL(e.target.files[0]);
   };
 
   const updateName = (e) => {
@@ -90,7 +98,7 @@ const EditProfileForm = () => {
             <input type='text' name='username' onChange={updateUsername} value={username} />
           </div>
           <div>
-            <input type='text' name='profileURL' onChange={updateProfileURL} value={profileURL} />
+            <input name='profileURL' type='file' accept='image/*' placeholder='Image' name='profileURL' onChange={updateProfileURL} />
           </div>
           <div>
             <input type='text' name='name' onChange={updateName} value={name} />
